@@ -1,6 +1,7 @@
 package beans;
 
-public class Korisnik {
+public abstract class Korisnik {
+	
 	protected String korisnickoIme;
 	protected String lozinka;
 	protected String ime;
