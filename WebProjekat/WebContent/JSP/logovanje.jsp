@@ -20,7 +20,7 @@
          </tr>
          <tr>
             <td></td>
-            <td><a href="registracija.jsp">Registracija</a></td>
+            <td><a href="/JSP/registracija.jsp">Registracija</a></td>
         </tr>
         <tr>
             <td></td>
