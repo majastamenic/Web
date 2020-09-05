@@ -58,25 +58,13 @@ private Map<Adresa, Lokacija> lokacija = new HashMap<>();
 				st = new StringTokenizer(line, ";");
 				while (st.hasMoreTokens()) {
 					
+					float geografskaSirina = Float.parseFloat(st.nextToken().trim());
+					float geografskaDuzina = Float.parseFloat(st.nextToken().trim());
+					String ulicaBroj = st.nextToken().trim();
+					AdresaDAO ad= new AdresaDAO();
+					Adresa adresa = ad.find(ulicaBroj);
 					
-		//			Adresa adresa = (Adresa) st.nextToken().trim();
-					String lozinka = st.nextToken().trim();
-					String ime = st.nextToken().trim();
-					String prezime = st.nextToken().trim();
-					Pol pol = null;
-					if(st.nextToken().trim().toString()=="muski")
-						pol=Pol.muski;
-					else
-						pol=Pol.zenski;
-					Uloga uloga= null;
-					if(st.nextToken().trim().toString()=="Administrator")
-						uloga=Uloga.Administrator;
-					else if(st.nextToken().trim().toString()=="Domacin")
-						uloga=Uloga.Domacin;
-					else
-						uloga=Uloga.Gost;
-					
-					//users.put(korisnickoIme, new Korisnik(korisnickoIme, lozinka, ime, prezime, pol,uloga));
+			lokacija.put(adresa, new Lokacija(geografskaSirina, geografskaDuzina, adresa));
 				}
 				
 			}

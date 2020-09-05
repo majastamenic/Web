@@ -1,16 +1,20 @@
 package beans;
 
-public class Lokacija extends Adresa{
+public class Lokacija{
 	
 
 	private float geografskaSirina;
 	private float geografskaDuzina;
+	private Adresa adresa;
 	
 	
-	public Lokacija(String ulicaBroj, String naseljenoMesto, int postanskiBroj) {
-		super(ulicaBroj, naseljenoMesto, postanskiBroj);
-		// TODO Auto-generated constructor stub
-		
+	
+
+	public Lokacija(float geografskaSirina, float geografskaDuzina, Adresa adresa) {
+		super();
+		this.geografskaSirina = geografskaSirina;
+		this.geografskaDuzina = geografskaDuzina;
+		this.setAdresa(adresa);
 	}
 
 	public float getGeografskaSirina() {
@@ -27,6 +31,14 @@ public class Lokacija extends Adresa{
 
 	public void setGeografskaDuzina(float geografskaDuzina) {
 		this.geografskaDuzina = geografskaDuzina;
+	}
+
+	public Adresa getAdresa() {
+		return adresa;
+	}
+
+	public void setAdresa(Adresa adresa) {
+		this.adresa = adresa;
 	}
 
 	
