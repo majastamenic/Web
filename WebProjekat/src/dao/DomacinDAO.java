@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import beans.Domacin;
-import beans.KomentarZaApartman;
+
 
 public class DomacinDAO {
 private Map<Integer, Domacin> domacini = new HashMap<>();

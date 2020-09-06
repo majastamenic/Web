@@ -9,9 +9,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import beans.Amenities;
-import beans.Apartman;
-import beans.Gost;
-import beans.KomentarZaApartman;
+
 
 public class AmenitiesDAO {
 

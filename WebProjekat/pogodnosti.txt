@@ -1,0 +1,6 @@
+1;Parking
+2;Pegla
+3;Kuhinja
+4;Ves masina
+5;Wifi
+6;Obroci
