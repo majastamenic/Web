@@ -7,13 +7,14 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+import static util.Putanja._PROJECT_LOCATION;
 
 import beans.Amenities;
 
 
 public class AmenitiesDAO {
 
-private Map<Integer, Amenities> pogodnosti = new HashMap<>();
+private static Map<Integer, Amenities> pogodnosti = new HashMap<>();
 	
 	
 	public AmenitiesDAO() {
@@ -24,7 +25,7 @@ private Map<Integer, Amenities> pogodnosti = new HashMap<>();
 	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
 	 */
 	public AmenitiesDAO(String contextPath) {
-		ucitajPogodnosti(contextPath);
+		ucitajPogodnosti();
 	}
 	
 	/**
@@ -51,10 +52,10 @@ private Map<Integer, Amenities> pogodnosti = new HashMap<>();
 	 * Kljuè je korisnièko ime korisnika.
 	 * @param contextPath Putanja do aplikacije u Tomcatu
 	 */
-	private void ucitajPogodnosti(String contextPath) {
+	public static Map<Integer, Amenities> ucitajPogodnosti() {
 		BufferedReader in = null;
 		try {
-			File file = new File(contextPath + "/pogodnosti.txt");
+			File file = new File(_PROJECT_LOCATION + "/pogodnosti.txt");
 			in = new BufferedReader(new FileReader(file));
 			String line;
 			StringTokenizer st;
@@ -84,6 +85,7 @@ private Map<Integer, Amenities> pogodnosti = new HashMap<>();
 				catch (Exception e) { }
 			}
 		}
+		return pogodnosti;
 	}
 	
 

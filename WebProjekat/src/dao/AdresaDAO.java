@@ -10,11 +10,11 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import beans.Adresa;
-
+import static util.Putanja._PROJECT_LOCATION;
 
 public class AdresaDAO {
 
-private Map<Integer, Adresa> adrese = new HashMap<>();
+private static Map<Integer, Adresa> adrese = new HashMap<>();
 	
 	
 	public AdresaDAO() {
@@ -25,7 +25,7 @@ private Map<Integer, Adresa> adrese = new HashMap<>();
 	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
 	 */
 	public AdresaDAO(String contextPath) {
-		ucitajAdrese(contextPath);
+		ucitajAdrese();
 	}
 	
 	/**
@@ -52,10 +52,10 @@ private Map<Integer, Adresa> adrese = new HashMap<>();
 	 * Kljuè je korisnièko ime korisnika.
 	 * @param contextPath Putanja do aplikacije u Tomcatu
 	 */
-	private void ucitajAdrese(String contextPath) {
+	public static Map<Integer,Adresa> ucitajAdrese() {
 		BufferedReader in = null;
 		try {
-			File file = new File(contextPath + "/adrese.txt");
+			File file = new File(_PROJECT_LOCATION + "/adrese.txt");
 			in = new BufferedReader(new FileReader(file));
 			String line;
 			StringTokenizer st;
@@ -85,5 +85,6 @@ private Map<Integer, Adresa> adrese = new HashMap<>();
 				catch (Exception e) { }
 			}
 		}
+		return adrese;
 	}
 }

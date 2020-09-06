@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 import beans.Korisnik;
 import beans.Pol;
 import beans.Uloga;
-
+import static util.Putanja._PROJECT_LOCATION;
 
 /***
  * <p>Klasa namenjena da uèita korisnike iz fajla i pruža operacije nad njima (poput pretrage).
@@ -22,7 +22,8 @@ import beans.Uloga;
  *
  */
 public class UserDAO {
-	private Map<String, Korisnik> users = new HashMap<>();
+	private static Map<String, Korisnik> users = new HashMap<>();
+	
 	
 	
 	public UserDAO() {
@@ -33,7 +34,7 @@ public class UserDAO {
 	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
 	 */
 	public UserDAO(String contextPath) {
-		loadUsers(contextPath);
+		loadUsers();
 	}
 	
 	/**
@@ -60,12 +61,13 @@ public class UserDAO {
 	/**
 	 * Uèitava korisnike iz WebContent/users.txt fajla i dodaje ih u mapu {@link #users}.
 	 * Kljuè je korisnièko ime korisnika.
+	 * @param _PROJECT_LOCATION 
 	 * @param contextPath Putanja do aplikacije u Tomcatu
 	 */
-	private void loadUsers(String contextPath) {
+	public static Map<String,Korisnik> loadUsers() {
 		BufferedReader in = null;
 		try {
-			File file = new File(contextPath + "/users.txt");
+			File file = new File(_PROJECT_LOCATION + "/users.txt");
 			in = new BufferedReader(new FileReader(file));
 			String line;
 			StringTokenizer st;
@@ -82,14 +84,16 @@ public class UserDAO {
 					String ime = st.nextToken().trim();
 					String prezime = st.nextToken().trim();
 					Pol pol = null;
-					if(st.nextToken().trim().toString()=="muski")
+					String polStr=st.nextToken().trim().toString();
+					if(polStr=="muski")
 						pol=Pol.muski;
 					else
 						pol=Pol.zenski;
 					Uloga uloga= null;
-					if(st.nextToken().trim().toString()=="Administrator")
+					String ulogaStr = st.nextToken().trim().toString();
+					if(ulogaStr=="Administrator")
 						uloga=Uloga.Administrator;
-					else if(st.nextToken().trim().toString()=="Domacin")
+					else if(ulogaStr=="Domacin")
 						uloga=Uloga.Domacin;
 					else
 						uloga=Uloga.Gost;
@@ -108,6 +112,22 @@ public class UserDAO {
 				catch (Exception e) { }
 			}
 		}
+		return users;
+	}
+	
+	public static Korisnik findUserByCredentials(String korisnickoIme, String lozinka) {
+		Korisnik trazeniKorisnik = null;
+		
+		if(users.size() == 0) {
+			loadUsers();
+		}
+		if(users.containsKey(korisnickoIme))
+			trazeniKorisnik= users.get(korisnickoIme);
+		
+		if(trazeniKorisnik.getLozinka().equals(lozinka) && trazeniKorisnik!=null)
+			return trazeniKorisnik;
+		else
+			return null;
 	}
 	
 }

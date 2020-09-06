@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+import static util.Putanja._PROJECT_LOCATION;
 
 import beans.Apartman;
 import beans.Gost;
@@ -14,7 +15,7 @@ import beans.KomentarZaApartman;
 
 
 public class KomentarDAO {
-private Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
+private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 	
 	
 	public KomentarDAO() {
@@ -25,7 +26,7 @@ private Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
 	 */
 	public KomentarDAO(String contextPath) {
-		ucitajKomentare(contextPath);
+		ucitajKomentare();
 	}
 	
 	/**
@@ -52,10 +53,10 @@ private Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 	 * Kljuè je korisnièko ime korisnika.
 	 * @param contextPath Putanja do aplikacije u Tomcatu
 	 */
-	private void ucitajKomentare(String contextPath) {
+	public static Map<Integer, KomentarZaApartman> ucitajKomentare() {
 		BufferedReader in = null;
 		try {
-			File file = new File(contextPath + "/komentari.txt");
+			File file = new File(_PROJECT_LOCATION + "/komentari.txt");
 			in = new BufferedReader(new FileReader(file));
 			String line;
 			StringTokenizer st;
@@ -92,6 +93,7 @@ private Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 				catch (Exception e) { }
 			}
 		}
+		return komentari;
 	}
 	
 

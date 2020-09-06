@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import static util.Putanja._PROJECT_LOCATION;
 
 
 
@@ -26,12 +27,12 @@ import beans.TipApartmana;
 
 
 public class ApartmanDAO {
-	private Map<Integer, Apartman> apartmani = new HashMap<>();
+	private static Map<Integer, Apartman> apartmani = new HashMap<>();
 	public ApartmanDAO() {
 		
 	}
 	public ApartmanDAO(String contextPath) {
-		ucitajApartmane(contextPath);
+		ucitajApartmane();
 	}
 	
 	
@@ -48,10 +49,10 @@ public class ApartmanDAO {
 		return apartmani.values();
 	}
 	
-	private void ucitajApartmane(String contextPath) {
+	public static Map<Integer, Apartman> ucitajApartmane() {
 		BufferedReader in = null;
 		try {
-			File file = new File(contextPath + "/apartmani.txt");
+			File file = new File(_PROJECT_LOCATION + "/apartmani.txt");
 			in = new BufferedReader(new FileReader(file));
 			String line;
 			StringTokenizer st;
@@ -62,25 +63,11 @@ public class ApartmanDAO {
 				st = new StringTokenizer(line, ";");
 				while (st.hasMoreTokens()) {
 					
-					/*private int id;
-					private TipApartmana tip;
-					private int brojSoba;
-					private int brojGostiju;
-					private String lokacija;
-					private Date datumZaIzdavanje;
-					private List<Date> dostupnostPoDatumima;
-					private Domacin domacin;
-					private KomentarZaApartman komentar;
-					//slike
-					private float cenaPoNoci;
-					private String vremeZaPrijavu;
-					private String vremeZaOdjavu;
-					private StatusApartman status;
-					private List<Amenities> sadrzajApartmana;
-					private List<Rezervacija> rezervacije;*/
+					
 					int id= Integer.parseInt(st.nextToken().trim());
 					TipApartmana tip= null;
-					if(st.nextToken().trim()=="Apartman")
+					String tipString=st.nextToken().trim();
+					if(tipString=="Apartman")
 						tip=TipApartmana.Apartman;
 					else
 						tip=TipApartmana.Soba;
@@ -113,7 +100,8 @@ public class ApartmanDAO {
 					String vremeZaOdjavu = st.nextToken().trim();
 					
 					StatusApartman status= null;
-					if(st.nextToken().trim() =="Aktivno")
+					String statusStr = st.nextToken().trim();
+					if(statusStr =="Aktivno")
 						status=StatusApartman.Aktivno;
 					else
 						status=StatusApartman.Neaktivno;
@@ -143,6 +131,7 @@ public class ApartmanDAO {
 				}
 				
 			}
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -153,6 +142,7 @@ public class ApartmanDAO {
 				catch (Exception e) { }
 			}
 		}
+		return apartmani;
 	}
 
 }

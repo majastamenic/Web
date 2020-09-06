@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+import static util.Putanja._PROJECT_LOCATION;
 
 
 import beans.Apartman;
@@ -19,7 +20,7 @@ import beans.StatusRezervacija;
 
 
 public class RezervacijaDAO {
-private Map<Integer, Rezervacija> rezervacija = new HashMap<>();
+private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 	
 	
 	public RezervacijaDAO() {
@@ -30,7 +31,7 @@ private Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
 	 */
 	public RezervacijaDAO(String contextPath) {
-		ucitajRezervacije(contextPath);
+		ucitajRezervacije();
 	}
 	
 	
@@ -48,10 +49,10 @@ private Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 	}
 	
 	
-	private void ucitajRezervacije(String contextPath) {
+	public static Map<Integer, Rezervacija> ucitajRezervacije() {
 		BufferedReader in = null;
 		try {
-			File file = new File(contextPath + "/rezervacije.txt");
+			File file = new File(_PROJECT_LOCATION + "/rezervacije.txt");
 			in = new BufferedReader(new FileReader(file));
 			String line;
 			StringTokenizer st;
@@ -74,19 +75,20 @@ private Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 					GostDAO gd= new GostDAO();
 					Gost gost= gd.find(idGost);
 					StatusRezervacija status= null;
-					if(st.nextToken().trim().toString()=="Kreirana")
+					String statusStr= st.nextToken().trim();
+					if(statusStr=="Kreirana")
 						status=StatusRezervacija.Kreirana;
-					else if(st.nextToken().trim().toString()=="Odbijena")
+					else if(statusStr=="Odbijena")
 						status=StatusRezervacija.Odbijena;
-					else if(st.nextToken().trim().toString()=="Odustanak")
+					else if(statusStr=="Odustanak")
 						status=StatusRezervacija.Odustanak;
-					else if(st.nextToken().trim().toString()=="Prihvacena")
+					else if(statusStr=="Prihvacena")
 						status=StatusRezervacija.Prihvacena;
 					else
 						status=StatusRezervacija.Zavrsena;
 			        
 					
-					rezervacija.put(id, new Rezervacija(idGost, apartman, dateStr, brojNocenja, ukupnaCena, poruka, gost, status));
+					rezervacija.put(id, new Rezervacija(id, apartman, dateStr, brojNocenja, ukupnaCena, poruka, gost, status));
 				}
 				
 			}
@@ -100,6 +102,7 @@ private Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 				catch (Exception e) { }
 			}
 		}
+		return rezervacija;
 	}
 
 }

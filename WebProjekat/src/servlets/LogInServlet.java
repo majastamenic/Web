@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Korisnik;
+import dao.UserDAO;
+
 /**
  * Servlet implementation class LogInServlet
  */
@@ -44,8 +47,17 @@ public class LogInServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
 			requestDispatcher.forward(request, response);
 		}else {
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/uspesnaRegistracija.jsp");
-			requestDispatcher.forward(request, response);
+			Korisnik korisnik = UserDAO.findUserByCredentials(korisnickoIme, lozinka);
+			if(korisnik!=null) {
+				request.setAttribute("currentUser", korisnik);
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/uspesnaRegistracija.jsp");
+				requestDispatcher.forward(request, response);
+			}
+			else {
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
+				requestDispatcher.forward(request, response);
+				
+			}
 		}
 		
 	}

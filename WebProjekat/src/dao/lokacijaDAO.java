@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+import static util.Putanja._PROJECT_LOCATION;
 
 import beans.Adresa;
 
@@ -14,7 +15,7 @@ import beans.Lokacija;
 
 
 public class lokacijaDAO {
-private Map<Integer, Lokacija> lokacija = new HashMap<>();
+private static Map<Integer, Lokacija> lokacija = new HashMap<>();
 	
 	
 	public lokacijaDAO() {
@@ -25,7 +26,7 @@ private Map<Integer, Lokacija> lokacija = new HashMap<>();
 	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
 	 */
 	public lokacijaDAO(String contextPath) {
-		ucitajLokaciju(contextPath);
+		ucitajLokaciju();
 	}
 	
 	
@@ -43,10 +44,10 @@ private Map<Integer, Lokacija> lokacija = new HashMap<>();
 	}
 	
 	
-	private void ucitajLokaciju(String contextPath) {
+public static Map<Integer, Lokacija> ucitajLokaciju() {
 		BufferedReader in = null;
 		try {
-			File file = new File(contextPath + "/lokacije.txt");
+			File file = new File(_PROJECT_LOCATION + "/lokacije.txt");
 			in = new BufferedReader(new FileReader(file));
 			String line;
 			StringTokenizer st;
@@ -77,6 +78,7 @@ private Map<Integer, Lokacija> lokacija = new HashMap<>();
 				catch (Exception e) { }
 			}
 		}
+		return lokacija;
 	}
 
 }
