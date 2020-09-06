@@ -1,6 +1,6 @@
 package beans;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 
@@ -45,6 +45,8 @@ public class Apartman {
 		this.sadrzajApartmana = sadrzajApartmana;
 		this.rezervacije = rezervacije;
 	}
+
+	
 
 	public TipApartmana getTip() {
 		return tip;
