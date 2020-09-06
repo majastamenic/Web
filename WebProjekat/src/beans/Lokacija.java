@@ -2,7 +2,7 @@ package beans;
 
 public class Lokacija{
 	
-
+	private int id;
 	private float geografskaSirina;
 	private float geografskaDuzina;
 	private Adresa adresa;
@@ -10,11 +10,14 @@ public class Lokacija{
 	
 	
 
-	public Lokacija(float geografskaSirina, float geografskaDuzina, Adresa adresa) {
+	
+
+	public Lokacija(int id, float geografskaSirina, float geografskaDuzina, Adresa adresa) {
 		super();
+		this.id=id;
 		this.geografskaSirina = geografskaSirina;
 		this.geografskaDuzina = geografskaDuzina;
-		this.setAdresa(adresa);
+		this.adresa = adresa;
 	}
 
 	public float getGeografskaSirina() {
@@ -39,6 +42,14 @@ public class Lokacija{
 
 	public void setAdresa(Adresa adresa) {
 		this.adresa = adresa;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	

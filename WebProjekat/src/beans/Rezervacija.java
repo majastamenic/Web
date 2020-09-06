@@ -1,8 +1,9 @@
 package beans;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Rezervacija {
+	private int id;
 	private Apartman rezervisanApartman;
 	private Date pocetniDatum;
 	private int brojNocenja;
@@ -11,9 +12,12 @@ public class Rezervacija {
 	private Gost gost;
 	private StatusRezervacija status;
 	
-	public Rezervacija(Apartman rezervisanApartman, Date pocetniDatum, int brojNocenja, float ukupnaCena, String poruka,
-			Gost gost, StatusRezervacija status) {
+	
+
+	public Rezervacija(int id, Apartman rezervisanApartman, Date pocetniDatum, int brojNocenja, float ukupnaCena,
+			String poruka, Gost gost, StatusRezervacija status) {
 		super();
+		this.id=id;
 		this.rezervisanApartman = rezervisanApartman;
 		this.pocetniDatum = pocetniDatum;
 		this.brojNocenja = brojNocenja;
@@ -77,6 +81,14 @@ public class Rezervacija {
 
 	public void setStatus(StatusRezervacija status) {
 		this.status = status;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Gost extends Korisnik{
 	
+	private int id;
 	private List<Apartman> iznajmljeniApartmani;
 	private List<Rezervacija> rezervacije;
 	
@@ -14,9 +15,10 @@ public class Gost extends Korisnik{
 		uloga = Uloga.Gost;
 	}
 	
-	public Gost(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, Uloga uloga,
+	public Gost(int id,String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, Uloga uloga,
 			List<Apartman> iznajmljeniApartmani, List<Rezervacija> rezervacije) {
 		super(korisnickoIme, lozinka, ime, prezime, pol, uloga);
+		this.id=id;
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
 		this.ime = ime;
@@ -41,6 +43,14 @@ public class Gost extends Korisnik{
 
 	public void setRezervacije(List<Rezervacija> rezervacije) {
 		this.rezervacije = rezervacije;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 

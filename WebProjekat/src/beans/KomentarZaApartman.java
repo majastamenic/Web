@@ -1,13 +1,15 @@
 package beans;
 
 public class KomentarZaApartman {
+	private int id;
 	private Gost gost;
 	private Apartman apartman;
 	private String tekst;
 	private int ocena;
 	
-	public KomentarZaApartman(Gost gost, Apartman apartman, String tekst, int ocena) {
+	public KomentarZaApartman(int id,Gost gost, Apartman apartman, String tekst, int ocena) {
 		super();
+		this.id=id;
 		this.gost = gost;
 		this.apartman = apartman;
 		this.tekst = tekst;
@@ -44,5 +46,13 @@ public class KomentarZaApartman {
 
 	public void setOcena(int ocena) {
 		this.ocena = ocena;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

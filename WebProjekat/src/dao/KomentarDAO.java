@@ -1,6 +1,5 @@
 package dao;
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,23 +8,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import beans.Adresa;
+import beans.Apartman;
+import beans.Gost;
+import beans.KomentarZaApartman;
 
 
-public class AdresaDAO {
-
-private Map<Integer, Adresa> adrese = new HashMap<>();
+public class KomentarDAO {
+private Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 	
 	
-	public AdresaDAO() {
+	public KomentarDAO() {
 		
 	}
 	
 	/***
 	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
 	 */
-	public AdresaDAO(String contextPath) {
-		ucitajAdrese(contextPath);
+	public KomentarDAO(String contextPath) {
+		ucitajKomentare(contextPath);
 	}
 	
 	/**
@@ -34,17 +34,17 @@ private Map<Integer, Adresa> adrese = new HashMap<>();
 	 * @param password
 	 * @return
 	 */
-	public Adresa find(Integer id) {
-		if (!adrese.containsKey(id)) {
+	public KomentarZaApartman find(Integer id) {
+		if (!komentari.containsKey(id)) {
 			return null;
 		}
-		Adresa adresa = adrese.get(id);
+		KomentarZaApartman komm = komentari.get(id);
 		
-		return adresa;
+		return komm;
 	}
 	
-	public Collection<Adresa> findAll() {
-		return adrese.values();
+	public Collection<KomentarZaApartman> findAll() {
+		return komentari.values();
 	}
 	
 	/**
@@ -52,10 +52,10 @@ private Map<Integer, Adresa> adrese = new HashMap<>();
 	 * Kljuè je korisnièko ime korisnika.
 	 * @param contextPath Putanja do aplikacije u Tomcatu
 	 */
-	private void ucitajAdrese(String contextPath) {
+	private void ucitajKomentare(String contextPath) {
 		BufferedReader in = null;
 		try {
-			File file = new File(contextPath + "/adrese.txt");
+			File file = new File(contextPath + "/komentari.txt");
 			in = new BufferedReader(new FileReader(file));
 			String line;
 			StringTokenizer st;
@@ -66,12 +66,19 @@ private Map<Integer, Adresa> adrese = new HashMap<>();
 				st = new StringTokenizer(line, ";");
 				while (st.hasMoreTokens()) {
 					
-					Integer id= Integer.parseInt(st.nextToken().trim());
-					String ulicaBroj = st.nextToken().trim();
-					String naseljenoMesto = st.nextToken().trim();
-					int postanskiBroj = Integer.parseInt( st.nextToken().trim());
 					
-					adrese.put(id, new Adresa(id, ulicaBroj, naseljenoMesto, postanskiBroj));
+					int id=Integer.parseInt(st.nextToken().trim());
+					int idGosta=Integer.parseInt(st.nextToken().trim());
+					GostDAO gd=new GostDAO();
+					Gost gost= gd.find(idGosta);
+					int idApartmana=Integer.parseInt(st.nextToken().trim());
+					ApartmanDAO ad=new ApartmanDAO();
+					Apartman apartman= ad.find(idApartmana);
+					String tekst =st.nextToken().trim();
+					int ocena= Integer.parseInt(st.nextToken().trim());
+	
+					
+					komentari.put(id, new KomentarZaApartman(id, gost, apartman, tekst, ocena));
 				}
 				
 			}
@@ -86,4 +93,6 @@ private Map<Integer, Adresa> adrese = new HashMap<>();
 			}
 		}
 	}
+	
+
 }

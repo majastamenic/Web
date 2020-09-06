@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Domacin extends Korisnik{
+	private int id;
 	private List<Apartman> apartmaniZaIzdavanje;
 	
 	public Domacin() {
@@ -11,9 +12,10 @@ public class Domacin extends Korisnik{
 		uloga = Uloga.Domacin;
 	}
 	
-	public Domacin(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, Uloga uloga,
+	public Domacin(int id,String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, Uloga uloga,
 			List<Apartman> apartmaniZaIzdavanje) {
 		super(korisnickoIme, lozinka, ime, prezime, pol, uloga);
+		this.id=id;
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
 		this.ime = ime;
@@ -29,5 +31,13 @@ public class Domacin extends Korisnik{
 
 	public void setApartmaniZaIzdavanje(List<Apartman> apartmaniZaIzdavanje) {
 		this.apartmaniZaIzdavanje = apartmaniZaIzdavanje;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

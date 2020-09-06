@@ -5,10 +5,11 @@ import java.util.List;
 
 
 public class Apartman {
+	private int id;
 	private TipApartmana tip;
 	private int brojSoba;
 	private int brojGostiju;
-	private String lokacija;
+	private Lokacija lokacija;
 	private Date datumZaIzdavanje;
 	private List<Date> dostupnostPoDatumima;
 	private Domacin domacin;
@@ -21,11 +22,14 @@ public class Apartman {
 	private List<Amenities> sadrzajApartmana;
 	private List<Rezervacija> rezervacije;
 	
-	public Apartman(TipApartmana tip, int brojSoba, int brojGostiju, String lokacija, Date datumZaIzdavanje,
+	
+
+	public Apartman(int id, TipApartmana tip, int brojSoba, int brojGostiju, Lokacija lokacija, Date datumZaIzdavanje,
 			List<Date> dostupnostPoDatumima, Domacin domacin, KomentarZaApartman komentar, float cenaPoNoci,
 			String vremeZaPrijavu, String vremeZaOdjavu, StatusApartman status, List<Amenities> sadrzajApartmana,
 			List<Rezervacija> rezervacije) {
 		super();
+		this.id=id;
 		this.tip = tip;
 		this.brojSoba = brojSoba;
 		this.brojGostiju = brojGostiju;
@@ -66,11 +70,11 @@ public class Apartman {
 		this.brojGostiju = brojGostiju;
 	}
 
-	public String getLokacija() {
+	public Lokacija getLokacija() {
 		return lokacija;
 	}
 
-	public void setLokacija(String lokacija) {
+	public void setLokacija(Lokacija lokacija) {
 		this.lokacija = lokacija;
 	}
 
@@ -152,6 +156,14 @@ public class Apartman {
 
 	public void setRezervacije(List<Rezervacija> rezervacije) {
 		this.rezervacije = rezervacije;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

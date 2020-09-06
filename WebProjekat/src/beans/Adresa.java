@@ -1,12 +1,16 @@
 package beans;
 
 public class Adresa {
+	private int id;
 	private String ulicaBroj;
 	private String naseljenoMesto;
 	private int postanskiBroj;
 	
-	public Adresa(String ulicaBroj, String naseljenoMesto, int postanskiBroj) {
+	
+	
+	public Adresa(int id, String ulicaBroj, String naseljenoMesto, int postanskiBroj) {
 		super();
+		this.id=id;
 		this.ulicaBroj = ulicaBroj;
 		this.naseljenoMesto = naseljenoMesto;
 		this.postanskiBroj = postanskiBroj;
@@ -28,5 +32,11 @@ public class Adresa {
 	}
 	public void setPostanskiBroj(int postanskiBroj) {
 		this.postanskiBroj = postanskiBroj;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }

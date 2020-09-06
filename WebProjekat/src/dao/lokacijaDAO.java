@@ -9,13 +9,12 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import beans.Adresa;
-import beans.Korisnik;
+
 import beans.Lokacija;
-import beans.Pol;
-import beans.Uloga;
+
 
 public class lokacijaDAO {
-private Map<Adresa, Lokacija> lokacija = new HashMap<>();
+private Map<Integer, Lokacija> lokacija = new HashMap<>();
 	
 	
 	public lokacijaDAO() {
@@ -30,11 +29,11 @@ private Map<Adresa, Lokacija> lokacija = new HashMap<>();
 	}
 	
 	
-	public Lokacija find(Adresa adresa) {
-		if (!lokacija.containsKey(adresa)) {
+	public Lokacija find(Integer id) {
+		if (!lokacija.containsKey(id)) {
 			return null;
 		}
-		Lokacija lok = lokacija.get(adresa);
+		Lokacija lok = lokacija.get(id);
 		
 		return lok;
 	}
@@ -57,14 +56,14 @@ private Map<Adresa, Lokacija> lokacija = new HashMap<>();
 					continue;
 				st = new StringTokenizer(line, ";");
 				while (st.hasMoreTokens()) {
-					
+					int id=Integer.parseInt(st.nextToken().trim());
 					float geografskaSirina = Float.parseFloat(st.nextToken().trim());
 					float geografskaDuzina = Float.parseFloat(st.nextToken().trim());
-					String ulicaBroj = st.nextToken().trim();
+					int idAdresa = Integer.parseInt(st.nextToken().trim());
 					AdresaDAO ad= new AdresaDAO();
-					Adresa adresa = ad.find(ulicaBroj);
+					Adresa adresa = ad.find(idAdresa);
 					
-			lokacija.put(adresa, new Lokacija(geografskaSirina, geografskaDuzina, adresa));
+			lokacija.put(id, new Lokacija(id, geografskaSirina, geografskaDuzina, adresa));
 				}
 				
 			}
