@@ -104,5 +104,20 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 		}
 		return rezervacija;
 	}
+	
+	public static Rezervacija findReservationById(Integer id) {
+		
+		Rezervacija trazenaRezervacija = null;
+			if(rezervacija.size()==0) {
+				ucitajRezervacije();
+			}
+			if(rezervacija.containsKey(id)) {
+				trazenaRezervacija=rezervacija.get(id);
+				return trazenaRezervacija;
+			}
+			else
+				return null;
+			
+		}
 
 }

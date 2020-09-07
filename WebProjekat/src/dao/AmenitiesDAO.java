@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
 
+
 import beans.Amenities;
 
 
@@ -86,6 +87,21 @@ private static Map<Integer, Amenities> pogodnosti = new HashMap<>();
 			}
 		}
 		return pogodnosti;
+	}
+	
+public static Amenities findAmenitiesById(Integer id) {
+		
+	Amenities trazenaPogodnost = null;
+		if(pogodnosti.size()==0) {
+			ucitajPogodnosti();
+		}
+		if(pogodnosti.containsKey(id)) {
+			trazenaPogodnost=pogodnosti.get(id);
+			return trazenaPogodnost;
+		}
+		else
+			return null;
+		
 	}
 	
 

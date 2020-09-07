@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
 
+
 import beans.Apartman;
 import beans.Gost;
 import beans.KomentarZaApartman;
@@ -95,6 +96,21 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 		}
 		return komentari;
 	}
+	
+	public static KomentarZaApartman findCommentById(Integer id) {
+		
+		KomentarZaApartman trazeniKomentar = null;
+			if(komentari.size()==0) {
+				ucitajKomentare();
+			}
+			if(komentari.containsKey(id)) {
+				trazeniKomentar=komentari.get(id);
+				return trazeniKomentar;
+			}
+			else
+				return null;
+			
+		}
 	
 
 }

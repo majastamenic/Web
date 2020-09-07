@@ -2,5 +2,5 @@ masa;masa;Marija;Mladenovic;zenski;Gost
 maja;maja;Maja;Stamenic;zenski;Administrator
 tasa;tasa;Natasa;Jovanovic;zenski;Domacin
 gojko;gojko;Gojko;Novcic;muski;Gost
-nata;nata;Natalija;Nikolic;zenski;Gost
+nata;nata;Natalija;Nikolic;zenski;Domacin
 igor;igor;Igor;Markovic;muski;Gost

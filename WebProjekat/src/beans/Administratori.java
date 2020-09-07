@@ -62,9 +62,9 @@ public class Administratori {
 					pol = stringTokenizer.nextToken().trim();
 					uloga = stringTokenizer.nextToken().trim();
 				}
-				Administrator administrator = new Administrator(korisnickoIme, lozinka, ime, prezime, Pol.valueOf(pol), Uloga.valueOf(uloga));
-				administratoriMapa.put(korisnickoIme, administrator);
-				administratoriLista.add(administrator);
+				//Administrator administrator = new Administrator(korisnickoIme, lozinka, ime, prezime, Pol.valueOf(pol), Uloga.valueOf(uloga));
+				//administratoriMapa.put(korisnickoIme, administrator);
+				//administratoriLista.add(administrator);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

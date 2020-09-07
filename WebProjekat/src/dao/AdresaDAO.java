@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import beans.Adresa;
+
+
 import static util.Putanja._PROJECT_LOCATION;
 
 public class AdresaDAO {
@@ -86,5 +88,20 @@ private static Map<Integer, Adresa> adrese = new HashMap<>();
 			}
 		}
 		return adrese;
+	}
+	
+	public static Adresa findAdressById(Integer id) {
+		
+		Adresa trazenaAdresa = null;
+		if(adrese.size()==0) {
+			ucitajAdrese();
+		}
+		if(adrese.containsKey(id)) {
+			trazenaAdresa=adrese.get(id);
+			return trazenaAdresa;
+		}
+		else
+			return null;
+		
 	}
 }

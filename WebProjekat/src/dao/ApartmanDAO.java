@@ -19,6 +19,7 @@ import beans.Amenities;
 import beans.Apartman;
 import beans.Domacin;
 import beans.KomentarZaApartman;
+
 import beans.Lokacija;
 import beans.Rezervacija;
 import beans.StatusApartman;
@@ -143,6 +144,20 @@ public class ApartmanDAO {
 			}
 		}
 		return apartmani;
+	}
+	
+	public static Apartman findApartmentById(Integer id) {
+		Apartman trazeniApartman = null;
+		
+		if(apartmani.size() == 0) {
+			ucitajApartmane();
+		}
+		if(apartmani.containsKey(id)) {
+			trazeniApartman= apartmani.get(id);
+			return trazeniApartman;
+		}
+		else
+			return null;
 	}
 
 }

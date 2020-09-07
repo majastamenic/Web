@@ -81,4 +81,18 @@ public static Map<Integer, Lokacija> ucitajLokaciju() {
 		return lokacija;
 	}
 
+public static Lokacija findLocationById(Integer id) {
+	
+	Lokacija trazenaLokacija = null;
+		if(lokacija.size()==0) {
+			ucitajLokaciju();
+		}
+		if(lokacija.containsKey(id)) {
+			trazenaLokacija=lokacija.get(id);
+			return trazenaLokacija;
+		}
+		else
+			return null;
+		
+	}
 }

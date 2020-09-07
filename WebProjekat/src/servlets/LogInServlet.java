@@ -8,8 +8,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Administrator;
+import beans.Adresa;
+import beans.Amenities;
+import beans.Apartman;
+import beans.Domacin;
+import beans.KomentarZaApartman;
 import beans.Korisnik;
+import beans.Lokacija;
+import beans.Rezervacija;
+import dao.AdministratorDAO;
+import dao.AdresaDAO;
+import dao.AmenitiesDAO;
+import dao.ApartmanDAO;
+import dao.DomacinDAO;
+import dao.KomentarDAO;
+import dao.RezervacijaDAO;
 import dao.UserDAO;
+import dao.lokacijaDAO;
 
 /**
  * Servlet implementation class LogInServlet
@@ -33,6 +49,23 @@ public class LogInServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/logovanje.jsp");
 		disp.forward(request, response);
+		Adresa adresa= AdresaDAO.findAdressById(1);
+		System.out.println(adresa.getId()+" "+adresa.getNaseljenoMesto()+" "+adresa.getPostanskiBroj()+" "+adresa.getUlicaBroj());
+		Amenities pogodnost = AmenitiesDAO.findAmenitiesById(1);
+		System.out.println(pogodnost.getId()+" "+pogodnost.getNaziv());
+		
+		Apartman apartman = ApartmanDAO.findApartmentById(1);
+		System.out.println(apartman.getId()+ " "+apartman.getBrojGostiju()+" "+ apartman.getBrojSoba()+" "+apartman.getCenaPoNoci()+" "+apartman.getVremeZaOdjavu()+" "+ apartman.getDatumZaIzdavanje()+ apartman.getDomacin());
+		KomentarZaApartman komentar = KomentarDAO.findCommentById(1);
+		System.out.println(komentar.getId());
+		Lokacija lokacija = lokacijaDAO.findLocationById(1);
+		System.out.println(lokacija.getId());
+		Rezervacija rezervacija = RezervacijaDAO.findReservationById(1);
+		System.out.println(rezervacija.getId());
+		Domacin domacin= DomacinDAO.findHostById(1);
+		System.out.println(domacin.getId());
+		Administrator admin = AdministratorDAO.findAdminById(1);
+		System.out.println(admin.getId());
 	}
 
 	/**
@@ -43,11 +76,13 @@ public class LogInServlet extends HttpServlet {
 		String korisnickoIme = request.getParameter("korisnickoIme");
 		String lozinka = request.getParameter("lozinka");
 		
+		
 		if(korisnickoIme.isEmpty() || lozinka.isEmpty()) {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
 			requestDispatcher.forward(request, response);
 		}else {
 			Korisnik korisnik = UserDAO.findUserByCredentials(korisnickoIme, lozinka);
+			
 			if(korisnik!=null) {
 				request.setAttribute("currentUser", korisnik);
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/uspesnaRegistracija.jsp");

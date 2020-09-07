@@ -17,6 +17,9 @@ import java.util.StringTokenizer;
 import beans.Apartman;
 import beans.Domacin;
 
+import beans.Pol;
+import beans.Uloga;
+
 
 
 public class DomacinDAO {
@@ -66,6 +69,24 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 				st = new StringTokenizer(line, ";");
 				while (st.hasMoreTokens()) {
 					int id=Integer.parseInt(st.nextToken().trim());
+					String korisnickoIme = st.nextToken().trim();
+					String lozinka = st.nextToken().trim();
+					String ime = st.nextToken().trim();
+					String prezime = st.nextToken().trim();
+					Pol pol = null;
+					String polStr=st.nextToken().trim().toString();
+					if(polStr=="muski")
+						pol=Pol.muski;
+					else
+						pol=Pol.zenski;
+					Uloga uloga= null;
+					String ulogaStr = st.nextToken().trim().toString();
+					if(ulogaStr=="Administrator")
+						uloga=Uloga.Administrator;
+					else if(ulogaStr=="Domacin")
+						uloga=Uloga.Domacin;
+					else
+						uloga=Uloga.Gost;
 					
 					StringTokenizer st1;
 			        st1 = new StringTokenizer(st.nextToken().trim(), ",");
@@ -79,7 +100,7 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 						}
 					
 					
-			domacini.put(id, new Domacin());//ovo zavrsi
+			domacini.put(id, new Domacin(id, korisnickoIme, lozinka, ime, prezime, pol, uloga, dostupni));
 				}
 				
 			}
@@ -95,6 +116,21 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 		}
 		return domacini;
 	}
+	
+	public static Domacin findHostById(Integer id) {
+		
+		Domacin trazeniDomacin = null;
+			if(domacini.size()==0) {
+				ucitajDomacine();
+			}
+			if(domacini.containsKey(id)) {
+				trazeniDomacin=domacini.get(id);
+				return trazeniDomacin;
+			}
+			else
+				return null;
+			
+		}
 
 		
 	}
