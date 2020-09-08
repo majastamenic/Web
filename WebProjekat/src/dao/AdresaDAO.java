@@ -68,7 +68,7 @@ private static Map<Integer, Adresa> adrese = new HashMap<>();
 				st = new StringTokenizer(line, ";");
 				while (st.hasMoreTokens()) {
 					
-					Integer id= Integer.parseInt(st.nextToken().trim());
+					int id= Integer.parseInt(st.nextToken().trim());
 					String ulicaBroj = st.nextToken().trim();
 					String naseljenoMesto = st.nextToken().trim();
 					int postanskiBroj = Integer.parseInt( st.nextToken().trim());

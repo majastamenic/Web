@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.Administrator;
 import beans.Adresa;
@@ -49,7 +50,7 @@ public class LogInServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/logovanje.jsp");
 		disp.forward(request, response);
-		Adresa adresa= AdresaDAO.findAdressById(1);
+		/*Adresa adresa= AdresaDAO.findAdressById(1);
 		System.out.println(adresa.getId()+" "+adresa.getNaseljenoMesto()+" "+adresa.getPostanskiBroj()+" "+adresa.getUlicaBroj());
 		Amenities pogodnost = AmenitiesDAO.findAmenitiesById(1);
 		System.out.println(pogodnost.getId()+" "+pogodnost.getNaziv());
@@ -65,7 +66,7 @@ public class LogInServlet extends HttpServlet {
 		Domacin domacin= DomacinDAO.findHostById(1);
 		System.out.println(domacin.getId());
 		Administrator admin = AdministratorDAO.findAdminById(1);
-		System.out.println(admin.getId());
+		System.out.println(admin.getId());*/
 	}
 
 	/**
@@ -83,16 +84,20 @@ public class LogInServlet extends HttpServlet {
 		}else {
 			Korisnik korisnik = UserDAO.findUserByCredentials(korisnickoIme, lozinka);
 			
-			if(korisnik!=null) {
-				request.setAttribute("currentUser", korisnik);
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/uspesnaRegistracija.jsp");
+			/*if(korisnik!=null) {
+				request.setAttribute("user", korisnik);
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/ProfilAdmin.jsp");
 				requestDispatcher.forward(request, response);
 			}
 			else {
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
 				requestDispatcher.forward(request, response);
 				
-			}
+			}*/
+			HttpSession session=request.getSession();
+			session.setAttribute("korisnickoIme", korisnickoIme);
+			response.sendRedirect("/JSP/ProfilAdmin.jsp");
+			
 		}
 		
 	}

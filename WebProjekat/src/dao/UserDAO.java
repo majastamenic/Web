@@ -130,4 +130,22 @@ public class UserDAO {
 			return null;
 	}
 	
+	public static Korisnik findUserByUsername(String korisnickoIme) {
+		if (!users.containsKey(korisnickoIme)) {
+			return null;
+		}
+		Korisnik user = users.get(korisnickoIme);
+		
+		return user;
+	}
+	
+	public static void addUser(String korisnickoIme, String lozinka, String ime, String prezime,Pol pol,Uloga uloga) {
+		if(!users.containsKey(korisnickoIme)) {
+			return;
+		}
+		else {
+			users.put(korisnickoIme, new Korisnik(korisnickoIme, lozinka, ime, prezime, pol, uloga));
+		}
+	}
+	
 }
