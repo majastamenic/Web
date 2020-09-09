@@ -12,11 +12,11 @@
       <table>
          <tr>
             <td>Korisnicko ime:</td>
-            <td><input type="text" name="korisnickoIme"/></td>
+            <td><input type="text"  name="korisnickoIme"/></td>
          </tr>      
          <tr>
             <td>Lozinka:</td>
-            <td><input type="password" name="lozinka"/></td>
+            <td><input type="password" id="lozinka" name="lozinka"/></td>
          </tr>
          <tr>
             <td></td>

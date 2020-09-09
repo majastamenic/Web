@@ -84,19 +84,22 @@ public class LogInServlet extends HttpServlet {
 		}else {
 			Korisnik korisnik = UserDAO.findUserByCredentials(korisnickoIme, lozinka);
 			
-			/*if(korisnik!=null) {
+			if(korisnik!=null) {
 				request.setAttribute("user", korisnik);
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/ProfilAdmin.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilAdminServlet");
+				HttpSession session=request.getSession();
+				request.setAttribute("korisnickoIme", korisnickoIme);
+				session.setAttribute("korisnickoIme", korisnickoIme);
 				requestDispatcher.forward(request, response);
 			}
 			else {
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
 				requestDispatcher.forward(request, response);
 				
-			}*/
-			HttpSession session=request.getSession();
-			session.setAttribute("korisnickoIme", korisnickoIme);
-			response.sendRedirect("/JSP/ProfilAdmin.jsp");
+			}
+			
+			//response.sendRedirect("/JSP/ProfilAdmin.jsp");
+			
 			
 		}
 		
