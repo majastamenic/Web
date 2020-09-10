@@ -4,14 +4,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.StringTokenizer;
 
 public class Administratori {
 	
-	private HashMap<String, Administrator> administratoriMapa = new HashMap<String, Administrator>();
-	private ArrayList<Administrator> administratoriLista = new ArrayList<Administrator>();
+//	private HashMap<String, Administrator> administratoriMapa = new HashMap<String, Administrator>();
+//	private ArrayList<Administrator> administratoriLista = new ArrayList<Administrator>();
 	
 	public Administratori(String path) {
 		BufferedReader in = null;

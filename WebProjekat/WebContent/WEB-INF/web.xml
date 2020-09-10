@@ -4,7 +4,7 @@
   <welcome-file-list>
     <welcome-file>LogInServlet</welcome-file>
   </welcome-file-list>
-    <servlet>
+  <servlet>
     <servlet-name>LogInServlet</servlet-name>
     <servlet-class>servlets.LogInServlet</servlet-class>
   </servlet>
