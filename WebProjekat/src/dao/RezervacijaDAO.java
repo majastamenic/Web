@@ -76,13 +76,13 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 					Gost gost= gd.find(idGost);
 					StatusRezervacija status= null;
 					String statusStr= st.nextToken().trim();
-					if(statusStr=="Kreirana")
+					if(statusStr.equalsIgnoreCase("Kreirana"))
 						status=StatusRezervacija.Kreirana;
-					else if(statusStr=="Odbijena")
+					else if(statusStr.equalsIgnoreCase("Odbijena"))
 						status=StatusRezervacija.Odbijena;
-					else if(statusStr=="Odustanak")
+					else if(statusStr.equalsIgnoreCase("Odustanak"))
 						status=StatusRezervacija.Odustanak;
-					else if(statusStr=="Prihvacena")
+					else if(statusStr.equalsIgnoreCase("Prihvacena"))
 						status=StatusRezervacija.Prihvacena;
 					else
 						status=StatusRezervacija.Zavrsena;

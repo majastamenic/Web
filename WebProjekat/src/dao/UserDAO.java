@@ -54,7 +54,7 @@ public class UserDAO {
 		return user;
 	}
 	
-	public Collection<Korisnik> findAll() {
+	public static Collection<Korisnik> findAll() {
 		return users.values();
 	}
 	
@@ -85,15 +85,15 @@ public class UserDAO {
 					String prezime = st.nextToken().trim();
 					Pol pol = null;
 					String polStr=st.nextToken().trim().toString();
-					if(polStr=="muski")
-						pol=Pol.muski;
+					if(polStr.equalsIgnoreCase("muski"))
+						pol=Pol.valueOf("muski");
 					else
-						pol=Pol.zenski;
+						pol=Pol.valueOf("zenski");
 					Uloga uloga= null;
 					String ulogaStr = st.nextToken().trim().toString();
-					if(ulogaStr=="Administrator")
+					if(ulogaStr.equalsIgnoreCase("Administrator"))
 						uloga=Uloga.Administrator;
-					else if(ulogaStr=="Domacin")
+					else if(ulogaStr.equalsIgnoreCase("Domacin"))
 						uloga=Uloga.Domacin;
 					else
 						uloga=Uloga.Gost;

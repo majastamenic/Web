@@ -40,10 +40,11 @@ public class ApartmanDAO {
 	public Apartman find(Integer id) {
 		if (!apartmani.containsKey(id)) {
 			return null;
-		}
+		}else {
 		Apartman rez = apartmani.get(id);
 		
 		return rez;
+		}
 	}
 	
 	public Collection<Apartman> findAll() {
@@ -67,16 +68,18 @@ public class ApartmanDAO {
 					
 					int id= Integer.parseInt(st.nextToken().trim());
 					TipApartmana tip= null;
-					String tipString=st.nextToken().trim();
-					if(tipString=="Apartman")
+					String tipString=st.nextToken().trim().toString();
+					if(tipString.equalsIgnoreCase("Apartman"))
 						tip=TipApartmana.Apartman;
 					else
 						tip=TipApartmana.Soba;
 					int brojSoba= Integer.parseInt(st.nextToken().trim());
+					
+					
 					int brojGostiju= Integer.parseInt(st.nextToken().trim());
 					int idLokacija = Integer.parseInt(st.nextToken().trim());
 					lokacijaDAO ld=new lokacijaDAO();
-					Lokacija lokacija= ld.find(idLokacija);
+					Lokacija lokacija= ld.findLocationById(idLokacija);
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			        Date dateStr = formatter.parse(st.nextToken().trim());
 			        
@@ -90,7 +93,7 @@ public class ApartmanDAO {
 						
 					int idDomacin = Integer.parseInt(st.nextToken().trim());
 					DomacinDAO dd= new DomacinDAO();
-					Domacin domacin = dd.find(idDomacin);
+					Domacin domacin = dd.findHostById(idDomacin);
 					
 					int idKomentar= Integer.parseInt(st.nextToken().trim());
 					KomentarDAO kd= new KomentarDAO();
@@ -101,8 +104,8 @@ public class ApartmanDAO {
 					String vremeZaOdjavu = st.nextToken().trim();
 					
 					StatusApartman status= null;
-					String statusStr = st.nextToken().trim();
-					if(statusStr =="Aktivno")
+					String statusStr = st.nextToken().trim().toString();
+					if(statusStr .equalsIgnoreCase("Aktivno"))
 						status=StatusApartman.Aktivno;
 					else
 						status=StatusApartman.Neaktivno;

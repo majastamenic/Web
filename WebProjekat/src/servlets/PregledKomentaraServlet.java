@@ -1,9 +1,6 @@
 package servlets;
 
-
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Apartman;
-import dao.ApartmanDAO;
+import dao.KomentarDAO;
 
 /**
- * Servlet implementation class PrikaziApartmanServlet
+ * Servlet implementation class PregledKomentaraServlet
  */
-@WebServlet("/PrikaziApartmanServlet")
-public class PrikaziApartmanServlet extends HttpServlet {
+@WebServlet("/PregledKomentaraServlet")
+public class PregledKomentaraServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	ApartmanDAO apartmandao= new ApartmanDAO();
+	KomentarDAO kd= new KomentarDAO();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PrikaziApartmanServlet() {
+    public PregledKomentaraServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,12 +31,11 @@ public class PrikaziApartmanServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stu
-		apartmandao.ucitajApartmane();
-		request.setAttribute("listaApartmana", apartmandao.findAll());
-		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
+		// TODO Auto-generated method stub
+		kd.ucitajKomentare();
+		request.setAttribute("listaKomentara", kd.findAll());
+		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledKomentara.jsp");
 		disp.forward(request, response);
-		
 	}
 
 	/**

@@ -71,11 +71,11 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 					
 					int id=Integer.parseInt(st.nextToken().trim());
 					int idGosta=Integer.parseInt(st.nextToken().trim());
-					GostDAO gd=new GostDAO();
-					Gost gost= gd.find(idGosta);
+					
+					Gost gost= GostDAO.findGuestById(idGosta);
 					int idApartmana=Integer.parseInt(st.nextToken().trim());
 					ApartmanDAO ad=new ApartmanDAO();
-					Apartman apartman= ad.find(idApartmana);
+					Apartman apartman= ad.findApartmentById(idApartmana);
 					String tekst =st.nextToken().trim();
 					int ocena= Integer.parseInt(st.nextToken().trim());
 	

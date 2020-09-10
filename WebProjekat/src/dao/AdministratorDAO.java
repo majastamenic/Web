@@ -65,9 +65,9 @@ private static Map<Integer, Administrator> administratori = new HashMap<>();
 						pol=Pol.zenski;
 					Uloga uloga= null;
 					String ulogaStr = st.nextToken().trim().toString();
-					if(ulogaStr=="Administrator")
+					if(ulogaStr.equalsIgnoreCase("Administrator"))
 						uloga=Uloga.Administrator;
-					else if(ulogaStr=="Domacin")
+					else if(ulogaStr.equalsIgnoreCase("Domacin"))
 						uloga=Uloga.Domacin;
 					else
 						uloga=Uloga.Gost;
