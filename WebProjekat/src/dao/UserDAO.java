@@ -188,9 +188,30 @@ public class UserDAO {
 		if (!(korisnik == null)) {
 			users.remove(korisnickoIme);
 			List<Korisnik> lista= new ArrayList<Korisnik>(users.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/users.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Korisnik korisnik1: lista) {
+					out.write(korisnik1.getKorisnickoIme() + ";"+ korisnik1.getLozinka()+ ";"+ korisnik1.getIme()+ ";"+ korisnik1.getPrezime()+ ";"+ korisnik1.getPol().toString()+ ";"+ korisnik1.getUloga().toString() + "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
 			return true;
 		}else
 			return false;
 	}
 	
 }
+

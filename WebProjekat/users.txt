@@ -1,13 +1,3 @@
-jova;jova;jova;jova;muski;Gost
-maki;maki;maki;maki;zenski;Gost
-tasna;tasna;tasna;tasna;zenski;Domacin
-niki;niki;niki;niki;zenski;Gost
-tasa;tasa;Natasa;Jovanovic;zenski;Domacin
-marija;marija;marija;marija;zenski;Gost
-igor;igor;Igor;Markovic;muski;Gost
-masa;masa;Marija;Mladenovic;zenski;Gost
-nata;nata;Natalija;Nikolic;zenski;Domacin
-maja;maja;Maja;Stamenic;zenski;Administrator
-gojko;gojko;Gojko;Novcic;muski;Gost
-mama;mama;mama;mama;zenski;Gost
-isi;isi;isi;isi;zenski;Gost
+gojko;gojko;gojko;gojko;muski;Gost
+niki;niki;niki;niki;zenski;Domacin
+tasa;tasa;tasa;tasa;zenski;Administrator
