@@ -53,6 +53,7 @@ public class LogInServlet extends HttpServlet {
 		
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/logovanje.jsp");
 		disp.forward(request, response);
+		UserDAO.dodajKorisnika(new Korisnik("niki","niki","niki","niki",Pol.zenski,Uloga.Gost));
 		
 		
 		/*Adresa adresa= AdresaDAO.findAdressById(1);

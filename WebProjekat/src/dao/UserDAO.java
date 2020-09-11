@@ -6,13 +6,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-
+import java.io.FileWriter;
 import java.io.IOException;
 
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -147,39 +149,35 @@ public class UserDAO {
 		return user;
 	}
 	
-	public static void upisiArtikle(Korisnik korisnik) throws IOException {
-		
-			BufferedWriter in = null;
+	public static void dodajKorisnika(Korisnik korisnik) throws IOException {
+			users= loadUsers();
+			List<Korisnik> lista= new ArrayList<Korisnik>(users.values());
+			lista.add(korisnik);
+			
+			BufferedWriter out = null;
 			try {
 				File file = new File(_PROJECT_LOCATION + "/users.txt");
-				in = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
-				users.put(korisnik.getKorisnickoIme(), new Korisnik(korisnik.getKorisnickoIme(), korisnik.getLozinka(), korisnik.getIme(), korisnik.getPrezime(), korisnik.getPol(), korisnik.getUloga()));
-				for (Map.Entry<String, Korisnik> mapa :users.entrySet()) {
-					
-					
+				out = new BufferedWriter(new FileWriter(file));
+				for(Korisnik korisnik1: lista) {
+					out.write(korisnik1.getKorisnickoIme() + ";"+ korisnik1.getLozinka()+ ";"+ korisnik1.getIme()+ ";"+ korisnik1.getPrezime()+ ";"+ korisnik1.getPol().toString()+ ";"+ korisnik1.getUloga().toString() + "\n");
 				}
+					
+				
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 				finally {
 			}
-				if (in != null) {
+				if (out != null) {
 					try {
-						in.close();
+						out.close();
 					}
 					catch (Exception e) { }
 				}
 			}
 		      
 		
-	
-	public static void upisiUFajl(Korisnik korisnik) throws FileNotFoundException, IOException {
-		File file = new File(_PROJECT_LOCATION + "/users.txt");
-		ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(file));
-		oos.writeObject(korisnik);
-		oos.flush();
-		oos.close();
-	}
+
 	
 	
 	public static Boolean deleteUser(String korisnickoIme) {
