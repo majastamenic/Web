@@ -151,8 +151,9 @@ public class UserDAO {
 	
 	public static void dodajKorisnika(Korisnik korisnik) throws IOException {
 			users= loadUsers();
+			users.put(korisnik.getKorisnickoIme(), korisnik);
 			List<Korisnik> lista= new ArrayList<Korisnik>(users.values());
-			lista.add(korisnik);
+			
 			
 			BufferedWriter out = null;
 			try {
@@ -181,11 +182,12 @@ public class UserDAO {
 	
 	
 	public static Boolean deleteUser(String korisnickoIme) {
-		loadUsers();
+		users = loadUsers();
 		Korisnik korisnik= new Korisnik();
 		korisnik = findUserByUsername(korisnickoIme);
 		if (!(korisnik == null)) {
 			users.remove(korisnickoIme);
+			List<Korisnik> lista= new ArrayList<Korisnik>(users.values());
 			return true;
 		}else
 			return false;
