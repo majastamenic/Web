@@ -1,8 +1,16 @@
 package dao;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+
+import java.io.IOException;
+
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -139,13 +147,50 @@ public class UserDAO {
 		return user;
 	}
 	
-	public static void addUser(String korisnickoIme, String lozinka, String ime, String prezime,Pol pol,Uloga uloga) {
-		if(!users.containsKey(korisnickoIme)) {
-			return;
-		}
-		else {
-			users.put(korisnickoIme, new Korisnik(korisnickoIme, lozinka, ime, prezime, pol, uloga));
-		}
+	public static void upisiArtikle(Korisnik korisnik) throws IOException {
+		
+			BufferedWriter in = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/users.txt");
+				in = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+				users.put(korisnik.getKorisnickoIme(), new Korisnik(korisnik.getKorisnickoIme(), korisnik.getLozinka(), korisnik.getIme(), korisnik.getPrezime(), korisnik.getPol(), korisnik.getUloga()));
+				for (Map.Entry<String, Korisnik> mapa :users.entrySet()) {
+					
+					
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (in != null) {
+					try {
+						in.close();
+					}
+					catch (Exception e) { }
+				}
+			}
+		      
+		
+	
+	public static void upisiUFajl(Korisnik korisnik) throws FileNotFoundException, IOException {
+		File file = new File(_PROJECT_LOCATION + "/users.txt");
+		ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(file));
+		oos.writeObject(korisnik);
+		oos.flush();
+		oos.close();
+	}
+	
+	
+	public static Boolean deleteUser(String korisnickoIme) {
+		loadUsers();
+		Korisnik korisnik= new Korisnik();
+		korisnik = findUserByUsername(korisnickoIme);
+		if (!(korisnik == null)) {
+			users.remove(korisnickoIme);
+			return true;
+		}else
+			return false;
 	}
 	
 }

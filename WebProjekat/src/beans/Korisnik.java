@@ -1,6 +1,10 @@
 package beans;
 
-public class Korisnik {
+public class Korisnik{
+	
+	/**
+	 * 
+	 */
 	
 	protected String korisnickoIme;
 	protected String lozinka;

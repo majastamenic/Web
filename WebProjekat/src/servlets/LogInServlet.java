@@ -17,7 +17,9 @@ import beans.Domacin;
 import beans.KomentarZaApartman;
 import beans.Korisnik;
 import beans.Lokacija;
+import beans.Pol;
 import beans.Rezervacija;
+import beans.Uloga;
 import dao.AdministratorDAO;
 import dao.AdresaDAO;
 import dao.AmenitiesDAO;
@@ -48,8 +50,11 @@ public class LogInServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/logovanje.jsp");
 		disp.forward(request, response);
+		
+		
 		/*Adresa adresa= AdresaDAO.findAdressById(1);
 		System.out.println(adresa.getId()+" "+adresa.getNaseljenoMesto()+" "+adresa.getPostanskiBroj()+" "+adresa.getUlicaBroj());
 		Amenities pogodnost = AmenitiesDAO.findAmenitiesById(1);
@@ -98,7 +103,7 @@ public class LogInServlet extends HttpServlet {
 				
 			}
 			
-			//response.sendRedirect("/JSP/ProfilAdmin.jsp");
+			
 			
 			
 		}
