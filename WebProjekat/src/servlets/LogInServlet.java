@@ -28,7 +28,7 @@ import dao.DomacinDAO;
 import dao.KomentarDAO;
 import dao.RezervacijaDAO;
 import dao.UserDAO;
-import dao.lokacijaDAO;
+import dao.LokacijaDAO;
 
 /**
  * Servlet implementation class LogInServlet

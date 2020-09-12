@@ -141,35 +141,70 @@ private static Map<Integer, Adresa> adrese = new HashMap<>();
 
 
 
-public static Boolean izbrisiAdresu(Integer id) {
-	adrese = ucitajAdrese();
-	Adresa adresa= new Adresa();
-	adresa = findAdressById(id);
-	if (!(adresa == null)) {
-		adrese.remove(id);
-		List<Adresa> adresaLista= new ArrayList<Adresa>(adrese.values());
-		BufferedWriter out = null;
-		try {
-			File file = new File(_PROJECT_LOCATION + "/adrese.txt");
-			out = new BufferedWriter(new FileWriter(file));
-			for(Adresa adresa1: adresaLista) {
-				out.write(adresa1.getUlicaBroj() + ";"+ adresa1.getNaseljenoMesto() + ";"+ adresa1.getPostanskiBroj()+ "\n");
-			}
-				
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-			finally {
-		}
-			if (out != null) {
-				try {
-					out.close();
+	public static Boolean izbrisiAdresu(Integer id) {
+		adrese = ucitajAdrese();
+		Adresa adresa= new Adresa();
+		adresa = findAdressById(id);
+		if (!(adresa == null)) {
+			adrese.remove(id);
+			List<Adresa> adresaLista= new ArrayList<Adresa>(adrese.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/adrese.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Adresa adresa1: adresaLista) {
+					out.write(adresa1.getUlicaBroj() + ";"+ adresa1.getNaseljenoMesto() + ";"+ adresa1.getPostanskiBroj()+ "\n");
 				}
-				catch (Exception e) { }
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
 			}
-		return true;
-	}else
-		return false;
-}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
+	
+	public static Boolean izmeniAdresu(Adresa izmenjenaAdresa) {
+		adrese = ucitajAdrese();
+		Adresa adresa= new Adresa();
+		adresa = findAdressById(izmenjenaAdresa.getId());
+		if (!(adresa == null)) {
+			adresa.setNaseljenoMesto(izmenjenaAdresa.getNaseljenoMesto());
+			adresa.setPostanskiBroj(izmenjenaAdresa.getPostanskiBroj());
+			adresa.setUlicaBroj(izmenjenaAdresa.getUlicaBroj());
+
+			List<Adresa> adresaLista= new ArrayList<Adresa>(adrese.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/adrese.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Adresa adresa1: adresaLista) {
+					out.write(adresa1.getUlicaBroj() + ";"+ adresa1.getNaseljenoMesto() + ";"+ adresa1.getPostanskiBroj()+ "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
 }

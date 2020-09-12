@@ -191,5 +191,48 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 		}else
 			return false;
 	}
+	
+	
+	public static Boolean izmeniRezervaciju(Rezervacija izmenjenaRezervacija) {
+		rezervacija = ucitajRezervacije();
+		Rezervacija rezervacija= new Rezervacija();
+		rezervacija = findReservationById(izmenjenaRezervacija.getId());
+		if (!(rezervacija == null)) {
+			
+			rezervacija.setRezervisanApartman(izmenjenaRezervacija.getRezervisanApartman());
+			rezervacija.setPocetniDatum(izmenjenaRezervacija.getPocetniDatum());
+			rezervacija.setBrojNocenja(izmenjenaRezervacija.getBrojNocenja());
+			rezervacija.setUkupnaCena(izmenjenaRezervacija.getUkupnaCena());
+			rezervacija.setPoruka(izmenjenaRezervacija.getPoruka());
+			rezervacija.setGost(izmenjenaRezervacija.getGost());
+			rezervacija.setStatus(izmenjenaRezervacija.getStatus());
+			
+			List<Rezervacija> listaRezervacija= new ArrayList<Rezervacija>(RezervacijaDAO.rezervacija.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/rezervacije.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Rezervacija novaRezervacija: listaRezervacija) {
+					out.write(novaRezervacija.getRezervisanApartman().toString() + ";"+ novaRezervacija.getPocetniDatum().toString()+ ";"
+							+ novaRezervacija.getBrojNocenja()+ ";"+ novaRezervacija.getUkupnaCena()+ ";"+ novaRezervacija.getPoruka()
+							+ ";"+ novaRezervacija.getGost().toString() + ";"+ novaRezervacija.getStatus().toString() + "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
 
 }

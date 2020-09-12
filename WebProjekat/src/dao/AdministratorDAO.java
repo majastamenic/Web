@@ -173,6 +173,46 @@ private static Map<Integer, Administrator> administratori = new HashMap<>();
 			return false;
 	}
 
+	
+	public static Boolean izmeniAdministratora(Administrator noviAdmin) {
+		administratori = ucitajAdmine();
+		Administrator administrator = new Administrator();
+		administrator = findAdminById(noviAdmin.getId());
+		
+		if (!(administrator == null)) {
+			
+			administrator.setKorisnickoIme(noviAdmin.getKorisnickoIme());
+			administrator.setLozinka(noviAdmin.getLozinka());
+			administrator.setIme(noviAdmin.getIme());
+			administrator.setPrezime(noviAdmin.getPrezime());
+			administrator.setPol(noviAdmin.getPol());
+			
+			List<Administrator> administratoriLista= new ArrayList<Administrator>(administratori.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/admini.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Administrator admin: administratoriLista) {
+					out.write(admin.getKorisnickoIme() + ";"+ admin.getLozinka()+ ";"+ admin.getIme()+ ";"
+							+ admin.getPrezime()+ ";"+ admin.getPol().toString()+ ";"+ admin.getUloga().toString() + "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
 
 
 }

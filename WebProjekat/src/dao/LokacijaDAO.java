@@ -19,18 +19,18 @@ import beans.Adresa;
 import beans.Lokacija;
 
 
-public class lokacijaDAO {
+public class LokacijaDAO {
 private static Map<Integer, Lokacija> lokacija = new HashMap<>();
 	
 	
-	public lokacijaDAO() {
+	public LokacijaDAO() {
 		
 	}
 	
 	/***
 	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
 	 */
-	public lokacijaDAO(String contextPath) {
+	public LokacijaDAO(String contextPath) {
 		ucitajLokaciju();
 	}
 	
@@ -102,9 +102,9 @@ public static Lokacija findLocationById(Integer id) {
 	}
 
 	public static void dodajLokaciju(Lokacija lokacija) throws IOException {
-		lokacijaDAO.lokacija= ucitajLokaciju();
-		lokacijaDAO.lokacija.put(lokacija.getId(), lokacija);
-		List<Lokacija> lokacijeLista= new ArrayList<Lokacija>(lokacijaDAO.lokacija.values());
+		LokacijaDAO.lokacija= ucitajLokaciju();
+		LokacijaDAO.lokacija.put(lokacija.getId(), lokacija);
+		List<Lokacija> lokacijeLista= new ArrayList<Lokacija>(LokacijaDAO.lokacija.values());
 		
 		
 		BufferedWriter out = null;
@@ -134,18 +134,56 @@ public static Lokacija findLocationById(Integer id) {
 
 
 	public static Boolean izbrisiLokaciju(Integer id) {
-		lokacijaDAO.lokacija = ucitajLokaciju();
+		LokacijaDAO.lokacija = ucitajLokaciju();
 		Lokacija lokacija= new Lokacija();
 		lokacija = findLocationById(id);
 		if (!(lokacija == null)) {
-			lokacijaDAO.lokacija.remove(id);
-			List<Lokacija> lokacijaLista= new ArrayList<Lokacija>(lokacijaDAO.lokacija.values());
+			LokacijaDAO.lokacija.remove(id);
+			List<Lokacija> lokacijaLista= new ArrayList<Lokacija>(LokacijaDAO.lokacija.values());
 			BufferedWriter out = null;
 			try {
 				File file = new File(_PROJECT_LOCATION + "/lokacije.txt");
 				out = new BufferedWriter(new FileWriter(file));
 				for(Lokacija novaLokacija: lokacijaLista) {
 					out.write(novaLokacija.getGeografskaSirina() + ";"+ novaLokacija.getGeografskaDuzina()+ ";"+ novaLokacija.getAdresa()+ "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
+	
+	
+	public static Boolean izmeniLokaciju(Lokacija izmenjenaLokacija) {
+		LokacijaDAO.lokacija = ucitajLokaciju();
+		Lokacija lokacija= new Lokacija();
+		lokacija = findLocationById(izmenjenaLokacija.getId());
+		if (!(lokacija == null)) {
+			
+			lokacija.setGeografskaSirina(izmenjenaLokacija.getGeografskaSirina());
+			lokacija.setGeografskaDuzina(izmenjenaLokacija.getGeografskaDuzina());
+			lokacija.setAdresa(izmenjenaLokacija.getAdresa());
+			
+			List<Lokacija> lokacijaLista= new ArrayList<Lokacija>(LokacijaDAO.lokacija.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/lokacije.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Lokacija novaLokacija: lokacijaLista) {
+					out.write(novaLokacija.getGeografskaSirina() + ";"+ novaLokacija.getGeografskaDuzina()+ ";"
+							+ novaLokacija.getAdresa()+ "\n");
 				}
 					
 				

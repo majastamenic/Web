@@ -3,14 +3,10 @@ package dao;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -194,6 +190,46 @@ public class UserDAO {
 				out = new BufferedWriter(new FileWriter(file));
 				for(Korisnik korisnik1: lista) {
 					out.write(korisnik1.getKorisnickoIme() + ";"+ korisnik1.getLozinka()+ ";"+ korisnik1.getIme()+ ";"+ korisnik1.getPrezime()+ ";"+ korisnik1.getPol().toString()+ ";"+ korisnik1.getUloga().toString() + "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
+	
+	public static Boolean izmenaKorisnika(Korisnik izmenjenKorisnik) {
+		users = loadUsers();
+		Korisnik korisnik= new Korisnik();
+		korisnik = findUserByUsername(izmenjenKorisnik.getKorisnickoIme());
+		if (!(korisnik == null)) {
+			
+			korisnik.setKorisnickoIme(izmenjenKorisnik.getKorisnickoIme());
+			korisnik.setLozinka(izmenjenKorisnik.getLozinka());
+			korisnik.setIme(izmenjenKorisnik.getIme());
+			korisnik.setPrezime(izmenjenKorisnik.getPrezime());
+			korisnik.setPol(izmenjenKorisnik.getPol());
+			korisnik.setUloga(izmenjenKorisnik.getUloga());
+			
+			List<Korisnik> lista= new ArrayList<Korisnik>(users.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/users.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Korisnik korisnik1: lista) {
+					out.write(korisnik1.getKorisnickoIme() + ";"+ korisnik1.getLozinka()+ ";"+ korisnik1.getIme()
+						+ ";"+ korisnik1.getPrezime()+ ";"+ korisnik1.getPol().toString()+ ";"+ korisnik1.getUloga().toString() + "\n");
 				}
 					
 				

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.AmenitiesDAO;
-import dao.lokacijaDAO;
+import dao.LokacijaDAO;
 
 /**
  * Servlet implementation class DodajApartmanServlet
@@ -18,7 +18,7 @@ import dao.lokacijaDAO;
 @WebServlet("/DodajApartmanServlet")
 public class DodajApartmanServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       lokacijaDAO ld= new lokacijaDAO();
+       LokacijaDAO ld= new LokacijaDAO();
        AmenitiesDAO ad= new AmenitiesDAO();
     /**
      * @see HttpServlet#HttpServlet()

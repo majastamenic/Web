@@ -182,5 +182,43 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 			return false;
 	}
 	
+	public static Boolean izmeniKomentar(KomentarZaApartman izmenjenKomentar) {
+		komentari = ucitajKomentare();
+		KomentarZaApartman komentar= new KomentarZaApartman();
+		komentar = findCommentById(izmenjenKomentar.getId());
+		if (!(komentar == null)) {
+			
+			komentar.setGost(izmenjenKomentar.getGost());
+			komentar.setApartman(izmenjenKomentar.getApartman());
+			komentar.setTekst(izmenjenKomentar.getTekst());
+			komentar.setOcena(izmenjenKomentar.getOcena());
+			
+			List<KomentarZaApartman> komentariLista= new ArrayList<KomentarZaApartman>(komentari.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/komentari.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(KomentarZaApartman komentarZaApartman: komentariLista) {
+					out.write(komentarZaApartman.getGost().toString() + ";"+ komentarZaApartman.getApartman()+ ";"
+							+ komentarZaApartman.getTekst()+ ";"+ komentarZaApartman.getOcena()+  "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
+	
 
 }

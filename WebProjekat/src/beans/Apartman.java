@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,11 @@ public class Apartman {
 	private List<Amenities> sadrzajApartmana;
 	private List<Rezervacija> rezervacije;
 	
-	public Apartman() {}
+	public Apartman() {
+		dostupnostPoDatumima = new ArrayList<Date>();
+		sadrzajApartmana = new ArrayList<Amenities>();
+		rezervacije = new ArrayList<Rezervacija>();
+	}
 
 	public Apartman(int id, TipApartmana tip, int brojSoba, int brojGostiju, Lokacija lokacija, Date datumZaIzdavanje,
 			List<Date> dostupnostPoDatumima, Domacin domacin, KomentarZaApartman komentar, float cenaPoNoci,

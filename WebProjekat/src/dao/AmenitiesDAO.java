@@ -172,5 +172,37 @@ public static void dodajAmenities(Amenities pogodnost) throws IOException {
 			return false;
 	}
 	
-
+	public static Boolean izmeniPogodnost(Amenities izmenjenaPogodnost) {
+		pogodnosti = ucitajPogodnosti();
+		Amenities pogodnost= new Amenities();
+		pogodnost = findAmenitiesById(izmenjenaPogodnost.getId());
+		if (!(pogodnost == null)) {
+			
+			pogodnost.setNaziv(izmenjenaPogodnost.getNaziv());
+			
+			List<Amenities> pogodnostiLista= new ArrayList<Amenities>(pogodnosti.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/pogodnosti.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Amenities novaPogodnost: pogodnostiLista) {
+					out.write(novaPogodnost.getNaziv() + "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
 }

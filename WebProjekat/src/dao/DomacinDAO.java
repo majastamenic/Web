@@ -205,6 +205,48 @@ public static void dodajDomacina(Domacin domacin) throws IOException {
 			return false;
 	}
 	
+	public static Boolean izmeniDomacina(Domacin izmenjenDomacin) {
+		domacini = ucitajDomacine();
+		Domacin domacin= new Domacin();
+		domacin = findHostById(izmenjenDomacin.getId());
+		if (!(domacin == null)) {
+			
+			domacin.setKorisnickoIme(izmenjenDomacin.getKorisnickoIme());
+			domacin.setLozinka(izmenjenDomacin.getLozinka());
+			domacin.setIme(izmenjenDomacin.getIme());
+			domacin.setPrezime(izmenjenDomacin.getPrezime());
+			domacin.setPol(izmenjenDomacin.getPol());
+			domacin.setUloga(izmenjenDomacin.getUloga());
+			domacin.setApartmaniZaIzdavanje(izmenjenDomacin.getApartmaniZaIzdavanje());
+
+			List<Domacin> domaciniLista= new ArrayList<Domacin>(domacini.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/domacini.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Domacin noviDomacin: domaciniLista) {
+					out.write(noviDomacin.getKorisnickoIme() + ";"+ noviDomacin.getLozinka()+ ";"+ noviDomacin.getIme()+ ";"
+							+ noviDomacin.getPrezime()+ ";"+ noviDomacin.getPol().toString()+ ";"+ noviDomacin.getUloga().toString() 
+							+ ";"+ noviDomacin.getApartmaniZaIzdavanje().toString()+ "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
+	
 }
 	
 

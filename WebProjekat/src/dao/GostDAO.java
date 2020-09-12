@@ -198,6 +198,50 @@ public class GostDAO {
 		}else
 			return false;
 	}
+	
+	
+	public static Boolean izmeniGosta(Gost izmenjenGost) {
+		gosti = ucitajGoste();
+		Gost gost= new Gost();
+		gost = findGuestById(izmenjenGost.getId());
+		if (!(gost == null)) {
+			
+			gost.setKorisnickoIme(izmenjenGost.getKorisnickoIme());
+			gost.setLozinka(izmenjenGost.getLozinka());
+			gost.setIme(izmenjenGost.getIme());
+			gost.setPrezime(izmenjenGost.getPrezime());
+			gost.setPol(izmenjenGost.getPol());
+			gost.setUloga(izmenjenGost.getUloga());
+			gost.setIznajmljeniApartmani(izmenjenGost.getIznajmljeniApartmani());
+			gost.setRezervacije(izmenjenGost.getRezervacije());
+			
+			List<Gost> gostiLista= new ArrayList<Gost>(gosti.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/gosti.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Gost noviGost: gostiLista) {
+					out.write(noviGost.getKorisnickoIme() + ";"+ noviGost.getLozinka()+ ";"+ noviGost.getIme()
+					+ ";"+ noviGost.getPrezime()+ ";"+ noviGost.getPol().toString()+ ";"+ noviGost.getUloga().toString()
+					+ ";"+ noviGost.getIznajmljeniApartmani().toString()+";"+ noviGost.getRezervacije()+ "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
 
 
 }
