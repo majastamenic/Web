@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Gost;
+import beans.Pol;
+import dao.GostDAO;
+
 
 /**
  * Servlet implementation class RegistracijaServlet
@@ -41,10 +45,18 @@ public class RegistracijaServlet extends HttpServlet {
 		
 		String korisnickoIme = request.getParameter("korisnickoIme");
 		String lozinka = request.getParameter("lozinka");
-//		String ime = request.getParameter("ime");
-//		String prezime = request.getParameter("prezime");
-//		Pol pol = Pol.valueOf(request.getParameter("pol"));
+		String ime = request.getParameter("ime");
+		String prezime = request.getParameter("prezime");
+		String pol = request.getParameter("pol");
 //		Uloga uloga = Uloga.valueOf(request.getParameter("uloga"));
+		
+		System.out.println(korisnickoIme  + " " + lozinka);
+		Gost noviGost = new Gost();
+		noviGost.setKorisnickoIme(korisnickoIme);
+		noviGost.setLozinka(lozinka);
+		noviGost.setPol(pol);
+		GostDAO.dodajGostaUMapu(noviGost);
+		GostDAO.sacuvajSveGosteIzMape();
 		
 		if(korisnickoIme.isEmpty() || lozinka.isEmpty()) {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");

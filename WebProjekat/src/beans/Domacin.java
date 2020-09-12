@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Domacin extends Korisnik{
-	private int id;
 	private List<Apartman> apartmaniZaIzdavanje;
 	
 	public Domacin() {
@@ -33,11 +32,5 @@ public class Domacin extends Korisnik{
 		this.apartmaniZaIzdavanje = apartmaniZaIzdavanje;
 	}
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 }

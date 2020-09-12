@@ -2,10 +2,22 @@ package beans;
 
 public class Korisnik{
 	
+	@Override
+	public String toString() {
+		return "Korisnik [id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", ime=" + ime
+				+ ", prezime=" + prezime + ", pol=" + pol + ", uloga=" + uloga + "]";
+	}
 	/**
 	 * 
 	 */
-	
+	protected int id;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	protected String korisnickoIme;
 	protected String lozinka;
 	protected String ime;
@@ -52,8 +64,8 @@ public class Korisnik{
 	public Pol getPol() {
 		return pol;
 	}
-	public void setPol(Pol pol) {
-		this.pol = pol;
+	public void setPol(String pol) {
+		this.pol = Pol.valueOf(pol);
 	}
 	public Uloga getUloga() {
 		return uloga;

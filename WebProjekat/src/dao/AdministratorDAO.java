@@ -37,7 +37,7 @@ private static Map<Integer, Administrator> administratori = new HashMap<>();
 		return admin;
 	}
 	
-	public Collection<Administrator> findAll() {
+	public static Collection<Administrator> findAll() {
 		return administratori.values();
 	}
 	
@@ -49,6 +49,7 @@ private static Map<Integer, Administrator> administratori = new HashMap<>();
 			String line;
 			StringTokenizer st;
 			while ((line = in.readLine()) != null) {
+				
 				line = line.trim();
 				if (line.equals("") || line.indexOf('#') == 0)
 					continue;
@@ -61,10 +62,10 @@ private static Map<Integer, Administrator> administratori = new HashMap<>();
 					String prezime = st.nextToken().trim();
 					Pol pol = null;
 					String polStr=st.nextToken().trim().toString();
-					if(polStr=="muski")
-						pol=Pol.muski;
+					if(polStr=="Muski")
+						pol=Pol.Muski;
 					else
-						pol=Pol.zenski;
+						pol=Pol.Zenski;
 					Uloga uloga= null;
 					String ulogaStr = st.nextToken().trim().toString();
 					if(ulogaStr.equalsIgnoreCase("Administrator"))
@@ -185,7 +186,7 @@ private static Map<Integer, Administrator> administratori = new HashMap<>();
 			administrator.setLozinka(noviAdmin.getLozinka());
 			administrator.setIme(noviAdmin.getIme());
 			administrator.setPrezime(noviAdmin.getPrezime());
-			administrator.setPol(noviAdmin.getPol());
+			administrator.setPol(noviAdmin.getPol().toString());
 			
 			List<Administrator> administratoriLista= new ArrayList<Administrator>(administratori.values());
 			BufferedWriter out = null;

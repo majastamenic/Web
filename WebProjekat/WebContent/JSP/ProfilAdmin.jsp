@@ -5,7 +5,7 @@
 <html>
 
 <body>
-	<p>  Dobrodosli, <%=request.getSession().getAttribute("korisnickoIme")%> <a href="LogOutServlet">Logout</a></p><br/>
+	<p>  Dobrodosli, ${ulogovaniKorisnik.korisnickoIme} id ${ulogovaniKorisnik.getId()} <a href="LogOutServlet">Logout</a></p><br/>
 	<p>  <a href= "/PregledSvihKorisnikaServlet"> Pregled svih korisnika</a></p><br/>
 	<p>  <a href= "IzmenaPodatakaServlet"> Izmeni podatke</a></p><br/>
 	<p>  <a href= "/DodajApartmanServlet"> Dodaj apartman</a></p><br/>

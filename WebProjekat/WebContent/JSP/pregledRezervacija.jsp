@@ -17,14 +17,14 @@
             <td>Cena:</td>
             <td>Status:</td>
             
-            
+           
          </tr>  
-         <c:forEach items="${listaRezervacija}" var="rezervacija">    
+         <c:forEach items="${ulogovaniKorisnik.rezervacije}" var="rezervacija">    
          <tr>
-         <td>${rezervacija.getRezervisanApartman().getId()}</td>
-           <td>${rezervacija.getBrojNocenja()}</td>
-            <td>${rezervacija.getUkupnaCena()}</td>
-            <td>${rezervacija.getStatus()}</td>
+            <td> ${rezervacija.getRezervisanApartman().getId()} </td>
+            <td> ${rezervacija.getBrojNocenja()}</td>
+            <td> ${rezervacija.getUkupnaCena()}</td>
+            <td> ${rezervacija.getStatus()}</td>
             
          </tr>
          </c:forEach>

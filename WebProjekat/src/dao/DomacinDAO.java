@@ -18,7 +18,7 @@ import java.util.StringTokenizer;
 
 import beans.Apartman;
 import beans.Domacin;
-
+import beans.Korisnik;
 import beans.Pol;
 import beans.Uloga;
 
@@ -54,7 +54,7 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 		return komm;
 	}
 	
-	public Collection<Domacin> findAll() {
+	public static Collection<Domacin> findAll() {
 		return domacini.values();
 	}
 	public static Map<Integer, Domacin> ucitajDomacine() {
@@ -77,10 +77,10 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 					String prezime = st.nextToken().trim();
 					Pol pol = null;
 					String polStr=st.nextToken().trim().toString();
-					if(polStr=="muski")
-						pol=Pol.muski;
+					if(polStr=="Muski")
+						pol=Pol.Muski;
 					else
-						pol=Pol.zenski;
+						pol=Pol.Zenski;
 					Uloga uloga= null;
 					String ulogaStr = st.nextToken().trim().toString();
 					if(ulogaStr.equalsIgnoreCase("Administrator"))
@@ -215,7 +215,7 @@ public static void dodajDomacina(Domacin domacin) throws IOException {
 			domacin.setLozinka(izmenjenDomacin.getLozinka());
 			domacin.setIme(izmenjenDomacin.getIme());
 			domacin.setPrezime(izmenjenDomacin.getPrezime());
-			domacin.setPol(izmenjenDomacin.getPol());
+			domacin.setPol(izmenjenDomacin.getPol().toString());
 			domacin.setUloga(izmenjenDomacin.getUloga());
 			domacin.setApartmaniZaIzdavanje(izmenjenDomacin.getApartmaniZaIzdavanje());
 
@@ -246,6 +246,8 @@ public static void dodajDomacina(Domacin domacin) throws IOException {
 		}else
 			return false;
 	}
+
+	
 	
 }
 	

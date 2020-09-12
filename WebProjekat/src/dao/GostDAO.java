@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import beans.Apartman;
-
+import beans.Domacin;
 import beans.Gost;
 import beans.Pol;
 import beans.Rezervacija;
@@ -39,18 +39,21 @@ public class GostDAO {
 		return lok;
 	}
 	
-	public Collection<Gost> findAll() {
+	public static Collection<Gost> findAll() {
 		return gosti.values();
 	}
 	
 	public static Map<Integer, Gost> ucitajGoste() {
 		BufferedReader in = null;
+		RezervacijaDAO.ucitajRezervacije();
+		
 		try {
 			File file = new File(_PROJECT_LOCATION + "/gosti.txt");
 			in = new BufferedReader(new FileReader(file));
 			String line;
 			StringTokenizer st;
 			while ((line = in.readLine()) != null) {
+	
 				line = line.trim();
 				if (line.equals("") || line.indexOf('#') == 0)
 					continue;
@@ -64,9 +67,9 @@ public class GostDAO {
 					Pol pol = null;
 					String polStr=st.nextToken().trim().toString();
 					if(polStr.equalsIgnoreCase("muski"))
-						pol=Pol.muski;
+						pol=Pol.Muski;
 					else
-						pol=Pol.zenski;
+						pol=Pol.Zenski;
 					Uloga uloga= null;
 					String ulogaStr = st.nextToken().trim().toString();
 					if(ulogaStr.equalsIgnoreCase("Administrator"))
@@ -75,43 +78,43 @@ public class GostDAO {
 						uloga=Uloga.Domacin;
 					else
 						uloga=Uloga.Gost;
+					// Ovde pocinje citanje drugog fajla
+				
 					
-					StringTokenizer st1;
-			        st1 = new StringTokenizer(st.nextToken().trim(), ",");
-			        List<Apartman> iznajmljeni = new ArrayList<Apartman>();
-						while (st1.hasMoreTokens()) {
-							int idApartmana= Integer.parseInt(st1.nextToken().trim());
-							ApartmanDAO apartmanDAO=new ApartmanDAO();
-							Apartman apartman = apartmanDAO.find(idApartmana);
-						
-							iznajmljeni.add(apartman);
+//			        st1 = new StringTokenizer(st.nextToken().trim(), ",");
+//			        List<Apartman> iznajmljeni = new ArrayList<Apartman>();
+//						while (st1.hasMoreTokens()) {
+//							int idApartmana= Integer.parseInt(st1.nextToken().trim());
+//							ApartmanDAO apartmanDAO=new ApartmanDAO();
+//							Apartman apartman = apartmanDAO.find(idApartmana);
+//						
+//							iznajmljeni.add(apartman);
+//						}
+//						
+					Gost noviGost = new Gost(id, korisnickoIme, lozinka, ime, prezime, pol, uloga);
+					for (Map.Entry<Integer, Rezervacija> rezervacija : RezervacijaDAO.getRezervacije().entrySet()) {		
+						if(rezervacija.getValue().getGost().getId() == noviGost.getId()) {
+							noviGost.getRezervacije().add(rezervacija.getValue());
+							rezervacija.getValue().setGost(noviGost);
 						}
-						
-						StringTokenizer st2;
-				        st2 = new StringTokenizer(st.nextToken().trim(), ",");
-				        List<Rezervacija> rezervacije = new ArrayList<Rezervacija>();
-							while (st2.hasMoreTokens()) {
-								int idRezervacije= Integer.parseInt(st2.nextToken().trim());
-								RezervacijaDAO rezervacijaDAO=new RezervacijaDAO();
-								Rezervacija rezervacija= rezervacijaDAO.find(idRezervacije);
-							
-								rezervacije.add(rezervacija);
-							}		
+					}
+					
+	System.out.println(" <> " + noviGost.getId());
 					
 					
-			gosti.put(id, new Gost(id, korisnickoIme, lozinka, ime, prezime, pol, uloga, iznajmljeni, rezervacije));
+			gosti.put(noviGost.getId() , noviGost );
 				}
 				
+			
 			}
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			if (in != null) {
 				try {
 					in.close();
 				}
 				catch (Exception e) { }
-			}
 		}
 		return gosti;
 	}
@@ -131,22 +134,36 @@ public class GostDAO {
 			
 		}
 	
-	public static void dodajGosta(Gost gost) throws IOException {
-		gosti= ucitajGoste();
-		gosti.put(gost.getId(), gost);
-		List<Gost> gostiLista= new ArrayList<Gost>(gosti.values());
+	public static int vratiNajveciID() {
+		int maxId = 0;
+		for (Map.Entry<Integer , Gost> gost : gosti.entrySet())
+		{
+		    if ( maxId < gost.getKey().intValue())
+		    {
+		        maxId = gost.getKey();
+		    }
+		}
+		return maxId;
+	}
+	
+	public static void dodajGostaUMapu(Gost noviGost) {
+		if(gosti.isEmpty())
+			gosti = ucitajGoste();
+			
+			noviGost.setId(vratiNajveciID() + 1);
+			gosti.put(vratiNajveciID() + 1, noviGost);
+		
+	}
+	public static void sacuvajSveGosteIzMape() throws IOException {
 		
 		
 		BufferedWriter out = null;
 		try {
 			File file = new File(_PROJECT_LOCATION + "/gosti.txt");
 			out = new BufferedWriter(new FileWriter(file));
-			for(Gost noviGost: gostiLista) {
-				out.write(noviGost.getKorisnickoIme() + ";"+ noviGost.getLozinka()+ ";"+ noviGost.getIme()
-				+ ";"+ noviGost.getPrezime()+ ";"+ noviGost.getPol().toString()+ ";"+ noviGost.getUloga().toString()
-				+ ";"+ noviGost.getIznajmljeniApartmani().toString()+";"+ noviGost.getRezervacije()+ "\n");
+			 for (Map.Entry<Integer, Gost> gost : gosti.entrySet())  {
+				out.write(gost.getValue().ispisTXT());
 			}
-				
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -160,10 +177,6 @@ public class GostDAO {
 				catch (Exception e) { }
 			}
 		}
-	      
-	
-
-
 
 	public static Boolean izbrisiGosta(Integer id) {
 		gosti = ucitajGoste();
@@ -210,7 +223,7 @@ public class GostDAO {
 			gost.setLozinka(izmenjenGost.getLozinka());
 			gost.setIme(izmenjenGost.getIme());
 			gost.setPrezime(izmenjenGost.getPrezime());
-			gost.setPol(izmenjenGost.getPol());
+			gost.setPol(izmenjenGost.getPol().toString()); // izmenjenj je seter za POl.
 			gost.setUloga(izmenjenGost.getUloga());
 			gost.setIznajmljeniApartmani(izmenjenGost.getIznajmljeniApartmani());
 			gost.setRezervacije(izmenjenGost.getRezervacije());

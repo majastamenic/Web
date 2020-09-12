@@ -30,6 +30,9 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 	public RezervacijaDAO() {
 		
 	}
+	public static Map<Integer, Rezervacija> getRezervacije() {
+		return rezervacija;
+	}
 	
 	/***
 	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
@@ -54,6 +57,7 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 	
 	
 	public static Map<Integer, Rezervacija> ucitajRezervacije() {
+		ApartmanDAO.ucitajApartmane();
 		BufferedReader in = null;
 		try {
 			File file = new File(_PROJECT_LOCATION + "/rezervacije.txt");
@@ -68,16 +72,21 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 				while (st.hasMoreTokens()) {
 					int id= Integer.parseInt(st.nextToken().trim());
 					int idApartman= Integer.parseInt(st.nextToken().trim());
-					ApartmanDAO ad= new ApartmanDAO();
-					Apartman apartman= ad.find(idApartman);
+//					ApartmanDAO ad= new ApartmanDAO();
+					Apartman apartman= ApartmanDAO.find(idApartman);
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			        Date dateStr = formatter.parse(st.nextToken().trim());
 					int brojNocenja = Integer.parseInt(st.nextToken().trim());
 					float ukupnaCena= Float.parseFloat(st.nextToken().trim());
 					String poruka = st.nextToken().trim();
 					int idGost = Integer.parseInt(st.nextToken().trim());
-					GostDAO gd= new GostDAO();
-					Gost gost= gd.find(idGost);
+//					Ne cemo ovo jer cemo prvo goste da upisemo, mi cemo zacuvari ID gosta za dalju pretragu
+//					GostDAO gd= new GostDAO();
+//					Gost gost= gd.find(idGost);
+					
+					Gost gost = new Gost();
+					gost.setId(idGost);
+					
 					StatusRezervacija status= null;
 					String statusStr= st.nextToken().trim();
 					if(statusStr.equalsIgnoreCase("Kreirana"))

@@ -2,7 +2,6 @@ package beans;
 
 
 public class Administrator extends Korisnik{
-	private int id;
 
 	public Administrator(Integer id,String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, Uloga uloga) {
 		super(korisnickoIme, lozinka, ime, prezime, pol, uloga);
@@ -17,13 +16,6 @@ public class Administrator extends Korisnik{
 	
 	public Administrator() {}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 
 }

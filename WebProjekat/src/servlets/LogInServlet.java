@@ -14,6 +14,7 @@ import beans.Adresa;
 import beans.Amenities;
 import beans.Apartman;
 import beans.Domacin;
+import beans.Gost;
 import beans.KomentarZaApartman;
 import beans.Korisnik;
 import beans.Lokacija;
@@ -90,13 +91,27 @@ public class LogInServlet extends HttpServlet {
 			requestDispatcher.forward(request, response);
 		}else {
 			Korisnik korisnik = UserDAO.findUserByCredentials(korisnickoIme, lozinka);
-			
+			System.out.println(korisnik);
+			if (korisnik instanceof Gost) {
+				Gost noviGost = (Gost) korisnik;
+				System.out.println("Logovao se korisnik");
+				
+			}
+			if (korisnik instanceof Domacin) {
+				Domacin noviDomacin = (Domacin) korisnik;
+				System.out.println("Logovao se domacin");
+			}
+			if (korisnik instanceof Administrator) {
+				Administrator noviAdin = (Administrator) korisnik;
+				System.out.println("Logovao se admin");
+			}
 			if(korisnik!=null) {
-				request.setAttribute("user", korisnik);
+				
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilAdminServlet");
-				HttpSession session=request.getSession();
-				request.setAttribute("korisnickoIme", korisnickoIme);
-				session.setAttribute("korisnickoIme", korisnickoIme);
+				HttpSession session = request.getSession();
+				request.setAttribute("ulogovaniKorisnik", korisnik);				
+				session.setAttribute("ulogovaniKorisnik", korisnik);
+				
 				requestDispatcher.forward(request, response);
 			}
 			else {

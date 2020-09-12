@@ -38,7 +38,7 @@ public class ApartmanDAO {
 	}
 	
 	
-	public Apartman find(Integer id) {
+	public static Apartman find(Integer id) {
 		if (!apartmani.containsKey(id)) {
 			return null;
 		}else {

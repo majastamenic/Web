@@ -14,6 +14,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import com.sun.org.apache.bcel.internal.generic.GotoInstruction;
+
+import beans.Administrator;
+import beans.Domacin;
+import beans.Gost;
 import beans.Korisnik;
 import beans.Pol;
 import beans.Uloga;
@@ -70,71 +75,41 @@ public class UserDAO {
 	 * @param _PROJECT_LOCATION 
 	 * @param contextPath Putanja do aplikacije u Tomcatu
 	 */
-	public static Map<String,Korisnik> loadUsers() {
-		BufferedReader in = null;
-		try {
-			File file = new File(_PROJECT_LOCATION + "/users.txt");
-			in = new BufferedReader(new FileReader(file));
-			String line;
-			StringTokenizer st;
-			while ((line = in.readLine()) != null) {
-				line = line.trim();
-				if (line.equals("") || line.indexOf('#') == 0)
-					continue;
-				st = new StringTokenizer(line, ";");
-				while (st.hasMoreTokens()) {
-					
-					
-					String korisnickoIme = st.nextToken().trim();
-					String lozinka = st.nextToken().trim();
-					String ime = st.nextToken().trim();
-					String prezime = st.nextToken().trim();
-					Pol pol = null;
-					String polStr=st.nextToken().trim().toString();
-					if(polStr.equalsIgnoreCase("muski"))
-						pol=Pol.valueOf("muski");
-					else
-						pol=Pol.valueOf("zenski");
-					Uloga uloga= null;
-					String ulogaStr = st.nextToken().trim().toString();
-					if(ulogaStr.equalsIgnoreCase("Administrator"))
-						uloga=Uloga.Administrator;
-					else if(ulogaStr.equalsIgnoreCase("Domacin"))
-						uloga=Uloga.Domacin;
-					else
-						uloga=Uloga.Gost;
-					
-					users.put(korisnickoIme, new Korisnik(korisnickoIme, lozinka, ime, prezime, pol,uloga));
-				}
-				
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (in != null) {
-				try {
-					in.close();
-				}
-				catch (Exception e) { }
-			}
-		}
-		return users;
+	public static void loadUsers() {
+		
+		
+		DomacinDAO.ucitajDomacine();
+		GostDAO.ucitajGoste();
+		AdministratorDAO.ucitajAdmine();
 	}
 	
 	public static Korisnik findUserByCredentials(String korisnickoIme, String lozinka) {
-		Korisnik trazeniKorisnik = null;
 		
-		if(users.size() == 0) {
-			loadUsers();
+		Collection<Domacin> domacini = DomacinDAO.findAll();
+			DomacinDAO.ucitajDomacine();
+		for(Domacin domacin : domacini) {
+			if(domacin.getKorisnickoIme().equals(korisnickoIme) && domacin.getLozinka().equals(lozinka))
+				return domacin;
+			
 		}
-		if(users.containsKey(korisnickoIme))
-			trazeniKorisnik= users.get(korisnickoIme);
+		Collection<Administrator> admini = AdministratorDAO.findAll();
+			AdministratorDAO.ucitajAdmine();
+		for(Administrator admin : admini) {
+			if(admin.getKorisnickoIme().equals(korisnickoIme) && admin.getLozinka().equals(lozinka) )
+				return admin;
+			
+		}
+		Collection<Gost> gosti = GostDAO.findAll();
+			GostDAO.ucitajGoste();
+		for(Gost gost : gosti) {
+			if( gost.getKorisnickoIme().equals(korisnickoIme)  && gost.getLozinka().equals(lozinka) )
+				return gost;
+			
+		}
 		
-		if(trazeniKorisnik.getLozinka().equals(lozinka) && trazeniKorisnik!=null)
-			return trazeniKorisnik;
-		else
-			return null;
+		return null;
 	}
+
 	
 	public static Korisnik findUserByUsername(String korisnickoIme) {
 		if (!users.containsKey(korisnickoIme)) {
@@ -143,110 +118,6 @@ public class UserDAO {
 		Korisnik user = users.get(korisnickoIme);
 		
 		return user;
-	}
-	
-	public static void dodajKorisnika(Korisnik korisnik) throws IOException {
-			users= loadUsers();
-			users.put(korisnik.getKorisnickoIme(), korisnik);
-			List<Korisnik> lista= new ArrayList<Korisnik>(users.values());
-			
-			
-			BufferedWriter out = null;
-			try {
-				File file = new File(_PROJECT_LOCATION + "/users.txt");
-				out = new BufferedWriter(new FileWriter(file));
-				for(Korisnik korisnik1: lista) {
-					out.write(korisnik1.getKorisnickoIme() + ";"+ korisnik1.getLozinka()+ ";"+ korisnik1.getIme()+ ";"+ korisnik1.getPrezime()+ ";"+ korisnik1.getPol().toString()+ ";"+ korisnik1.getUloga().toString() + "\n");
-				}
-					
-				
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-				finally {
-			}
-				if (out != null) {
-					try {
-						out.close();
-					}
-					catch (Exception e) { }
-				}
-			}
-		      
-		
-
-	
-	
-	public static Boolean deleteUser(String korisnickoIme) {
-		users = loadUsers();
-		Korisnik korisnik= new Korisnik();
-		korisnik = findUserByUsername(korisnickoIme);
-		if (!(korisnik == null)) {
-			users.remove(korisnickoIme);
-			List<Korisnik> lista= new ArrayList<Korisnik>(users.values());
-			BufferedWriter out = null;
-			try {
-				File file = new File(_PROJECT_LOCATION + "/users.txt");
-				out = new BufferedWriter(new FileWriter(file));
-				for(Korisnik korisnik1: lista) {
-					out.write(korisnik1.getKorisnickoIme() + ";"+ korisnik1.getLozinka()+ ";"+ korisnik1.getIme()+ ";"+ korisnik1.getPrezime()+ ";"+ korisnik1.getPol().toString()+ ";"+ korisnik1.getUloga().toString() + "\n");
-				}
-					
-				
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-				finally {
-			}
-				if (out != null) {
-					try {
-						out.close();
-					}
-					catch (Exception e) { }
-				}
-			return true;
-		}else
-			return false;
-	}
-	
-	public static Boolean izmenaKorisnika(Korisnik izmenjenKorisnik) {
-		users = loadUsers();
-		Korisnik korisnik= new Korisnik();
-		korisnik = findUserByUsername(izmenjenKorisnik.getKorisnickoIme());
-		if (!(korisnik == null)) {
-			
-			korisnik.setKorisnickoIme(izmenjenKorisnik.getKorisnickoIme());
-			korisnik.setLozinka(izmenjenKorisnik.getLozinka());
-			korisnik.setIme(izmenjenKorisnik.getIme());
-			korisnik.setPrezime(izmenjenKorisnik.getPrezime());
-			korisnik.setPol(izmenjenKorisnik.getPol());
-			korisnik.setUloga(izmenjenKorisnik.getUloga());
-			
-			List<Korisnik> lista= new ArrayList<Korisnik>(users.values());
-			BufferedWriter out = null;
-			try {
-				File file = new File(_PROJECT_LOCATION + "/users.txt");
-				out = new BufferedWriter(new FileWriter(file));
-				for(Korisnik korisnik1: lista) {
-					out.write(korisnik1.getKorisnickoIme() + ";"+ korisnik1.getLozinka()+ ";"+ korisnik1.getIme()
-						+ ";"+ korisnik1.getPrezime()+ ";"+ korisnik1.getPol().toString()+ ";"+ korisnik1.getUloga().toString() + "\n");
-				}
-					
-				
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-				finally {
-			}
-				if (out != null) {
-					try {
-						out.close();
-					}
-					catch (Exception e) { }
-				}
-			return true;
-		}else
-			return false;
 	}
 	
 }

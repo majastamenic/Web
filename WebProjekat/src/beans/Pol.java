@@ -1,6 +1,6 @@
 package beans;
 
 public enum Pol {
-	muski,
-	zenski
+	Muski,
+	Zenski
 }
