@@ -3,8 +3,11 @@ package dao;
 import static util.Putanja._PROJECT_LOCATION;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -12,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
-
 
 import beans.Apartman;
 import beans.Domacin;
@@ -133,7 +135,77 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 		}
 
 		
+	
+
+public static void dodajDomacina(Domacin domacin) throws IOException {
+	domacini= ucitajDomacine();
+	domacini.put(domacin.getId(), domacin);
+	List<Domacin> domaciniLista= new ArrayList<Domacin>(domacini.values());
+	
+	
+	BufferedWriter out = null;
+	try {
+		File file = new File(_PROJECT_LOCATION + "/doamcini.txt");
+		out = new BufferedWriter(new FileWriter(file));
+		for(Domacin noviDomacin: domaciniLista) {
+			out.write(noviDomacin.getKorisnickoIme() + ";"+ noviDomacin.getLozinka()+ ";"+ noviDomacin.getIme()+ ";"
+					+ noviDomacin.getPrezime()+ ";"+ noviDomacin.getPol().toString()+ ";"+ noviDomacin.getUloga().toString() 
+					+ ";"+ noviDomacin.getApartmaniZaIzdavanje().toString()+ "\n");
+		}
+			
+		
+	}catch(Exception e){
+		e.printStackTrace();
 	}
+		finally {
+	}
+		if (out != null) {
+			try {
+				out.close();
+			}
+			catch (Exception e) { }
+		}
+	
+}   
+
+
+
+
+	public static Boolean izbrisiAdministratora(Integer id) {
+		domacini = ucitajDomacine();
+		Domacin domacin= new Domacin();
+		domacin = findHostById(id);
+		if (!(domacin == null)) {
+			domacini.remove(id);
+			List<Domacin> domaciniLista= new ArrayList<Domacin>(domacini.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/domacini.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Domacin noviDomacin: domaciniLista) {
+					out.write(noviDomacin.getKorisnickoIme() + ";"+ noviDomacin.getLozinka()+ ";"+ noviDomacin.getIme()+ ";"
+							+ noviDomacin.getPrezime()+ ";"+ noviDomacin.getPol().toString()+ ";"+ noviDomacin.getUloga().toString() 
+							+ ";"+ noviDomacin.getApartmaniZaIzdavanje().toString()+ "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
+	
+}
 	
 
 

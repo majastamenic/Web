@@ -9,7 +9,7 @@ public class Lokacija{
 	
 	
 	
-
+	public Lokacija() {}
 	
 
 	public Lokacija(int id, float geografskaSirina, float geografskaDuzina, Adresa adresa) {

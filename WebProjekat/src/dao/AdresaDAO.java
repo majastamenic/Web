@@ -2,15 +2,19 @@ package dao;
 
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
 import beans.Adresa;
-
 
 import static util.Putanja._PROJECT_LOCATION;
 
@@ -104,4 +108,68 @@ private static Map<Integer, Adresa> adrese = new HashMap<>();
 			return null;
 		
 	}
+	
+	public static void dodajAdresu(Adresa adresa) throws IOException {
+		adrese= ucitajAdrese();
+		adrese.put(adresa.getId(), adresa);
+		List<Adresa> adresaLista= new ArrayList<Adresa>(adrese.values());
+		
+		
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/adrese.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			for(Adresa novaAdresa: adresaLista) {
+				out.write(novaAdresa.getUlicaBroj() + ";"+ novaAdresa.getNaseljenoMesto()+ ";"+ adresa.getPostanskiBroj()+"\n");
+			}
+				
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
+		}
+	      
+	
+
+
+
+public static Boolean izbrisiAdresu(Integer id) {
+	adrese = ucitajAdrese();
+	Adresa adresa= new Adresa();
+	adresa = findAdressById(id);
+	if (!(adresa == null)) {
+		adrese.remove(id);
+		List<Adresa> adresaLista= new ArrayList<Adresa>(adrese.values());
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/adrese.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			for(Adresa adresa1: adresaLista) {
+				out.write(adresa1.getUlicaBroj() + ";"+ adresa1.getNaseljenoMesto() + ";"+ adresa1.getPostanskiBroj()+ "\n");
+			}
+				
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
+		return true;
+	}else
+		return false;
+}
 }

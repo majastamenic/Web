@@ -1,14 +1,18 @@
 package dao;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
-
 
 import beans.Amenities;
 
@@ -102,6 +106,70 @@ public static Amenities findAmenitiesById(Integer id) {
 		else
 			return null;
 		
+	}
+
+public static void dodajAmenities(Amenities pogodnost) throws IOException {
+	pogodnosti = ucitajPogodnosti();
+	pogodnosti.put(pogodnost.getId(), pogodnost);
+	List<Amenities> pogodnostiLista= new ArrayList<Amenities>(pogodnosti.values());
+	
+	
+	BufferedWriter out = null;
+	try {
+		File file = new File(_PROJECT_LOCATION + "/pogodnosti.txt");
+		out = new BufferedWriter(new FileWriter(file));
+		for(Amenities novaPogodnost: pogodnostiLista) {
+			out.write(novaPogodnost.getNaziv() + "\n");
+		}
+			
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+		finally {
+	}
+		if (out != null) {
+			try {
+				out.close();
+			}
+			catch (Exception e) { }
+		}
+	}
+      
+
+
+
+
+	public static Boolean izbrisiPogodnost(Integer id) {
+		pogodnosti = ucitajPogodnosti();
+		Amenities pogodnost= new Amenities();
+		pogodnost = findAmenitiesById(id);
+		if (!(pogodnost == null)) {
+			pogodnosti.remove(id);
+			List<Amenities> pogodnostiLista= new ArrayList<Amenities>(pogodnosti.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/pogodnosti.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Amenities novaPogodnost: pogodnostiLista) {
+					out.write(novaPogodnost.getNaziv() + "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
 	}
 	
 

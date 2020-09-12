@@ -1,14 +1,18 @@
 package dao;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
-
 
 import beans.Apartman;
 import beans.Gost;
@@ -111,6 +115,72 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 				return null;
 			
 		}
+	
+	public static void dodajKomentar(KomentarZaApartman komentar) throws IOException {
+		komentari= ucitajKomentare();
+		komentari.put(komentar.getId(), komentar);
+		List<KomentarZaApartman> komentariLista= new ArrayList<KomentarZaApartman>(komentari.values());
+		
+		
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/komentari.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			for(KomentarZaApartman komentarZaApartman: komentariLista) {
+				out.write(komentarZaApartman.getGost().toString() + ";"+ komentarZaApartman.getApartman()+ ";"
+						+ komentarZaApartman.getTekst()+ ";"+ komentarZaApartman.getOcena()+  "\n");
+			}
+				
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
+		}
+	      
+	
+
+
+
+	public static Boolean izbrisiKomentar(Integer id) {
+		komentari = ucitajKomentare();
+		KomentarZaApartman komentar= new KomentarZaApartman();
+		komentar = findCommentById(id);
+		if (!(komentar == null)) {
+			komentari.remove(id);
+			List<KomentarZaApartman> komentariLista= new ArrayList<KomentarZaApartman>(komentari.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/komentari.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(KomentarZaApartman komentarZaApartman: komentariLista) {
+					out.write(komentarZaApartman.getGost().toString() + ";"+ komentarZaApartman.getApartman()+ ";"
+							+ komentarZaApartman.getTekst()+ ";"+ komentarZaApartman.getOcena()+  "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
 	
 
 }

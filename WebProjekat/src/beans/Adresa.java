@@ -6,7 +6,7 @@ public class Adresa {
 	private String naseljenoMesto;
 	private int postanskiBroj;
 	
-	
+	public Adresa() {}
 	
 	public Adresa(int id, String ulicaBroj, String naseljenoMesto, int postanskiBroj) {
 		super();

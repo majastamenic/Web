@@ -1,12 +1,17 @@
 package dao;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
@@ -14,7 +19,6 @@ import static util.Putanja._PROJECT_LOCATION;
 
 import beans.Apartman;
 import beans.Gost;
-
 import beans.Rezervacija;
 import beans.StatusRezervacija;
 
@@ -119,5 +123,73 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 				return null;
 			
 		}
+	
+	public static void dodajRezervaciju(Rezervacija rezervacija) throws IOException {
+		RezervacijaDAO.rezervacija= ucitajRezervacije();
+		RezervacijaDAO.rezervacija.put(rezervacija.getId(), rezervacija);
+		List<Rezervacija> listaRezervacija= new ArrayList<Rezervacija>(RezervacijaDAO.rezervacija.values());
+		
+		
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/rezervacije.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			for(Rezervacija novaRezervacija: listaRezervacija) {
+				out.write(novaRezervacija.getRezervisanApartman().toString() + ";"+ novaRezervacija.getPocetniDatum().toString()+ ";"
+						+ novaRezervacija.getBrojNocenja()+ ";"+ novaRezervacija.getUkupnaCena()+ ";"+ novaRezervacija.getPoruka()
+						+ ";"+ novaRezervacija.getGost().toString() + ";"+ novaRezervacija.getStatus().toString() + "\n");
+			}
+				
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
+		}
+	      
+	
+
+
+
+	public static Boolean izbrisiRezervaciju(Integer id) {
+		rezervacija = ucitajRezervacije();
+		Rezervacija rezervacija= new Rezervacija();
+		rezervacija = findReservationById(id);
+		if (!(rezervacija == null)) {
+			RezervacijaDAO.rezervacija.remove(id);
+			List<Rezervacija> listaRezervacija= new ArrayList<Rezervacija>(RezervacijaDAO.rezervacija.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/rezervacije.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Rezervacija novaRezervacija: listaRezervacija) {
+					out.write(novaRezervacija.getRezervisanApartman().toString() + ";"+ novaRezervacija.getPocetniDatum().toString()+ ";"
+							+ novaRezervacija.getBrojNocenja()+ ";"+ novaRezervacija.getUkupnaCena()+ ";"+ novaRezervacija.getPoruka()
+							+ ";"+ novaRezervacija.getGost().toString() + ";"+ novaRezervacija.getStatus().toString() + "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
 
 }

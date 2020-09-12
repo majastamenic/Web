@@ -7,6 +7,8 @@ public class KomentarZaApartman {
 	private String tekst;
 	private int ocena;
 	
+	public KomentarZaApartman() {}
+	
 	public KomentarZaApartman(int id,Gost gost, Apartman apartman, String tekst, int ocena) {
 		super();
 		this.id=id;

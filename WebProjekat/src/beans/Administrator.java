@@ -14,6 +14,8 @@ public class Administrator extends Korisnik{
 		this.pol = pol;
 		this.uloga = uloga;
 	}
+	
+	public Administrator() {}
 
 	public int getId() {
 		return id;

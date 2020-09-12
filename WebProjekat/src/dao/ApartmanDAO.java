@@ -1,8 +1,11 @@
 package dao;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,8 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
-
-
 
 import beans.Amenities;
 import beans.Apartman;
@@ -161,6 +162,82 @@ public class ApartmanDAO {
 		}
 		else
 			return null;
+	}
+	
+	public static void dodajApartman(Apartman apartman) throws IOException {
+		apartmani= ucitajApartmane();
+		apartmani.put(apartman.getId(), apartman);
+		List<Apartman> apartmaniLista= new ArrayList<Apartman>(apartmani.values());
+		
+		
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/apartmani.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			for(Apartman noviApartman: apartmaniLista) {
+				out.write(noviApartman.getTip().toString() + ";"+ noviApartman.getBrojSoba()+ ";"+ noviApartman.getBrojGostiju()+ ";"+ noviApartman.getLokacija()+ ";"
+						+ noviApartman.getDatumZaIzdavanje().toString()+ ";"+ noviApartman.getDostupnostPoDatumima().toString() 
+						+ ";"+ noviApartman.getDomacin().toString()+ ";"+ noviApartman.getKomentar().toString()
+						+ ";"+ noviApartman.getCenaPoNoci()+ ";"+ noviApartman.getVremeZaPrijavu()
+						+ ";"+ noviApartman.getVremeZaOdjavu()+ ";"+ noviApartman.getStatus().toString()
+						+ ";"+ noviApartman.getSadrzajApartmana().toString()+ ";"+ noviApartman.getRezervacije().toString()
+						+ "\n");
+			}
+				
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
+		}
+	      
+	
+
+
+
+	public static Boolean izbrisiApartman(Integer id) {
+		apartmani = ucitajApartmane();
+		Apartman apartman= new Apartman();
+		apartman = findApartmentById(id);
+		if (!(apartman == null)) {
+			apartmani.remove(id);
+			List<Apartman> apartmaniLista= new ArrayList<Apartman>(apartmani.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/apartmani.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Apartman noviApartman: apartmaniLista) {
+					out.write(noviApartman.getTip().toString() + ";"+ noviApartman.getBrojSoba()+ ";"+ noviApartman.getBrojGostiju()+ ";"+ noviApartman.getLokacija()+ ";"
+							+ noviApartman.getDatumZaIzdavanje().toString()+ ";"+ noviApartman.getDostupnostPoDatumima().toString() 
+							+ ";"+ noviApartman.getDomacin().toString()+ ";"+ noviApartman.getKomentar().toString()
+							+ ";"+ noviApartman.getCenaPoNoci()+ ";"+ noviApartman.getVremeZaPrijavu()
+							+ ";"+ noviApartman.getVremeZaOdjavu()+ ";"+ noviApartman.getStatus().toString()
+							+ ";"+ noviApartman.getSadrzajApartmana().toString()+ ";"+ noviApartman.getRezervacije().toString()
+							+ "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
 	}
 
 }

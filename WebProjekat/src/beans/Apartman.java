@@ -22,7 +22,7 @@ public class Apartman {
 	private List<Amenities> sadrzajApartmana;
 	private List<Rezervacija> rezervacije;
 	
-	
+	public Apartman() {}
 
 	public Apartman(int id, TipApartmana tip, int brojSoba, int brojGostiju, Lokacija lokacija, Date datumZaIzdavanje,
 			List<Date> dostupnostPoDatumima, Domacin domacin, KomentarZaApartman komentar, float cenaPoNoci,

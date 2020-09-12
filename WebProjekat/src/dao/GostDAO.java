@@ -3,8 +3,11 @@ package dao;
 import static util.Putanja._PROJECT_LOCATION;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -127,6 +130,74 @@ public class GostDAO {
 				return null;
 			
 		}
+	
+	public static void dodajGosta(Gost gost) throws IOException {
+		gosti= ucitajGoste();
+		gosti.put(gost.getId(), gost);
+		List<Gost> gostiLista= new ArrayList<Gost>(gosti.values());
+		
+		
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/gosti.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			for(Gost noviGost: gostiLista) {
+				out.write(noviGost.getKorisnickoIme() + ";"+ noviGost.getLozinka()+ ";"+ noviGost.getIme()
+				+ ";"+ noviGost.getPrezime()+ ";"+ noviGost.getPol().toString()+ ";"+ noviGost.getUloga().toString()
+				+ ";"+ noviGost.getIznajmljeniApartmani().toString()+";"+ noviGost.getRezervacije()+ "\n");
+			}
+				
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
+		}
+	      
+	
+
+
+
+	public static Boolean izbrisiGosta(Integer id) {
+		gosti = ucitajGoste();
+		Gost gost= new Gost();
+		gost = findGuestById(id);
+		if (!(gost == null)) {
+			gosti.remove(id);
+			List<Gost> gostiLista= new ArrayList<Gost>(gosti.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/gosti.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Gost noviGost: gostiLista) {
+					out.write(noviGost.getKorisnickoIme() + ";"+ noviGost.getLozinka()+ ";"+ noviGost.getIme()
+					+ ";"+ noviGost.getPrezime()+ ";"+ noviGost.getPol().toString()+ ";"+ noviGost.getUloga().toString()
+					+ ";"+ noviGost.getIznajmljeniApartmani().toString()+";"+ noviGost.getRezervacije()+ "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
 
 
 }

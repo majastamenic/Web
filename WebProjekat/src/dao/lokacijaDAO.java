@@ -1,10 +1,15 @@
 package dao;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
@@ -95,4 +100,69 @@ public static Lokacija findLocationById(Integer id) {
 			return null;
 		
 	}
+
+	public static void dodajLokaciju(Lokacija lokacija) throws IOException {
+		lokacijaDAO.lokacija= ucitajLokaciju();
+		lokacijaDAO.lokacija.put(lokacija.getId(), lokacija);
+		List<Lokacija> lokacijeLista= new ArrayList<Lokacija>(lokacijaDAO.lokacija.values());
+		
+		
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/lokacije.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			for(Lokacija novaLokacija: lokacijeLista) {
+				out.write(novaLokacija.getGeografskaSirina() + ";"+ novaLokacija.getGeografskaDuzina()+ ";"+ novaLokacija.getAdresa()+ "\n");
+			}
+				
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
+	}
+      
+
+
+
+
+	public static Boolean izbrisiLokaciju(Integer id) {
+		lokacijaDAO.lokacija = ucitajLokaciju();
+		Lokacija lokacija= new Lokacija();
+		lokacija = findLocationById(id);
+		if (!(lokacija == null)) {
+			lokacijaDAO.lokacija.remove(id);
+			List<Lokacija> lokacijaLista= new ArrayList<Lokacija>(lokacijaDAO.lokacija.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/lokacije.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Lokacija novaLokacija: lokacijaLista) {
+					out.write(novaLokacija.getGeografskaSirina() + ";"+ novaLokacija.getGeografskaDuzina()+ ";"+ novaLokacija.getAdresa()+ "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
+
 }

@@ -12,7 +12,7 @@ public class Rezervacija {
 	private Gost gost;
 	private StatusRezervacija status;
 	
-	
+	public Rezervacija() {}
 
 	public Rezervacija(int id, Apartman rezervisanApartman, Date pocetniDatum, int brojNocenja, float ukupnaCena,
 			String poruka, Gost gost, StatusRezervacija status) {

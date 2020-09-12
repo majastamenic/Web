@@ -5,6 +5,8 @@ public class Amenities {
 	
 	protected String naziv;
 	
+	public Amenities() {}
+	
 	public Amenities(Integer id, String naziv) {
 		super();
 		this.id = id;

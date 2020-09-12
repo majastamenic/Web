@@ -3,17 +3,19 @@ package dao;
 import static util.Putanja._PROJECT_LOCATION;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
 import beans.Administrator;
-
 import beans.Pol;
 
 import beans.Uloga;
@@ -106,6 +108,70 @@ private static Map<Integer, Administrator> administratori = new HashMap<>();
 				return null;
 			
 		}
+	
+	public static void dodajAdministartora(Administrator administrator) throws IOException {
+		administratori= ucitajAdmine();
+		administratori.put(administrator.getId(), administrator);
+		List<Administrator> administratoriLista= new ArrayList<Administrator>(administratori.values());
+		
+		
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/admini.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			for(Administrator admin: administratoriLista) {
+				out.write(admin.getKorisnickoIme() + ";"+ admin.getLozinka()+ ";"+ admin.getIme()+ ";"+ admin.getPrezime()+ ";"+ admin.getPol().toString()+ ";"+ admin.getUloga().toString() + "\n");
+			}
+				
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
+		}
+	      
+	
+
+
+
+	public static Boolean izbrisiAdministratora(Integer id) {
+		administratori = ucitajAdmine();
+		Administrator administrator= new Administrator();
+		administrator = findAdminById(id);
+		if (!(administrator == null)) {
+			administratori.remove(id);
+			List<Administrator> administratoriLista= new ArrayList<Administrator>(administratori.values());
+			BufferedWriter out = null;
+			try {
+				File file = new File(_PROJECT_LOCATION + "/admini.txt");
+				out = new BufferedWriter(new FileWriter(file));
+				for(Administrator admin: administratoriLista) {
+					out.write(admin.getKorisnickoIme() + ";"+ admin.getLozinka()+ ";"+ admin.getIme()+ ";"+ admin.getPrezime()+ ";"+ admin.getPol().toString()+ ";"+ admin.getUloga().toString() + "\n");
+				}
+					
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				finally {
+			}
+				if (out != null) {
+					try {
+						out.close();
+					}
+					catch (Exception e) { }
+				}
+			return true;
+		}else
+			return false;
+	}
 
 
 
