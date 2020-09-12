@@ -32,5 +32,9 @@ public class Domacin extends Korisnik{
 		this.apartmaniZaIzdavanje = apartmaniZaIzdavanje;
 	}
 
+	@Override
+	public String toString() {
+		return id + ";"+ korisnickoIme + ";"+ lozinka + ";"+ ime+ ";"+ prezime+ ";"+ pol.toString() + ";"+ uloga.toString() + "\n";
+	} 
 
 }

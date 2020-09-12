@@ -6,6 +6,11 @@ public class Adresa {
 	private String naseljenoMesto;
 	private int postanskiBroj;
 	
+	@Override
+	public String toString() {
+		return id + ";"+ ulicaBroj + ";"+ naseljenoMesto + ";"+ postanskiBroj + "\n";
+	} 
+	
 	public Adresa() {}
 	
 	public Adresa(int id, String ulicaBroj, String naseljenoMesto, int postanskiBroj) {

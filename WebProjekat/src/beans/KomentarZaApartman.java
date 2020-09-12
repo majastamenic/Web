@@ -17,6 +17,11 @@ public class KomentarZaApartman {
 		this.tekst = tekst;
 		this.ocena = ocena;
 	}
+	
+	@Override
+	public String toString() {
+		return id + ";"+ gost.toString() + ";"+ apartman.toString() + ";"+ tekst+ ";"+ ocena+ "\n";
+	} 
 
 	public Gost getGost() {
 		return gost;

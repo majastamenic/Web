@@ -16,6 +16,11 @@ public class Administrator extends Korisnik{
 	
 	public Administrator() {}
 
+	@Override
+	public String toString() {
+		return id + ";"+ korisnickoIme + ";"+ lozinka + ";"+ ime+ ";"+ prezime+ ";"+ pol.toString() + ";"+ uloga.toString() + "\n";
+	} 
 
+	
 
 }

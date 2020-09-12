@@ -7,7 +7,10 @@ public class Lokacija{
 	private float geografskaDuzina;
 	private Adresa adresa;
 	
-	
+	@Override
+	public String toString() {
+		return id + ";"+ geografskaSirina + ";"+ geografskaDuzina + ";"+ adresa.toString() + "\n";
+	} 
 	
 	public Lokacija() {}
 	

@@ -4,9 +4,8 @@ public class Korisnik{
 	
 	@Override
 	public String toString() {
-		return "Korisnik [id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", ime=" + ime
-				+ ", prezime=" + prezime + ", pol=" + pol + ", uloga=" + uloga + "]";
-	}
+		return id + ";"+ korisnickoIme + ";"+ lozinka + ";"+ ime+ ";"+ prezime+ ";"+ pol.toString() + ";"+ uloga.toString() + "\n";
+	} 
 	/**
 	 * 
 	 */

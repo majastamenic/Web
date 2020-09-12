@@ -12,6 +12,12 @@ public class Rezervacija {
 	private Gost gost;
 	private StatusRezervacija status;
 	
+	@Override
+	public String toString() {
+		return id + ";"+ rezervisanApartman.toString() + ";"+ pocetniDatum.toString() + ";"+ brojNocenja
+				+ ";"+ ukupnaCena+ ";"+ poruka + ";"+ gost.toString()+";"+ status.toString() + "\n";
+	} 
+	
 	public Rezervacija() {}
 
 	public Rezervacija(int id, Apartman rezervisanApartman, Date pocetniDatum, int brojNocenja, float ukupnaCena,

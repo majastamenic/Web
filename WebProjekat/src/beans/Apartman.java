@@ -23,6 +23,14 @@ public class Apartman {
 	private List<Amenities> sadrzajApartmana;
 	private List<Rezervacija> rezervacije;
 	
+	@Override
+	public String toString() {
+		return id + ";"+ tip.toString() + ";"+ brojSoba + ";"+ brojGostiju+ ";"+ lokacija.toString()+ ";"
+				+ datumZaIzdavanje.toString() + ";"+ domacin.toString() 
+				+ ";"+ komentar.toString() + ";"+ cenaPoNoci + ";"+ vremeZaPrijavu
+				+ ";"+ vremeZaOdjavu + ";"+ status.toString() + "\n";
+	} 
+	
 	public Apartman() {
 		dostupnostPoDatumima = new ArrayList<Date>();
 		sadrzajApartmana = new ArrayList<Amenities>();
