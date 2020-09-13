@@ -14,8 +14,8 @@ public class Rezervacija {
 	
 	@Override
 	public String toString() {
-		return id + ";"+ rezervisanApartman.toString() + ";"+ pocetniDatum.toString() + ";"+ brojNocenja
-				+ ";"+ ukupnaCena+ ";"+ poruka + ";"+ gost.toString()+";"+ status.toString() + "\n";
+		return id + ";"+ rezervisanApartman.getId() + ";"+ pocetniDatum.toString() + ";"+ brojNocenja
+				+ ";"+ ukupnaCena+ ";"+ poruka + ";"+ gost.getId()+";"+ status.toString() + "\n";
 	} 
 	
 	public Rezervacija() {}

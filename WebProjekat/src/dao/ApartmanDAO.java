@@ -19,6 +19,7 @@ import static util.Putanja._PROJECT_LOCATION;
 import beans.Amenities;
 import beans.Apartman;
 import beans.Domacin;
+import beans.Gost;
 import beans.KomentarZaApartman;
 
 import beans.Lokacija;
@@ -153,6 +154,112 @@ public class ApartmanDAO {
 		return apartmani;
 	}
 	
+	
+	
+	public static Map<Integer, Apartman> ucitajAktivneApartmane() {
+		BufferedReader in = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/apartmani.txt");
+			in = new BufferedReader(new FileReader(file));
+			String line;
+			StringTokenizer st;
+			while ((line = in.readLine()) != null) {
+				line = line.trim();
+				if (line.equals("") || line.indexOf('#') == 0)
+					continue;
+				st = new StringTokenizer(line, ";");
+				while (st.hasMoreTokens()) {
+					
+					
+					int id= Integer.parseInt(st.nextToken().trim());
+					TipApartmana tip= null;
+					String tipString=st.nextToken().trim().toString();
+					if(tipString.equalsIgnoreCase("Apartman"))
+						tip=TipApartmana.Apartman;
+					else
+						tip=TipApartmana.Soba;
+					int brojSoba= Integer.parseInt(st.nextToken().trim());
+					
+					
+					int brojGostiju= Integer.parseInt(st.nextToken().trim());
+					int idLokacija = Integer.parseInt(st.nextToken().trim());
+					
+					Lokacija lokacija= LokacijaDAO.findLocationById(idLokacija);
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			        Date dateStr = formatter.parse(st.nextToken().trim());
+			        
+			        StringTokenizer st1;
+			        st1 = new StringTokenizer(st.nextToken().trim(), ",");
+			        List<Date> dostupni = new ArrayList<Date>();
+						while (st1.hasMoreTokens()) {
+						Date dostupniDatumi = formatter.parse(st1.nextToken().trim());
+						dostupni.add(dostupniDatumi);
+						}
+						
+					int idDomacin = Integer.parseInt(st.nextToken().trim());
+					
+					Domacin domacin = DomacinDAO.findHostById(idDomacin);
+					
+					int idKomentar= Integer.parseInt(st.nextToken().trim());
+					KomentarDAO kd= new KomentarDAO();
+					KomentarZaApartman komentar = kd.find(idKomentar);
+					
+					float cenaPoNoci= Float.parseFloat(st.nextToken().trim());
+					String vremeZaPrijavu= st.nextToken().trim();
+					String vremeZaOdjavu = st.nextToken().trim();
+					
+					StatusApartman status= null;
+					String statusStr = st.nextToken().trim().toString();
+					if(statusStr .equalsIgnoreCase("Aktivno"))
+						status=StatusApartman.Aktivno;
+					else
+						status=StatusApartman.Neaktivno;
+			        
+					StringTokenizer st2;
+			        st2 = new StringTokenizer(st.nextToken().trim(), ".");
+			        List<Amenities> pogodnosti = new ArrayList<Amenities>();
+			        	while (st2.hasMoreTokens()) {
+							int idPogodnost=Integer.parseInt(st2.nextToken().trim());
+							AmenitiesDAO ad= new AmenitiesDAO();
+							Amenities pogodnost= ad.find(idPogodnost);
+							pogodnosti.add(pogodnost);
+						}
+			        	
+			        StringTokenizer st3= new StringTokenizer(st.nextToken().trim(), "/");
+			        List<Rezervacija> rezervacije = new ArrayList<Rezervacija>();
+				        while (st3.hasMoreTokens()) {
+							int idRezervacija=Integer.parseInt(st3.nextToken().trim());
+							RezervacijaDAO rd= new RezervacijaDAO();
+							Rezervacija rezervacija= rd.find(idRezervacija);
+							rezervacije.add(rezervacija);
+						}
+				        	
+				     
+					if(statusStr.equalsIgnoreCase("Aktivno")) {
+					apartmani.put(id, new Apartman(id, tip, brojSoba, brojGostiju, lokacija, dateStr, dostupni, domacin, komentar, cenaPoNoci, vremeZaPrijavu, vremeZaOdjavu, status, pogodnosti, rezervacije));
+					}
+				}
+				
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				}
+				catch (Exception e) { }
+			}
+		}
+		return apartmani;
+	}
+	
+public static Collection<Apartman> findAllActive() {
+		Map<Integer,Apartman> apartmani1 = ucitajAktivneApartmane();
+		
+		return apartmani1.values();
+	}
 	public static Apartman findApartmentById(Integer id) {
 		Apartman trazeniApartman = null;
 		
@@ -167,7 +274,52 @@ public class ApartmanDAO {
 			return null;
 	}
 	
-	public static void dodajApartman(Apartman apartman) throws IOException {
+	public static int vratiNajveciID() {
+		int maxId = 0;
+		for (Map.Entry<Integer , Apartman> apartmani1 : apartmani.entrySet())
+		{
+		    if ( maxId < apartmani1.getKey().intValue())
+		    {
+		        maxId = apartmani1.getKey();
+		    }
+		}
+		return maxId;
+	}
+	
+	public static void dodajApartmanUMapu(Apartman noviApartman) {
+		if(apartmani.isEmpty())
+			apartmani = ucitajApartmane();
+			
+			noviApartman.setId(vratiNajveciID() + 1);
+			apartmani.put(vratiNajveciID() + 1, noviApartman);
+		
+	}
+	public static void sacuvajSveApartmaneIzMape() throws IOException {
+		
+		
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/apartmani.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			 for (Map.Entry<Integer, Apartman> apartman : apartmani.entrySet())  {
+				out.write(apartman.getValue().toString());
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
+		}
+
+	
+	/*public static void dodajApartman(Apartman apartman) throws IOException {
 		apartmani= ucitajApartmane();
 		apartmani.put(apartman.getId(), apartman);
 		List<Apartman> apartmaniLista= new ArrayList<Apartman>(apartmani.values());
@@ -201,7 +353,7 @@ public class ApartmanDAO {
 			}
 		}
 	      
-	
+	*/
 
 
 

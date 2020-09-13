@@ -194,8 +194,7 @@ private static Map<Integer, Administrator> administratori = new HashMap<>();
 				File file = new File(_PROJECT_LOCATION + "/admini.txt");
 				out = new BufferedWriter(new FileWriter(file));
 				for(Administrator admin: administratoriLista) {
-					out.write(admin.getKorisnickoIme() + ";"+ admin.getLozinka()+ ";"+ admin.getIme()+ ";"
-							+ admin.getPrezime()+ ";"+ admin.getPol().toString()+ ";"+ admin.getUloga().toString() + "\n");
+					out.write(admin.toString()+ "\n");
 				}
 					
 				

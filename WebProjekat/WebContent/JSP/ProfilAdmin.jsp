@@ -11,7 +11,7 @@
 	<p>  <a href= "/DodajApartmanServlet"> Dodaj apartman</a></p><br/>
 	<p>  <a href= "/PrikaziApartmanServlet" > Pregled apartmana</a></p><br/>
 	<p>  <a href= "/OdrzavanjeSadrzajaServlet"> Odrzavanje sadrzaja</a></p><br/>
-	<p>  <a href= "/pregledRezervacijaServlet"> Pregled rezervacija</a></p><br/>
+	<p>  <a href= "/pregledSvihRezervacijaServlet"> Pregled rezervacija</a></p><br/>
 	<p>  <a href= "/PregledKomentaraServlet"> Pregled svih komentara</a></p><br/>
 	<p>  <a href= "PretragaRezervacijaPoKorisnickomImenuServlet"> Pretraga rezervacija po korisnickom imenu gosta</a></p><br/>
 	<p>  <a href= "PretragaKorisnikaServlet"> Pretraga korinika</a></p><br/>

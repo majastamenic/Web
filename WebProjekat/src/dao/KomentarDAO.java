@@ -49,7 +49,7 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 		return komm;
 	}
 	
-	public Collection<KomentarZaApartman> findAll() {
+	public static Collection<KomentarZaApartman> findAll() {
 		return komentari.values();
 	}
 	

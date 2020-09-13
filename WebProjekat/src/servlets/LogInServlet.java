@@ -97,7 +97,12 @@ public class LogInServlet extends HttpServlet {
 			if (korisnik instanceof Gost) {
 				Gost noviGost = (Gost) korisnik;
 				System.out.println("Logovao se korisnik");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilGostServlet");
+				HttpSession session = request.getSession();
+				request.setAttribute("ulogovaniKorisnik", korisnik);				
+				session.setAttribute("ulogovaniKorisnik", korisnik);
 				
+				requestDispatcher.forward(request, response);
 			}
 			if (korisnik instanceof Domacin) {
 				Domacin noviDomacin = (Domacin) korisnik;

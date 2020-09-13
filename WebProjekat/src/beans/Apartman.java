@@ -25,9 +25,9 @@ public class Apartman {
 	
 	@Override
 	public String toString() {
-		return id + ";"+ tip.toString() + ";"+ brojSoba + ";"+ brojGostiju+ ";"+ lokacija.toString()+ ";"
-				+ datumZaIzdavanje.toString() + ";"+ domacin.toString() 
-				+ ";"+ komentar.toString() + ";"+ cenaPoNoci + ";"+ vremeZaPrijavu
+		return id + ";"+ tip.toString() + ";"+ brojSoba + ";"+ brojGostiju+ ";"+ lokacija.getId()+ ";"
+				+ datumZaIzdavanje.toString() + ";"+ domacin.getId() 
+				+ ";"+ komentar.getId() + ";"+ cenaPoNoci + ";"+ vremeZaPrijavu
 				+ ";"+ vremeZaOdjavu + ";"+ status.toString() + "\n";
 	} 
 	

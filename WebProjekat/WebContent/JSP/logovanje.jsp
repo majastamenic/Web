@@ -26,6 +26,11 @@
             <td></td>
             <td><input type="submit" value="Login"></td>
         </tr>
+        
+         <tr>
+            <td></td>
+            <td><a href="/JSP/neulogovaniKorisnik.jsp">Niste ulogovani?</a></td>
+        </tr>
       </table>
    </form>
 </body>
