@@ -15,8 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import beans.Apartman;
-import beans.Domacin;
+
 import beans.Gost;
 import beans.Pol;
 import beans.Rezervacija;
@@ -184,37 +183,19 @@ public class GostDAO {
 		}
 
 	public static Boolean izbrisiGosta(Integer id) {
-		gosti = ucitajGoste();
-		Gost gost= new Gost();
-		gost = findGuestById(id);
-		if (!(gost == null)) {
-			gosti.remove(id);
-			List<Gost> gostiLista= new ArrayList<Gost>(gosti.values());
-			BufferedWriter out = null;
-			try {
-				File file = new File(_PROJECT_LOCATION + "/gosti.txt");
-				out = new BufferedWriter(new FileWriter(file));
-				for(Gost noviGost: gostiLista) {
-					out.write(noviGost.getKorisnickoIme() + ";"+ noviGost.getLozinka()+ ";"+ noviGost.getIme()
-					+ ";"+ noviGost.getPrezime()+ ";"+ noviGost.getPol().toString()+ ";"+ noviGost.getUloga().toString()
-					+ ";"+ noviGost.getIznajmljeniApartmani().toString()+";"+ noviGost.getRezervacije()+ "\n");
-				}
-					
-				
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-				finally {
-			}
-				if (out != null) {
-					try {
-						out.close();
-					}
-					catch (Exception e) { }
-				}
-			return true;
+		Map<Integer, Gost> gosti1 = ucitajGoste();
+		if(gosti1.containsKey(id)) {
+		gosti1.remove(id);
+		try {
+			sacuvajSveGosteIzMape();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
 		}else
 			return false;
+		
 	}
 	
 	

@@ -1,9 +1,6 @@
-22;4Vona;123;null;null;Zenski;Gost
 23;IVona;123;null;null;Zenski;Gost
 24;Vna;123;null;null;Zenski;Gost
-25;minja;minja;null;null;Muski;Gost
 26;dasa;123;dasa;dasa;Muski;Gost
-27;viki;123;viki;viki;Zenski;Gost
 28;jami;123;jami;jami;Zenski;Gost
 29;mika;mika;mika;mika;Muski;Gost
 30;zika;zika;zika;zika;Muski;Gost

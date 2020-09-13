@@ -26,6 +26,7 @@ import dao.AdresaDAO;
 import dao.AmenitiesDAO;
 import dao.ApartmanDAO;
 import dao.DomacinDAO;
+import dao.GostDAO;
 import dao.KomentarDAO;
 import dao.RezervacijaDAO;
 import dao.UserDAO;
@@ -55,7 +56,7 @@ public class LogInServlet extends HttpServlet {
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/logovanje.jsp");
 		disp.forward(request, response);
 		
-		
+		//GostDAO.izbrisiGosta(28);
 		
 		
 		/*Adresa adresa= AdresaDAO.findAdressById(1);
@@ -92,12 +93,13 @@ public class LogInServlet extends HttpServlet {
 		}else {
 			Korisnik korisnik = UserDAO.findUserByCredentials(korisnickoIme, lozinka);
 			System.out.println(korisnik);
+			if(korisnik!= null) {
 			if (korisnik instanceof Gost) {
 				Gost noviGost = (Gost) korisnik;
 				System.out.println("Logovao se korisnik");
 				
 			}
-			else if (korisnik instanceof Domacin) {
+			if (korisnik instanceof Domacin) {
 				Domacin noviDomacin = (Domacin) korisnik;
 				System.out.println("Logovao se domacin");
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilDomacinServlet");
@@ -106,10 +108,9 @@ public class LogInServlet extends HttpServlet {
 				session.setAttribute("ulogovaniKorisnik", korisnik);
 				
 				requestDispatcher.forward(request, response);
-				return;
 			}
-			else if (korisnik instanceof Administrator) {
-				Administrator noviAdmin = (Administrator) korisnik;
+			if (korisnik instanceof Administrator) {
+				Administrator noviAdin = (Administrator) korisnik;
 				System.out.println("Logovao se admin");
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilAdminServlet");
 				HttpSession session = request.getSession();
@@ -117,9 +118,9 @@ public class LogInServlet extends HttpServlet {
 				session.setAttribute("ulogovaniKorisnik", korisnik);
 				
 				requestDispatcher.forward(request, response);
-				return;
 			}
 			
+			}
 			else {
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
 				requestDispatcher.forward(request, response);
