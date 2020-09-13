@@ -99,36 +99,36 @@ public class LogInServlet extends HttpServlet {
 			Korisnik korisnik = UserDAO.findUserByCredentials(korisnickoIme, lozinka);
 			System.out.println(korisnik);
 			if(korisnik!= null) {
-			if (korisnik instanceof Gost) {
-				Gost noviGost = (Gost) korisnik;
-				System.out.println("Logovao se korisnik");
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilGostServlet");
-				HttpSession session = request.getSession();
-				request.setAttribute("ulogovaniKorisnik", korisnik);				
-				session.setAttribute("ulogovaniKorisnik", korisnik);
-				
-				requestDispatcher.forward(request, response);
-			}
-			if (korisnik instanceof Domacin) {
-				Domacin noviDomacin = (Domacin) korisnik;
-				System.out.println("Logovao se domacin");
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilDomacinServlet");
-				HttpSession session = request.getSession();
-				request.setAttribute("ulogovaniKorisnik", korisnik);				
-				session.setAttribute("ulogovaniKorisnik", korisnik);
-				
-				requestDispatcher.forward(request, response);
-			}
-			if (korisnik instanceof Administrator) {
-				Administrator noviAdin = (Administrator) korisnik;
-				System.out.println("Logovao se admin");
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilAdminServlet");
-				HttpSession session = request.getSession();
-				request.setAttribute("ulogovaniKorisnik", korisnik);				
-				session.setAttribute("ulogovaniKorisnik", korisnik);
-				
-				requestDispatcher.forward(request, response);
-			}
+				if (korisnik instanceof Gost) {
+					Gost noviGost = (Gost) korisnik;
+					System.out.println("Logovao se korisnik");
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilGostServlet");
+					HttpSession session = request.getSession();
+					request.setAttribute("ulogovaniKorisnik", korisnik);				
+					session.setAttribute("ulogovaniKorisnik", korisnik);
+					
+					requestDispatcher.forward(request, response);
+				}
+				if (korisnik instanceof Domacin) {
+					Domacin noviDomacin = (Domacin) korisnik;
+					System.out.println("Logovao se domacin");
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilDomacinServlet");
+					HttpSession session = request.getSession();
+					request.setAttribute("ulogovaniKorisnik", korisnik);				
+					session.setAttribute("ulogovaniKorisnik", korisnik);
+					
+					requestDispatcher.forward(request, response);
+				}
+				if (korisnik instanceof Administrator) {
+					Administrator noviAdin = (Administrator) korisnik;
+					System.out.println("Logovao se admin");
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilAdminServlet");
+					HttpSession session = request.getSession();
+					request.setAttribute("ulogovaniKorisnik", korisnik);				
+					session.setAttribute("ulogovaniKorisnik", korisnik);
+					
+					requestDispatcher.forward(request, response);
+				}
 			
 			}
 			else {
