@@ -119,7 +119,7 @@ public static void dodajAmenities(Amenities pogodnost) throws IOException {
 		File file = new File(_PROJECT_LOCATION + "/pogodnosti.txt");
 		out = new BufferedWriter(new FileWriter(file));
 		for(Amenities novaPogodnost: pogodnostiLista) {
-			out.write(novaPogodnost.getNaziv() + "\n");
+			out.write(novaPogodnost.getId() + ";" + novaPogodnost.getNaziv() + "\n");
 		}
 			
 		

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Amenities;
 import dao.AmenitiesDAO;
 
 /**
@@ -43,6 +44,8 @@ public class OdrzavanjeSadrzajaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String vrednost= request.getParameter("pogodnost");
+		AmenitiesDAO.dodajAmenities(new Amenities(7, vrednost));
 		doGet(request, response);
 	}
 
