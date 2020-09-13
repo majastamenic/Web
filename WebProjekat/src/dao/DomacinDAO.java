@@ -18,6 +18,7 @@ import java.util.StringTokenizer;
 
 import beans.Apartman;
 import beans.Domacin;
+import beans.Gost;
 import beans.Korisnik;
 import beans.Pol;
 import beans.Rezervacija;
@@ -141,7 +142,45 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 			
 		}
 
+	public static Boolean izbrisiDomacina(Integer id) {
+		Map<Integer, Domacin> domacin = ucitajDomacine();
+		if(domacin.containsKey(id)) {
+			domacin.remove(id);
+		try {
+			sacuvajSveDomacineIzMape();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+		}else
+			return false;
 		
+	}
+	
+public static void sacuvajSveDomacineIzMape() throws IOException {
+		
+		
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/domacini.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			 for (Map.Entry<Integer, Domacin> domacin : domacini.entrySet())  {
+				out.write(domacin.getValue().toString());
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
+		}
 	
 
 public static void dodajDomacina(Domacin domacin) throws IOException {

@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import beans.Administrator;
+import beans.Domacin;
 import beans.Pol;
 
 import beans.Uloga;
@@ -108,6 +109,46 @@ private static Map<Integer, Administrator> administratori = new HashMap<>();
 			else
 				return null;
 			
+		}
+	
+	public static Boolean izbrisiAdmina(Integer id) {
+		Map<Integer, Administrator> admin = ucitajAdmine();
+		if(admin.containsKey(id)) {
+			admin.remove(id);
+		try {
+			sacuvajSveAdmineIzMape();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+		}else
+			return false;
+		
+	}
+	
+public static void sacuvajSveAdmineIzMape() throws IOException {
+		
+		
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/admini.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			 for (Map.Entry<Integer, Administrator> admin : administratori.entrySet())  {
+				out.write(admin.getValue().toString());
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
 		}
 	
 	public static void dodajAdministartora(Administrator administrator) throws IOException {

@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Apartman;
 import beans.Korisnik;
+import dao.AdministratorDAO;
+import dao.DomacinDAO;
+import dao.GostDAO;
 import dao.UserDAO;
 
 /**
@@ -20,7 +23,7 @@ import dao.UserDAO;
 @WebServlet("/PregledSvihKorisnikaServlet")
 public class PregledSvihKorisnikaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	UserDAO ud= new UserDAO();
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,8 +38,12 @@ public class PregledSvihKorisnikaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ud.loadUsers();
-		request.setAttribute("listaKorisnika", ud.findAll());
+		GostDAO.ucitajGoste();
+		request.setAttribute("listaGostiju", GostDAO.findAll());
+		AdministratorDAO.ucitajAdmine();
+		request.setAttribute("listaAdmina", AdministratorDAO.findAll());
+		DomacinDAO.ucitajDomacine();
+		request.setAttribute("listaDomacina", DomacinDAO.findAll());
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledKorisnika.jsp");
 		disp.forward(request, response);
 	}

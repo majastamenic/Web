@@ -1,5 +1,5 @@
-23;IVona;123;null;null;Zenski;Gost
-24;Vna;123;null;null;Zenski;Gost
+23;IVona;123;IVona;IVona;Zenski;Gost
+24;Vna;123;Vna;Vna;Zenski;Gost
 26;dasa;123;dasa;dasa;Muski;Gost
 28;jami;123;jami;jami;Zenski;Gost
 29;mika;mika;mika;mika;Muski;Gost

@@ -1,2 +1,1 @@
-11;tasa;tasa;Natasa;Jovanovic;zenski;Domacin
-12;nata;nata;Natalija;Nikolic;zenski;Domacin
+12;nata;nata;Natalija;Nikolic;Zenski;Domacin

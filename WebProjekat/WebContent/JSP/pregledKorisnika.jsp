@@ -20,14 +20,34 @@
             <td>Uloga:</td>
             
          </tr>  
-         <c:forEach items="${listaKorisnika}" var="korisnik">    
+         <c:forEach items="${listaGostiju}" var="gost">    
          <tr>
-         <td>${korisnik.getKorisnickoIme()}</td>
-           <td>${korisnik.getLozinka()}</td>
-            <td>${korisnik.getIme()}</td>
-            <td>${korisnik.getPrezime()}</td>
-            <td>${korisnik.getPol()}</td>
-            <td>${korisnik.getUloga()}</td>
+         <td>${gost.getKorisnickoIme()}</td>
+           <td>${gost.getLozinka()}</td>
+            <td>${gost.getIme()}</td>
+            <td>${gost.getPrezime()}</td>
+            <td>${gost.getPol()}</td>
+            <td>${gost.getUloga()}</td>
+         </tr>
+         </c:forEach>
+         <c:forEach items="${listaAdmina}" var="admin">    
+         <tr>
+         <td>${admin.getKorisnickoIme()}</td>
+           <td>${admin.getLozinka()}</td>
+            <td>${admin.getIme()}</td>
+            <td>${admin.getPrezime()}</td>
+            <td>${admin.getPol()}</td>
+            <td>${admin.getUloga()}</td>
+         </tr>
+         </c:forEach>
+         <c:forEach items="${listaDomacina}" var="domacin">    
+         <tr>
+         <td>${domacin.getKorisnickoIme()}</td>
+           <td>${domacin.getLozinka()}</td>
+            <td>${domacin.getIme()}</td>
+            <td>${domacin.getPrezime()}</td>
+            <td>${domacin.getPol()}</td>
+            <td>${domacin.getUloga()}</td>
          </tr>
          </c:forEach>
          

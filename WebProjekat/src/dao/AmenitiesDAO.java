@@ -15,6 +15,7 @@ import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
 
 import beans.Amenities;
+import beans.Domacin;
 
 
 public class AmenitiesDAO {
@@ -137,10 +138,48 @@ public static void dodajAmenities(Amenities pogodnost) throws IOException {
 	}
       
 
+public static Boolean izbrisiPogodnost(Integer id) {
+	Map<Integer, Amenities> pogodnost = ucitajPogodnosti();
+	if(pogodnost.containsKey(id)) {
+		pogodnost.remove(id);
+	try {
+		sacuvajSvePogodnostiIzMape();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return true;
+	}else
+		return false;
+	
+}
+
+public static void sacuvajSvePogodnostiIzMape() throws IOException {
+	
+	
+	BufferedWriter out = null;
+	try {
+		File file = new File(_PROJECT_LOCATION + "/pogodnosti.txt");
+		out = new BufferedWriter(new FileWriter(file));
+		 for (Map.Entry<Integer, Amenities> pogodnost : pogodnosti.entrySet())  {
+			out.write(pogodnost.getValue().toString());
+		}
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+		finally {
+	}
+		if (out != null) {
+			try {
+				out.close();
+			}
+			catch (Exception e) { }
+		}
+	}
 
 
-
-	public static Boolean izbrisiPogodnost(Integer id) {
+	/*public static Boolean izbrisiPogodnost(Integer id) {
 		pogodnosti = ucitajPogodnosti();
 		Amenities pogodnost= new Amenities();
 		pogodnost = findAmenitiesById(id);
@@ -171,7 +210,7 @@ public static void dodajAmenities(Amenities pogodnost) throws IOException {
 		}else
 			return false;
 	}
-	
+	*/
 	public static Boolean izmeniPogodnost(Amenities izmenjenaPogodnost) {
 		pogodnosti = ucitajPogodnosti();
 		Amenities pogodnost= new Amenities();

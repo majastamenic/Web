@@ -57,6 +57,11 @@ public class LogInServlet extends HttpServlet {
 		disp.forward(request, response);
 		
 		//GostDAO.izbrisiGosta(28);
+		//DomacinDAO.izbrisiDomacina(11);
+		//AdministratorDAO.izbrisiAdmina(31);
+		//AmenitiesDAO.izbrisiPogodnost(1);
+		ApartmanDAO.izbrisiApartman(1);  
+		
 		
 		
 		/*Adresa adresa= AdresaDAO.findAdressById(1);

@@ -136,7 +136,7 @@ public class ApartmanDAO {
 				        	
 				     
 					
-					apartmani.put(id, new Apartman(id, tip, brojSoba, brojGostiju, lokacija, dateStr, dostupni, domacin, komentar, cenaPoNoci, vremeZaPrijavu, vremeZaOdjavu, status, pogodnosti, rezervacije));
+					apartmani.put(id, new Apartman(id, tip, brojSoba, brojGostiju, lokacija, dateStr, dostupni, domacin, komentar, cenaPoNoci, vremeZaPrijavu, vremeZaOdjavu, status));
 				}
 				
 			}
@@ -342,6 +342,22 @@ public class ApartmanDAO {
 				catch (Exception e) { }
 			}
 		}
+	
+	public static Boolean izbrisiApartman(Integer id) {
+		Map<Integer, Apartman> apartman = ucitajApartmane();
+		if(apartman.containsKey(id)) {
+			apartman.remove(id);
+		try {
+			sacuvajSveApartmaneIzMape();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+		}else
+			return false;
+		
+	}
 
 	
 	/*public static void dodajApartman(Apartman apartman) throws IOException {
@@ -382,7 +398,7 @@ public class ApartmanDAO {
 
 
 
-	public static Boolean izbrisiApartman(Integer id) {
+	/*public static Boolean izbrisiApartman(Integer id) {
 		apartmani = ucitajApartmane();
 		Apartman apartman= new Apartman();
 		apartman = findApartmentById(id);
@@ -418,7 +434,7 @@ public class ApartmanDAO {
 			return true;
 		}else
 			return false;
-	}
+	}*/
 	
 	
 	public static Boolean izmeniApartman(Apartman izmenjenApartman) {
