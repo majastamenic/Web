@@ -154,9 +154,34 @@ public class ApartmanDAO {
 		return apartmani;
 	}
 	
+	public static Map<Integer, Apartman> aktivniApartmani(){
+		apartmani = ucitajApartmane();
+		Map<Integer, Apartman> aktivniApartmani = new HashMap<Integer, Apartman>();
+		
+		for(Apartman apartman: apartmani.values()) {
+			if(apartman.getStatus().equals(StatusApartman.Aktivno)) {
+				aktivniApartmani.put(apartman.getId(), apartman);
+			}
+		}
+		
+		return aktivniApartmani;
+	}
+	
+	public static Map<Integer, Apartman> neaktivniApartmani(){
+		apartmani = ucitajApartmane();
+		Map<Integer, Apartman> neaktivniApartmani = new HashMap<Integer, Apartman>();
+		
+		for(Apartman apartman: apartmani.values()) {
+			if(apartman.getStatus().equals(StatusApartman.Aktivno)) {
+				neaktivniApartmani.put(apartman.getId(), apartman);
+			}
+		}
+		
+		return neaktivniApartmani;
+	}
 	
 	
-	public static Map<Integer, Apartman> ucitajAktivneApartmane() {
+/*	public static Map<Integer, Apartman> ucitajAktivneApartmane() {
 		BufferedReader in = null;
 		try {
 			File file = new File(_PROJECT_LOCATION + "/apartmani.txt");
@@ -253,13 +278,13 @@ public class ApartmanDAO {
 			}
 		}
 		return apartmani;
-	}
+	} */
 	
-public static Collection<Apartman> findAllActive() {
-		Map<Integer,Apartman> apartmani1 = ucitajAktivneApartmane();
-		
-		return apartmani1.values();
-	}
+//public static Collection<Apartman> findAllActive() {
+//		Map<Integer,Apartman> apartmani1 = ucitajAktivneApartmane();
+//		
+//		return apartmani1.values();
+//	}
 	public static Apartman findApartmentById(Integer id) {
 		Apartman trazeniApartman = null;
 		

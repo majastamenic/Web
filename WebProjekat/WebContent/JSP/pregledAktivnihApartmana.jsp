@@ -20,7 +20,7 @@
             <td>Domacin:</td>
             
          </tr>  
-         <c:forEach items="${listaApartmana1}" var="apartman">    
+         <c:forEach items="${mapaAktivnihApartmana.values()}" var="apartman">    
          <tr>
          <td>${apartman.getId()}</td>
            <td>${apartman.getTip()}</td>

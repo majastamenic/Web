@@ -32,7 +32,7 @@ public class AktivniApartmaniServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ApartmanDAO.ucitajApartmane();
-		request.setAttribute("listaApartmana1", ApartmanDAO.findAllActive());
+		request.setAttribute("mapaAktivnihApartmana", ApartmanDAO.aktivniApartmani());
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledAktivnihApartmana.jsp");
 		disp.forward(request, response);
 	}
