@@ -79,7 +79,14 @@ public class GostDAO {
 					else
 						uloga=Uloga.Gost;
 					// Ovde pocinje citanje drugog fajla
-				
+					Gost noviGost = new Gost(id, korisnickoIme, lozinka, ime, prezime, pol, uloga);
+					
+					for (Map.Entry<Integer, Rezervacija> rezervacija : RezervacijaDAO.getRezervacije().entrySet()) {		
+						if(rezervacija.getValue().getGost().getId() == noviGost.getId()) {
+							noviGost.getIznajmljeniApartmani().add(rezervacija.getValue().getRezervisanApartman());
+							rezervacija.getValue().setGost(noviGost);
+						}
+					}
 					
 //			        st1 = new StringTokenizer(st.nextToken().trim(), ",");
 //			        List<Apartman> iznajmljeni = new ArrayList<Apartman>();
@@ -91,15 +98,13 @@ public class GostDAO {
 //							iznajmljeni.add(apartman);
 //						}
 //						
-					Gost noviGost = new Gost(id, korisnickoIme, lozinka, ime, prezime, pol, uloga);
+					
 					for (Map.Entry<Integer, Rezervacija> rezervacija : RezervacijaDAO.getRezervacije().entrySet()) {		
 						if(rezervacija.getValue().getGost().getId() == noviGost.getId()) {
 							noviGost.getRezervacije().add(rezervacija.getValue());
 							rezervacija.getValue().setGost(noviGost);
 						}
 					}
-					
-	System.out.println(" <> " + noviGost.getId());
 					
 					
 			gosti.put(noviGost.getId() , noviGost );

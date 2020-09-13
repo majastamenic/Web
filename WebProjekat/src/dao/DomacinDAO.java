@@ -20,6 +20,7 @@ import beans.Apartman;
 import beans.Domacin;
 import beans.Korisnik;
 import beans.Pol;
+import beans.Rezervacija;
 import beans.Uloga;
 
 
@@ -89,8 +90,14 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 						uloga=Uloga.Domacin;
 					else
 						uloga=Uloga.Gost;
-					
-					StringTokenizer st1;
+					Domacin noviDomacin = new Domacin(id, korisnickoIme, lozinka, ime, prezime, pol, uloga);
+					for (Map.Entry<Integer, Apartman> apartman : ApartmanDAO.getApartmani().entrySet()) {		
+						if(apartman.getValue().getDomacin().getId() == noviDomacin.getId()) {
+							noviDomacin.getApartmaniZaIzdavanje().add(apartman.getValue());
+							apartman.getValue().setDomacin(noviDomacin);;
+						}
+					}
+					/*StringTokenizer st1;
 			        st1 = new StringTokenizer(st.nextToken().trim(), ",");
 			        List<Apartman> dostupni = new ArrayList<Apartman>();
 						while (st1.hasMoreTokens()) {
@@ -99,10 +106,10 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 							Apartman apartman = apartmanDAO.find(idApartmana);
 						
 						dostupni.add(apartman);
-						}
+						}*/
 					
 					
-			domacini.put(id, new Domacin(id, korisnickoIme, lozinka, ime, prezime, pol, uloga, dostupni));
+			domacini.put(noviDomacin.getId(), noviDomacin);
 				}
 				
 			}

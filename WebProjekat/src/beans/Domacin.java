@@ -23,6 +23,17 @@ public class Domacin extends Korisnik{
 		this.uloga = uloga;
 		this.apartmaniZaIzdavanje = apartmaniZaIzdavanje;
 	}
+	public Domacin(int id,String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, Uloga uloga) {
+		super(korisnickoIme, lozinka, ime, prezime, pol, uloga);
+		this.id=id;
+		this.korisnickoIme = korisnickoIme;
+		this.lozinka = lozinka;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.pol = pol;
+		this.uloga = uloga;
+		
+	}
 
 	public List<Apartman> getApartmaniZaIzdavanje() {
 		return apartmaniZaIzdavanje;

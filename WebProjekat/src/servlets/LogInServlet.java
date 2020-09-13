@@ -97,23 +97,29 @@ public class LogInServlet extends HttpServlet {
 				System.out.println("Logovao se korisnik");
 				
 			}
-			if (korisnik instanceof Domacin) {
+			else if (korisnik instanceof Domacin) {
 				Domacin noviDomacin = (Domacin) korisnik;
 				System.out.println("Logovao se domacin");
-			}
-			if (korisnik instanceof Administrator) {
-				Administrator noviAdin = (Administrator) korisnik;
-				System.out.println("Logovao se admin");
-			}
-			if(korisnik!=null) {
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilDomacinServlet");
+				HttpSession session = request.getSession();
+				request.setAttribute("ulogovaniKorisnik", korisnik);				
+				session.setAttribute("ulogovaniKorisnik", korisnik);
 				
+				requestDispatcher.forward(request, response);
+				return;
+			}
+			else if (korisnik instanceof Administrator) {
+				Administrator noviAdmin = (Administrator) korisnik;
+				System.out.println("Logovao se admin");
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilAdminServlet");
 				HttpSession session = request.getSession();
 				request.setAttribute("ulogovaniKorisnik", korisnik);				
 				session.setAttribute("ulogovaniKorisnik", korisnik);
 				
 				requestDispatcher.forward(request, response);
+				return;
 			}
+			
 			else {
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
 				requestDispatcher.forward(request, response);

@@ -36,6 +36,9 @@ public class ApartmanDAO {
 	public ApartmanDAO(String contextPath) {
 		ucitajApartmane();
 	}
+	public static Map<Integer, Apartman> getApartmani() {
+		return apartmani;
+	}
 	
 	
 	public static Apartman find(Integer id) {
@@ -79,8 +82,8 @@ public class ApartmanDAO {
 					
 					int brojGostiju= Integer.parseInt(st.nextToken().trim());
 					int idLokacija = Integer.parseInt(st.nextToken().trim());
-					LokacijaDAO ld=new LokacijaDAO();
-					Lokacija lokacija= ld.findLocationById(idLokacija);
+					
+					Lokacija lokacija= LokacijaDAO.findLocationById(idLokacija);
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			        Date dateStr = formatter.parse(st.nextToken().trim());
 			        
@@ -93,8 +96,8 @@ public class ApartmanDAO {
 						}
 						
 					int idDomacin = Integer.parseInt(st.nextToken().trim());
-					DomacinDAO dd= new DomacinDAO();
-					Domacin domacin = dd.findHostById(idDomacin);
+					
+					Domacin domacin = DomacinDAO.findHostById(idDomacin);
 					
 					int idKomentar= Integer.parseInt(st.nextToken().trim());
 					KomentarDAO kd= new KomentarDAO();

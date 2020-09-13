@@ -55,6 +55,8 @@ public class RegistracijaServlet extends HttpServlet {
 		noviGost.setKorisnickoIme(korisnickoIme);
 		noviGost.setLozinka(lozinka);
 		noviGost.setPol(pol);
+		noviGost.setIme(ime);
+		noviGost.setPrezime(prezime);
 		GostDAO.dodajGostaUMapu(noviGost);
 		GostDAO.sacuvajSveGosteIzMape();
 		
