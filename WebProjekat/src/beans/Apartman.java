@@ -84,7 +84,7 @@ public class Apartman {
 
 
 
-	
+
 
 	public TipApartmana getTip() {
 		return tip;
