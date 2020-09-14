@@ -171,7 +171,7 @@ public class ApartmanDAO {
 		Map<Integer, Apartman> neaktivniApartmani = new HashMap<Integer, Apartman>();
 		
 		for(Apartman apartman: apartmani.values()) {
-			if(apartman.getStatus().equals(StatusApartman.Aktivno)) {
+			if(apartman.getStatus().equals(StatusApartman.Neaktivno)) {
 				neaktivniApartmani.put(apartman.getId(), apartman);
 			}
 		}
@@ -223,7 +223,7 @@ public class ApartmanDAO {
 			File file = new File(_PROJECT_LOCATION + "/apartmani.txt");
 			out = new BufferedWriter(new FileWriter(file));
 			 for (Map.Entry<Integer, Apartman> apartman : apartmani.entrySet())  {
-				out.write(apartman.getValue().toString());
+				out.write(apartman.getValue().ispisTXT());
 			}
 			
 		}catch(Exception e){

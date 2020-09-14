@@ -163,7 +163,7 @@ public static void sacuvajSveDomacineIzMape() throws IOException {
 			File file = new File(_PROJECT_LOCATION + "/domacini.txt");
 			out = new BufferedWriter(new FileWriter(file));
 			 for (Map.Entry<Integer, Domacin> domacin : domacini.entrySet())  {
-				out.write(domacin.getValue().toString());
+				out.write(domacin.getValue().ispisTXT());
 			}
 			
 		}catch(Exception e){

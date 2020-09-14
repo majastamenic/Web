@@ -20,6 +20,7 @@ import static util.Putanja._PROJECT_LOCATION;
 import beans.Apartman;
 import beans.Gost;
 import beans.Rezervacija;
+import beans.StatusApartman;
 import beans.StatusRezervacija;
 
 
@@ -161,7 +162,7 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 			File file = new File(_PROJECT_LOCATION + "/rezervacije.txt");
 			out = new BufferedWriter(new FileWriter(file));
 			 for (Map.Entry<Integer, Rezervacija> rez : rezervacija.entrySet())  {
-				out.write(rez.getValue().toString());
+				out.write(rez.getValue().ispisTXT());
 			}
 			
 		}catch(Exception e){
@@ -287,6 +288,19 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 			return true;
 		}else
 			return false;
+	}
+	
+	public static Map<Integer, Rezervacija> odbijenaIzavrsenaRezervacija(){
+		rezervacija = ucitajRezervacije();
+		Map<Integer, Rezervacija> odbijeneIzavrseneRezervacije = new HashMap<Integer, Rezervacija>();
+		
+		for(Rezervacija rezervacija: odbijeneIzavrseneRezervacije.values()) {
+			if(rezervacija.getStatus().equals(StatusRezervacija.Odbijena)||rezervacija.getStatus().equals(StatusRezervacija.Zavrsena)) {
+				odbijeneIzavrseneRezervacije.put(rezervacija.getId(), rezervacija);
+			}
+		}
+		
+		return odbijeneIzavrseneRezervacije;
 	}
 	
 	public static List<Rezervacija> pretragaPoKorisnickomImenu(String korisnickoIme){

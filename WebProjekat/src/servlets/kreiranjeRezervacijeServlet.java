@@ -9,21 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Amenities;
-import dao.AmenitiesDAO;
+import dao.ApartmanDAO;
 
 /**
- * Servlet implementation class OdrzavanjeSadrzajaServlet
+ * Servlet implementation class kreiranjeRezervacijeServlet
  */
-@WebServlet("/OdrzavanjeSadrzajaServlet")
-public class OdrzavanjeSadrzajaServlet extends HttpServlet {
+@WebServlet("/kreiranjeRezervacijeServlet")
+public class kreiranjeRezervacijeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	AmenitiesDAO ad = new AmenitiesDAO();
-       
+       ApartmanDAO ad= new ApartmanDAO();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OdrzavanjeSadrzajaServlet() {
+    public kreiranjeRezervacijeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,9 +31,9 @@ public class OdrzavanjeSadrzajaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ad.ucitajPogodnosti();
-		request.setAttribute("listaPogodnosti", ad.findAll());
-		RequestDispatcher disp = request.getRequestDispatcher("/JSP/upravljanjePogodnostima.jsp");
+		ad.ucitajApartmane();
+		request.setAttribute("listaApartmana", ad.findAll());
+		RequestDispatcher disp = request.getRequestDispatcher("/JSP/kreiranjeRezervacije.jsp");
 		disp.forward(request, response);
 	}
 
@@ -44,9 +42,6 @@ public class OdrzavanjeSadrzajaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String vrednost= request.getParameter("pogodnost");
-		AmenitiesDAO.dodajPogodnostUMapu(new Amenities(AmenitiesDAO.vratiNajveciID(), vrednost));
-		AmenitiesDAO.sacuvajSvePogodnostiIzMape();
 		doGet(request, response);
 	}
 

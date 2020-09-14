@@ -23,12 +23,14 @@ public class Apartman {
 	private List<Amenities> sadrzajApartmana;
 	private List<Rezervacija> rezervacije;
 	
-	@Override
-	public String toString() {
-		return id + ";"+ tip.toString() + ";"+ brojSoba + ";"+ brojGostiju+ ";"+ lokacija.getId()+ ";"
-				+ datumZaIzdavanje.toString() + ";"+ domacin.getId() 
-				+ ";"+ komentar.getId() + ";"+ cenaPoNoci + ";"+ vremeZaPrijavu
-				+ ";"+ vremeZaOdjavu + ";"+ status.toString() + "\n";
+
+	public String ispisTXT() {
+		
+			return id + ";"+ tip.toString() + ";"+ brojSoba + ";"+ brojGostiju+ ";"+ lokacija.getId()+ ";"
+					+ datumZaIzdavanje.toString() + ";"+ domacin.getId() 
+					+ ";"+ komentar.getId() + ";"+ cenaPoNoci + ";"+ vremeZaPrijavu
+					+ ";"+ vremeZaOdjavu + ";"+ status.toString() + "\n";
+	
 	} 
 	
 	public Apartman() {

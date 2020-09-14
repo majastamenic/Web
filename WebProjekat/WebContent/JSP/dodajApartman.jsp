@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1 style="color: black"><b>Dodavanje apartmana</b></h1>
-   <form method="POST" action="/RegistracijaServlet">
+   <form method="POST" action="/DodajApartmanServlet">
       <table>
                   <tr>
             <td>Broj soba:</td>
@@ -75,7 +75,7 @@
          
          <tr>
             <td>Cena po noci:</td>
-            <td><input type="text" name="cena"/></td>
+            <td><input type="text" name="cena" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>
          <tr>
             <td></td>

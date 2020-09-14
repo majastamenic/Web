@@ -29,7 +29,7 @@
       <table>
          <tr>
             <td>Unesite pogodnost:</td>
-            <td><input type="text" name="pogodnost"/></td>
+            <td><input type="text" name="pogodnost" pattern="[a-zA-ZćĆžŽĐđšŠčČ]*" title="Samo slova moraju!" required/></td>
          </tr>    
           <tr>
             <td></td>

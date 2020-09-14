@@ -14,11 +14,11 @@
              
          <tr>
             <td>Ime:</td>
-            <td><input type="text" name="ime"/></td>
+            <td><input type="text" name="ime"  pattern="[a-zA-ZćĆžŽĐđšŠčČ]*" title="Ne smete unositi brojeve!" required/></td>
          </tr>
          <tr>
             <td>Prezime:</td>
-            <td><input type="text" name="prezime"/></td>
+            <td><input type="text" name="prezime"  pattern="[a-zA-ZćĆžŽĐđšŠčČ]*" title="Ne smete unositi brojeve!" required/></td>
          </tr>
          <tr>
             <td>Pol:</td>
@@ -31,11 +31,11 @@
          </tr>
          <tr>
             <td>Lozinka:</td>
-            <td><input type="password" name="lozinka"/></td>
+            <td><input type="password" name="lozinka" pattern="[1-9]*^([a-zA-ZćĆžŽĐđšŠčČ]+)[1-9]*" required/></td>
          </tr>
          <tr>
             <td>Unesite ponovo lozinku:</td>
-            <td><input type="password" name="lozinkaPonovljena"/></td>
+            <td><input type="password" name="lozinkaPonovljena" pattern="[1-9]*^([a-zA-ZćĆžŽĐđšŠčČ]+)[1-9]*" required/></td>
          </tr>
         <tr>
             <td></td>
