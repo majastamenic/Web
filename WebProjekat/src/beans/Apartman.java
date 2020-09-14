@@ -58,6 +58,25 @@ public class Apartman {
 		this.sadrzajApartmana = sadrzajApartmana;
 		this.rezervacije = rezervacije;
 	}
+	
+	public Apartman(int id, TipApartmana tip, int brojSoba, int brojGostiju, Lokacija lokacija, Date datumZaIzdavanje,
+			 Domacin domacin, KomentarZaApartman komentar, float cenaPoNoci,
+			String vremeZaPrijavu, String vremeZaOdjavu, StatusApartman status) {
+		super();
+		this.id=id;
+		this.tip = tip;
+		this.brojSoba = brojSoba;
+		this.brojGostiju = brojGostiju;
+		this.lokacija = lokacija;
+		this.datumZaIzdavanje = datumZaIzdavanje;
+		this.domacin = domacin;
+		this.komentar = komentar;
+		this.cenaPoNoci = cenaPoNoci;
+		this.vremeZaPrijavu = vremeZaPrijavu;
+		this.vremeZaOdjavu = vremeZaOdjavu;
+		this.status = status;
+		
+	}
 
 	
 
@@ -65,24 +84,7 @@ public class Apartman {
 
 
 
-	public Apartman(int id2, TipApartmana tip2, int brojSoba2, int brojGostiju2, Lokacija lokacija2, Date dateStr,
-			List<Date> dostupni, Domacin domacin2, KomentarZaApartman komentar2, float cenaPoNoci2,
-			String vremeZaPrijavu2, String vremeZaOdjavu2, StatusApartman status2) {
-		// TODO Auto-generated constructor stub
-		this.id=id;
-		this.tip = tip;
-		this.brojSoba = brojSoba;
-		this.brojGostiju = brojGostiju;
-		this.lokacija = lokacija;
-		this.datumZaIzdavanje = datumZaIzdavanje;
-		this.dostupnostPoDatumima = dostupnostPoDatumima;
-		this.domacin = domacin;
-		this.komentar = komentar;
-		this.cenaPoNoci = cenaPoNoci;
-		this.vremeZaPrijavu = vremeZaPrijavu;
-		this.vremeZaOdjavu = vremeZaOdjavu;
-		this.status = status;
-	}
+	
 
 	public TipApartmana getTip() {
 		return tip;

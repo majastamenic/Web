@@ -92,12 +92,12 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 					else
 						uloga=Uloga.Gost;
 					Domacin noviDomacin = new Domacin(id, korisnickoIme, lozinka, ime, prezime, pol, uloga);
-					for (Map.Entry<Integer, Apartman> apartman : ApartmanDAO.getApartmani().entrySet()) {		
+					/*for (Map.Entry<Integer, Apartman> apartman : ApartmanDAO.getApartmani().entrySet()) {		
 						if(apartman.getValue().getDomacin().getId() == noviDomacin.getId()) {
 							noviDomacin.getApartmaniZaIzdavanje().add(apartman.getValue());
 							apartman.getValue().setDomacin(noviDomacin);
 						}
-					}
+					}*/
 					/*StringTokenizer st1;
 			        st1 = new StringTokenizer(st.nextToken().trim(), ",");
 			        List<Apartman> dostupni = new ArrayList<Apartman>();

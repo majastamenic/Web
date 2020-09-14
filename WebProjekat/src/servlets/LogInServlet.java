@@ -60,7 +60,7 @@ public class LogInServlet extends HttpServlet {
 		//DomacinDAO.izbrisiDomacina(11);
 		//AdministratorDAO.izbrisiAdmina(31);
 		//AmenitiesDAO.izbrisiPogodnost(1);
-		ApartmanDAO.izbrisiApartman(1);  
+		//ApartmanDAO.izbrisiApartman(1);  
 		
 		
 		
