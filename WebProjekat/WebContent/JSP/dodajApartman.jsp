@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1 style="color: black"><b>Dodavanje apartmana</b></h1>
-   <form method="POST" action="/RegistracijaServlet">
+   <form method="POST" action="/DodajApartmanServlet">
       <table>
                   <tr>
             <td>Broj soba:</td>
