@@ -1,28 +1,15 @@
 package dao;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
-import com.sun.org.apache.bcel.internal.generic.GotoInstruction;
 
 import beans.Administrator;
 import beans.Domacin;
 import beans.Gost;
 import beans.Korisnik;
-import beans.Pol;
-import beans.Uloga;
-import static util.Putanja._PROJECT_LOCATION;
+
 
 /***
  * <p>Klasa namenjena da uèita korisnike iz fajla i pruža operacije nad njima (poput pretrage).
@@ -119,6 +106,7 @@ public class UserDAO {
 		
 		return user;
 	}
+	
 	
 }
 

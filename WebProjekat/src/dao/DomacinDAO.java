@@ -18,10 +18,7 @@ import java.util.StringTokenizer;
 
 import beans.Apartman;
 import beans.Domacin;
-import beans.Gost;
-import beans.Korisnik;
 import beans.Pol;
-import beans.Rezervacija;
 import beans.Uloga;
 
 

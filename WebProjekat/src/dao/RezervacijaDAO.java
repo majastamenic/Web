@@ -288,5 +288,17 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 		}else
 			return false;
 	}
+	
+	public static List<Rezervacija> pretragaPoKorisnickomImenu(String korisnickoIme){
+		ArrayList<Rezervacija> rezervacijeLista = new ArrayList<Rezervacija>();
+		rezervacija = ucitajRezervacije();
+		
+		for(Rezervacija rez:rezervacija.values()) {
+			if(rez.getGost().getKorisnickoIme().contains(korisnickoIme)) {
+				rezervacijeLista.add(rez);
+			}
+		}
+		return rezervacijeLista;
+	}
 
 }

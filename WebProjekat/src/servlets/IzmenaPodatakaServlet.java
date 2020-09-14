@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Korisnik;
 import beans.Pol;
 import beans.Uloga;
 
@@ -48,6 +49,9 @@ public class IzmenaPodatakaServlet extends HttpServlet {
 		String prezime = request.getParameter("prezime");
 		Pol pol = Pol.valueOf(request.getParameter("pol"));
 		Uloga uloga = Uloga.valueOf(request.getParameter("uloga"));
+		
+		
+		
 	}
 
 }

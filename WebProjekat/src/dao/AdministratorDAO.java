@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import beans.Administrator;
-import beans.Domacin;
 import beans.Pol;
 
 import beans.Uloga;

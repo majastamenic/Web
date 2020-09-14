@@ -19,7 +19,6 @@ import static util.Putanja._PROJECT_LOCATION;
 import beans.Amenities;
 import beans.Apartman;
 import beans.Domacin;
-import beans.Gost;
 import beans.KomentarZaApartman;
 
 import beans.Lokacija;
@@ -489,6 +488,70 @@ public class ApartmanDAO {
 			return true;
 		}else
 			return false;
+	}
+	//Nisam sigurna da je ovo dobra logika!
+	public static List<Apartman> pretragaPoDatumu(Date pocetniDatum, Date krajnjiDatum){
+		List<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+		ApartmanDAO.apartmani = ucitajApartmane();
+		
+		for(Apartman apartman:apartmani.values()) {
+			if(apartman.getDostupnostPoDatumima().contains(pocetniDatum) && apartman.getDostupnostPoDatumima().contains(krajnjiDatum)) {
+				nadjeniApartmani.add(apartman);
+			}
+		}
+		
+		
+		return nadjeniApartmani;
+	}
+	
+	public static List<Apartman> pretragaPoGradu(String nazivGrada){
+		List<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+		apartmani = ucitajApartmane();
+		
+		for(Apartman apartman:apartmani.values()) {
+			if(apartman.getLokacija().getAdresa().getNaseljenoMesto().equals(nazivGrada)) {
+				nadjeniApartmani.add(apartman);
+			}
+		}
+		return nadjeniApartmani;
+	}
+	
+	//Pretraga po nazivu drzave?
+	
+	public static List<Apartman> pretragaPoCeni(float pocetnaCena, float krajnjaCena){
+		List<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+		apartmani = ucitajApartmane();
+		
+		for(Apartman apartman:apartmani.values()) {
+			if(apartman.getCenaPoNoci()>=pocetnaCena && apartman.getCenaPoNoci()<=krajnjaCena) {
+				nadjeniApartmani.add(apartman);
+			}
+		}
+		return nadjeniApartmani;
+	}
+	
+	public static List<Apartman> pretragaPoBrojuSoba(int pocetniBrSoba, int krajnjiBrSoba){
+		List<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+		apartmani = ucitajApartmane();
+		
+		for(Apartman apartman:apartmani.values()) {
+			if(apartman.getBrojSoba()>=pocetniBrSoba && apartman.getBrojSoba()<=krajnjiBrSoba) {
+				nadjeniApartmani.add(apartman);
+			}
+		}
+		return nadjeniApartmani;
+	}
+	
+	public static List<Apartman> pretragaPoBrOsoba(int brojOsoba){
+		List<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+		apartmani = ucitajApartmane();
+		
+		for(Apartman apartman:apartmani.values()) {
+			if(apartman.getBrojGostiju() == brojOsoba) {
+				nadjeniApartmani.add(apartman);
+			}
+		}
+		return nadjeniApartmani;
 	}
 
 }

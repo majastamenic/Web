@@ -9,8 +9,21 @@
 </head>
 <body>
 <form method="POST" action="/AktivniApartmaniServlet">
-      <table>
-      
+<p><br/></p>
+	<div class="col-md-4">
+		<h1>Pregled aktivnih apartmana</h1>
+	</div>
+	<div class="col-md-4">
+		<form action="" method="get">
+			<input type = "text" class = "form-control" name = "pretraga" placeholder="Pretraga.."/>
+		</form>
+	</div>
+	<div class = "col-md-4 text-right">
+		<a href="DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
+	</div>
+<p></p>
+      <table class="table table-bordered table-striped table-hover">
+      	<thead>
          <tr>
          <td>Id apartmana:</td>
             <td>Tip apartmana:</td>
@@ -19,7 +32,9 @@
             <td>Lokacija:</td>
             <td>Domacin:</td>
             
-         </tr>  
+         </tr> 
+         </thead>
+         <tbody> 
          <c:forEach items="${mapaAktivnihApartmana.values()}" var="apartman">    
          <tr>
          <td>${apartman.getId()}</td>
@@ -28,6 +43,10 @@
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
+            <td clas="text-center">
+            <!--  a href="IzmenaApartmanaServlet" class = "btn btn-warning">Izmeni</a>-->
+            <!--  <a href="BrisanjeApartmanaServlet" class = "btn btn-danger">Izbrisi</a>-->
+            </td>
          </tr>
          </c:forEach>
          

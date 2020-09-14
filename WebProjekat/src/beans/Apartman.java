@@ -68,7 +68,6 @@ public class Apartman {
 	public Apartman(int id2, TipApartmana tip2, int brojSoba2, int brojGostiju2, Lokacija lokacija2, Date dateStr,
 			List<Date> dostupni, Domacin domacin2, KomentarZaApartman komentar2, float cenaPoNoci2,
 			String vremeZaPrijavu2, String vremeZaOdjavu2, StatusApartman status2) {
-		// TODO Auto-generated constructor stub
 		this.id=id;
 		this.tip = tip;
 		this.brojSoba = brojSoba;

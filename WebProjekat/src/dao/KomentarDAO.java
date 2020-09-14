@@ -78,8 +78,7 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 					
 					Gost gost= GostDAO.findGuestById(idGosta);
 					int idApartmana=Integer.parseInt(st.nextToken().trim());
-					ApartmanDAO ad=new ApartmanDAO();
-					Apartman apartman= ad.findApartmentById(idApartmana);
+					Apartman apartman= ApartmanDAO.findApartmentById(idApartmana);
 					String tekst =st.nextToken().trim();
 					int ocena= Integer.parseInt(st.nextToken().trim());
 	

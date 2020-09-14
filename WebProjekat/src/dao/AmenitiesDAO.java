@@ -15,7 +15,6 @@ import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
 
 import beans.Amenities;
-import beans.Domacin;
 
 
 public class AmenitiesDAO {
