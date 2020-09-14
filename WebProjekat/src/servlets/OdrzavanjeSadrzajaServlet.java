@@ -45,7 +45,8 @@ public class OdrzavanjeSadrzajaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String vrednost= request.getParameter("pogodnost");
-		AmenitiesDAO.dodajAmenities(new Amenities(7, vrednost));
+		AmenitiesDAO.dodajPogodnostUMapu(new Amenities(AmenitiesDAO.vratiNajveciID(), vrednost));
+		AmenitiesDAO.sacuvajSvePogodnostiIzMape();
 		doGet(request, response);
 	}
 

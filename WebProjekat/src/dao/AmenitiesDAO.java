@@ -15,6 +15,7 @@ import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
 
 import beans.Amenities;
+import beans.Gost;
 
 
 public class AmenitiesDAO {
@@ -108,7 +109,7 @@ public static Amenities findAmenitiesById(Integer id) {
 		
 	}
 
-public static void dodajAmenities(Amenities pogodnost) throws IOException {
+/*public static void dodajAmenities(Amenities pogodnost) throws IOException {
 	pogodnosti = ucitajPogodnosti();
 	pogodnosti.put(pogodnost.getId(), pogodnost);
 	List<Amenities> pogodnostiLista= new ArrayList<Amenities>(pogodnosti.values());
@@ -134,7 +135,7 @@ public static void dodajAmenities(Amenities pogodnost) throws IOException {
 			}
 			catch (Exception e) { }
 		}
-	}
+	}*/
       
 
 public static Boolean izbrisiPogodnost(Integer id) {
@@ -152,6 +153,28 @@ public static Boolean izbrisiPogodnost(Integer id) {
 		return false;
 	
 }
+
+public static int vratiNajveciID() {
+	int maxId = 0;
+	for (Map.Entry<Integer , Amenities> pogodnost : pogodnosti.entrySet())
+	{
+	    if ( maxId < pogodnost.getKey().intValue())
+	    {
+	        maxId = pogodnost.getKey();
+	    }
+	}
+	return maxId;
+}
+
+public static void dodajPogodnostUMapu(Amenities novaPogodnost) {
+	if(pogodnosti.isEmpty())
+		pogodnosti = ucitajPogodnosti();
+		
+		novaPogodnost.setId(vratiNajveciID() + 1);
+		pogodnosti.put(vratiNajveciID() + 1, novaPogodnost);
+	
+}
+
 
 public static void sacuvajSvePogodnostiIzMape() throws IOException {
 	
@@ -243,4 +266,6 @@ public static void sacuvajSvePogodnostiIzMape() throws IOException {
 		}else
 			return false;
 	}
+
+
 }

@@ -115,7 +115,7 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 			
 		}
 	
-	public static void dodajKomentar(KomentarZaApartman komentar) throws IOException {
+	/*public static void dodajKomentar(KomentarZaApartman komentar) throws IOException {
 		komentari= ucitajKomentare();
 		komentari.put(komentar.getId(), komentar);
 		List<KomentarZaApartman> komentariLista= new ArrayList<KomentarZaApartman>(komentari.values());
@@ -143,7 +143,51 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 				catch (Exception e) { }
 			}
 		}
-	      
+	      */
+	
+	public static int vratiNajveciID() {
+		int maxId = 0;
+		for (Map.Entry<Integer , KomentarZaApartman> komentar : komentari.entrySet())
+		{
+		    if ( maxId < komentar.getKey().intValue())
+		    {
+		        maxId = komentar.getKey();
+		    }
+		}
+		return maxId;
+	}
+	
+	public static void dodajKomentarUMapu(KomentarZaApartman noviKomentar) {
+		if(komentari.isEmpty())
+			komentari = ucitajKomentare();
+			
+			noviKomentar.setId(vratiNajveciID() + 1);
+			komentari.put(vratiNajveciID() + 1, noviKomentar);
+		
+	}
+	public static void sacuvajSveKomentareIzMape() throws IOException {
+		
+		
+		BufferedWriter out = null;
+		try {
+			File file = new File(_PROJECT_LOCATION + "/komentari.txt");
+			out = new BufferedWriter(new FileWriter(file));
+			 for (Map.Entry<Integer, KomentarZaApartman> komentar : komentari.entrySet())  {
+				out.write(komentar.getValue().toString());
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+			finally {
+		}
+			if (out != null) {
+				try {
+					out.close();
+				}
+				catch (Exception e) { }
+			}
+		}
 	
 
 

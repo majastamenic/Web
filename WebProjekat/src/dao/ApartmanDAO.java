@@ -171,7 +171,7 @@ public class ApartmanDAO {
 		Map<Integer, Apartman> neaktivniApartmani = new HashMap<Integer, Apartman>();
 		
 		for(Apartman apartman: apartmani.values()) {
-			if(apartman.getStatus().equals(StatusApartman.Aktivno)) {
+			if(apartman.getStatus().equals(StatusApartman.Neaktivno)) {
 				neaktivniApartmani.put(apartman.getId(), apartman);
 			}
 		}

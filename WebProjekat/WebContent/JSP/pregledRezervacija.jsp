@@ -19,7 +19,8 @@
             
            
          </tr>  
-         <c:forEach items="${ulogovaniKorisnik.rezervacije}" var="rezervacija">    
+         <c:forEach items="${ulogovaniKorisnik.rezervacije}" var="rezervacija"> 
+            
          <tr>
             <td> ${rezervacija.getRezervisanApartman().getId()} </td>
             <td> ${rezervacija.getBrojNocenja()}</td>

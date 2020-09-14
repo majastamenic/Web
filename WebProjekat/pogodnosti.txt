@@ -4,3 +4,5 @@
 5;Wifi
 6;Obroci
 7;Pice
+8;Lift
+9;Plaza
