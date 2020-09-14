@@ -3,23 +3,39 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<p><br/></p>
+<div class ="row">
+	<div class="col-md-4">
+		<h3>Pregled apartmana</h3>
+	</div>
+	<div class="col-md-4">
+		<form action="" method="get">
+			<input type="text" class = "form-control" name="pretraga" placeholder="Pretraga..."/>
+		</form>
+	</div>
+	<div class="col-md-4 text-right">
+		<a href="DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
+	</div>
+</div>
 <head>
 <meta charset="ISO-8859-1">
 
 </head>
 <body>
  <form method="POST" action="/PrikaziApartmanServlet">
-      <table>
-      
+      <table class="table table-boardered table-striped table-hover">
+      <thead>
          <tr>
          
-            <td>Tip apartmana:</td>
-            <td>Broj soba:</td>
-            <td>Broj gostiju:</td>
-            <td>Lokacija:</td>
-            <td>Domacin:</td>
-            
+            <td>Tip apartmana: </td>
+            <td>Broj soba: </td>
+            <td>Broj gostiju: </td>
+            <td>Lokacija: </td>
+            <td>Domacin: </td>
+            <th class="text-center">Akcije </th>
          </tr>  
+         </thead>
+         <tbody>
          <c:forEach items="${listaApartmana}" var="apartman">    
          <tr>
          
@@ -28,9 +44,13 @@
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
+            <td class="text-center">
+            	<a href="IzmenaApartmanaServlet" class="btn btn-warning">Izmeni</a>
+            	<a href="BrisanjeApartmanaServlet" class="btn btn-danger">Obrisi</a>
+            </td>
          </tr>
          </c:forEach>
-         
+         </tbody>
       </table>
    </form>
 
