@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
+
 
 import beans.Apartman;
 import beans.Gost;
@@ -60,8 +60,14 @@ public class dodavanjeKomentaraServlet extends HttpServlet {
 		String tekst= request.getParameter("komentar");
 		String ocena =request.getParameter("ocena");
 		Integer ocena1= Integer.parseInt(ocena);
-		
-		KomentarDAO.dodajKomentarUMapu(new KomentarZaApartman(KomentarDAO.vratiNajveciID(), gost, apartman, tekst, ocena1));
+		KomentarZaApartman komentar = new KomentarZaApartman();
+		komentar.setApartman(apartman);
+		komentar.setGost(gost);
+		komentar.setOcena(ocena1);
+		komentar.setTekst(tekst);
+		KomentarDAO.ucitajKomentare();
+		KomentarDAO.sacuvajSveKomentareIzMape();
+		KomentarDAO.dodajKomentarUMapu(komentar);
 		KomentarDAO.sacuvajSveKomentareIzMape();
 		
 	}

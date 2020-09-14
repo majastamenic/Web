@@ -6,8 +6,8 @@ public class Adresa {
 	private String naseljenoMesto;
 	private int postanskiBroj;
 	
-	@Override
-	public String toString() {
+	
+	public String ispisTXT() {
 		return id + ";"+ ulicaBroj + ";"+ naseljenoMesto + ";"+ postanskiBroj + "\n";
 	} 
 	

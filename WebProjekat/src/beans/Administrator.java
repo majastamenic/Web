@@ -16,8 +16,7 @@ public class Administrator extends Korisnik{
 	
 	public Administrator() {}
 
-	@Override
-	public String toString() {
+	public String ispisTXT() {
 		return id + ";"+ korisnickoIme + ";"+ lozinka + ";"+ ime+ ";"+ prezime+ ";"+ pol.toString() + ";"+ uloga.toString() + "\n";
 	} 
 

@@ -12,11 +12,11 @@
       <table>
          <tr>
             <td>Korisnicko ime:</td>
-            <td><input type="text"  name="korisnickoIme"/></td>
+            <td><input type="text"  name="korisnickoIme"  pattern="^([a-zA-ZćĆžŽĐđšŠčČ]+)[1-9]*" title="Prvo slova moraju!" required/></td>
          </tr>      
          <tr>
             <td>Lozinka:</td>
-            <td><input type="password" id="lozinka" name="lozinka"/></td>
+            <td><input type="password" id="lozinka" name="lozinka" pattern="[1-9]*^([a-zA-ZćĆžŽĐđšŠčČ]+)[1-9]*" required/></td>
          </tr>
          <tr>
             <td></td>

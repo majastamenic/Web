@@ -11,6 +11,10 @@ public class Domacin extends Korisnik{
 		uloga = Uloga.Domacin;
 	}
 	
+	public String ispisTXT() {
+		return id + ";"+ korisnickoIme + ";"+ lozinka + ";"+ ime+ ";"+ prezime+ ";"+ pol.toString() + ";"+ uloga.toString() + "\n";
+	} 
+	
 	public Domacin(int id,String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, Uloga uloga,
 			List<Apartman> apartmaniZaIzdavanje) {
 		super(korisnickoIme, lozinka, ime, prezime, pol, uloga);

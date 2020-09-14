@@ -134,7 +134,7 @@ public static void sacuvajSveAdmineIzMape() throws IOException {
 			File file = new File(_PROJECT_LOCATION + "/admini.txt");
 			out = new BufferedWriter(new FileWriter(file));
 			 for (Map.Entry<Integer, Administrator> admin : administratori.entrySet())  {
-				out.write(admin.getValue().toString());
+				out.write(admin.getValue().ispisTXT());
 			}
 			
 		}catch(Exception e){

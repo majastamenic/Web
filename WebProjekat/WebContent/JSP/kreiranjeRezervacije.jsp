@@ -32,11 +32,11 @@
          
          <tr>
             <td>Broj nocenja:</td>
-            <td><input type="text" name="cena"/></td>
+            <td><input type="text" name="cena" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>
          <tr>
             <td>Poruka:</td>
-            <td><input type="text" name="cena"/></td>
+            <td><input type="text" name="cena" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>
          <tr>
             <td></td>

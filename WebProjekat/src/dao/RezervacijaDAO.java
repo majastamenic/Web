@@ -162,7 +162,7 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 			File file = new File(_PROJECT_LOCATION + "/rezervacije.txt");
 			out = new BufferedWriter(new FileWriter(file));
 			 for (Map.Entry<Integer, Rezervacija> rez : rezervacija.entrySet())  {
-				out.write(rez.getValue().toString());
+				out.write(rez.getValue().ispisTXT());
 			}
 			
 		}catch(Exception e){

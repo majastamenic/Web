@@ -75,7 +75,7 @@
          
          <tr>
             <td>Cena po noci:</td>
-            <td><input type="text" name="cena"/></td>
+            <td><input type="text" name="cena" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>
          <tr>
             <td></td>

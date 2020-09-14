@@ -9,6 +9,10 @@ public class KomentarZaApartman {
 	
 	public KomentarZaApartman() {}
 	
+	public String ispisTXT() {
+		return id + ";"+ gost.getId() + ";"+ apartman.getId() + ";"+ tekst+ ";"+ ocena + "\n";
+	} 
+	
 	public KomentarZaApartman(int id,Gost gost, Apartman apartman, String tekst, int ocena) {
 		super();
 		this.id=id;
@@ -18,10 +22,6 @@ public class KomentarZaApartman {
 		this.ocena = ocena;
 	}
 	
-	@Override
-	public String toString() {
-		return id + ";"+ gost.toString() + ";"+ apartman.toString() + ";"+ tekst+ ";"+ ocena+ "\n";
-	} 
 
 	public Gost getGost() {
 		return gost;

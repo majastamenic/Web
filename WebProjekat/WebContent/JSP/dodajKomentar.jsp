@@ -25,11 +25,11 @@
          
          <tr>
             <td>Unesite komentar:</td>
-            <td><input type="text" name="komentar" id="komentar"/></td>
+            <td><input type="text" name="komentar" id="komentar" pattern="^([a-zA-ZćĆžŽĐđšŠčČ]+)[1-9]*" required/></td>
          </tr>
          <tr>
             <td>Unesite ocenu:</td>
-            <td><input type="text" name="ocena" id="ocena"/></td>
+            <td><input type="text" name="ocena" id="ocena" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>
          <tr>
             <td></td>

@@ -173,7 +173,7 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 			File file = new File(_PROJECT_LOCATION + "/komentari.txt");
 			out = new BufferedWriter(new FileWriter(file));
 			 for (Map.Entry<Integer, KomentarZaApartman> komentar : komentari.entrySet())  {
-				out.write(komentar.getValue().toString());
+				out.write(komentar.getValue().ispisTXT());
 			}
 			
 		}catch(Exception e){

@@ -1,3 +1,3 @@
-1;1;1;Veoma smo zadovoljni. Dobra usluga;9
-2;2;2;Ne tako cisto, ali su domacini veoma ljubazni;7
-3;3;1;Prelepo!;10
+1;23;1;lalala;6
+2;23;1;Ja sam car;8
+3;29;1;Carina;8
