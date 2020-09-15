@@ -138,12 +138,12 @@ public class ApartmanDAO {
 					
 					Apartman noviApartman = new Apartman(id, tip, brojSoba, brojGostiju, lokacija, dateStr, domacin, cenaPoNoci, vremeZaPrijavu, vremeZaOdjavu, status);
 					
-					for (Map.Entry<Integer, KomentarZaApartman> komentar : KomentarDAO.getKomentari().entrySet()) {		
+					/*for (Map.Entry<Integer, KomentarZaApartman> komentar : KomentarDAO.getKomentari().entrySet()) {		
 						if(komentar.getValue().getApartman().getId() == noviApartman.getId()) {
 							noviApartman.getKomentar().add(komentar.getValue());
 							komentar.getValue().setApartman(noviApartman);
 						}
-					}
+					}*/
 				        	
 				     
 					

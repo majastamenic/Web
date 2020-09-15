@@ -16,7 +16,7 @@
          </tr>      
          <tr>
             <td>Lozinka:</td>
-            <td><input type="password" id="lozinka" name="lozinka" pattern="[1-9]*^([a-zA-ZćĆžŽĐđšŠčČ]+)[1-9]*" required/></td>
+            <td><input type="password" id="lozinka" name="lozinka" required/></td>
          </tr>
          <tr>
             <td></td>

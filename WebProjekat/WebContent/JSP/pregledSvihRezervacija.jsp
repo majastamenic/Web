@@ -16,6 +16,7 @@
             <td>Broj nocenja:</td>
             <td>Cena:</td>
             <td>Status:</td>
+            <td>Gost:</td>
             
          </tr>  
          <c:forEach items="${listaRezervacija}" var="rezervacija">    
@@ -24,6 +25,7 @@
             <td> ${rezervacija.getBrojNocenja()}</td>
             <td> ${rezervacija.getUkupnaCena()}</td>
             <td> ${rezervacija.getStatus()}</td>
+            <td> ${rezervacija.getGost().getId()}</td>
             
          </tr>
          </c:forEach>
