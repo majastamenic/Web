@@ -29,10 +29,22 @@ public class AktivniApartmaniServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pretraga = request.getParameter("pretraga");
 		ApartmanDAO.ucitajApartmane();
 		request.setAttribute("mapaAktivnihApartmana", ApartmanDAO.aktivniApartmani());
-		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledAktivnihApartmana.jsp");
-		disp.forward(request, response);
+		if(pretraga != null) {
+			if(pretraga == "") {
+				getServletContext().setAttribute("pretraga", null);
+			}else {
+				getServletContext().setAttribute("pretraga", pretraga);
+			}
+			RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledAktivnihApartmana.jsp");
+			disp.forward(request, response);
+		}else {
+			RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledAktivnihApartmana.jsp");
+			disp.forward(request, response);
+		}
+
 	}
 
 	/**
