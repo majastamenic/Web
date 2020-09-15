@@ -32,6 +32,13 @@
 		            <td>${apartman.getBrojGostiju()}</td>
 		            <td>${apartman.getLokacija().getId()}</td>
 		            <td>${apartman.getDomacin().getId()}</td>
+		            <td>
+            			<a href="/PregledKomentaraGostijuNaApartmaneServlet?id=${apartman.id}"> komentari</a>
+            		</td>
+            		<td>
+            			<a href="/IzmenaApartmanaServlet?id=${apartman.id}">Izmeni</a>
+            			<a href="/BrisanjeApartmanaServlet?id=${apartman.id}">Izbrisi</a>
+            		</td>
 		         </tr>
 	         </c:forEach>
          </tbody>

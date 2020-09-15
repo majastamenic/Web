@@ -204,6 +204,7 @@ public class ApartmanDAO {
 			return null;
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	public static List<Apartman> pretraga(String tekst){
 		List<Apartman> listaApartmana = new ArrayList<Apartman>();
 		apartmani = ucitajApartmane();
@@ -289,7 +290,7 @@ public class ApartmanDAO {
 		try {
 			sacuvajSveApartmaneIzMape();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return true;

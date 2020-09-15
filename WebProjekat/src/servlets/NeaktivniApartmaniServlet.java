@@ -45,9 +45,7 @@ public class NeaktivniApartmaniServlet extends HttpServlet {
 			RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledNeaktivnihApartmana.jsp");
 			disp.forward(request, response);
 		}
-
 		
-
 	}
 
 	/**

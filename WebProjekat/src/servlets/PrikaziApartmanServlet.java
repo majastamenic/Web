@@ -37,15 +37,19 @@ public class PrikaziApartmanServlet extends HttpServlet {
 		ApartmanDAO.ucitajApartmane();
 		request.setAttribute("mapaApartmana", ApartmanDAO.findAll());
 		
-		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
-		disp.forward(request, response);
+		
 		if(pretraga!=null) {
 			if(pretraga =="") {
 				getServletContext().setAttribute("pretraga", null);
 			}else {
 				getServletContext().setAttribute("pretraga", pretraga);
 			}
+			RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
+			disp.forward(request, response);
 
+		}else {
+			RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
+			disp.forward(request, response);
 		}
 	}
 

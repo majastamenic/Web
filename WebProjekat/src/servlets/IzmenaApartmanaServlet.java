@@ -23,6 +23,7 @@ import dao.ApartmanDAO;
 @WebServlet("/IzmenaApartmanaServlet")
 public class IzmenaApartmanaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public String idApartmana;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,7 +37,7 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idApartmana = request.getParameter("ID");
+		idApartmana = request.getParameter("id");
 		
 		if(idApartmana!=null) {
 			Apartman apartman = ApartmanDAO.findApartmentById(Integer.parseInt(idApartmana));
@@ -47,8 +48,6 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 			disp.forward(request, response);
 		}
 		
-		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
-		disp.forward(request, response);
 	}
 
 	/**
@@ -56,21 +55,22 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+		idApartmana = request.getParameter("id");
 		
-		int idApartmana = Integer.parseInt(request.getParameter("ID"));
+		int id = Integer.parseInt(idApartmana);
 		TipApartmana tip = TipApartmana.valueOf(request.getParameter("tip"));
 		int brojSoba = Integer.parseInt(request.getParameter("brojSoba"));
 		int brojGostiju = Integer.parseInt(request.getParameter("brojGostiju"));;
-		Lokacija lokacija = new Lokacija();
-		Date datumZaIzdavanje = new Date();
-		Domacin domacin = new Domacin();
+		Lokacija lokacija = ApartmanDAO.findApartmentById(id).getLokacija();
+		Date datumZaIzdavanje = ApartmanDAO.findApartmentById(id).getDatumZaIzdavanje();
+		Domacin domacin = ApartmanDAO.findApartmentById(id).getDomacin();
 		float cenaPoNoci = Float.parseFloat(request.getParameter("cenaPoNoci"));
 		String vremeZaPrijavu = request.getParameter("vremeZaPrijavu");
 		String vremeZaOdjavu = request.getParameter("vremeZaOdjavu");
 		StatusApartman status = StatusApartman.valueOf(request.getParameter("status"));
 
 		
-		Apartman a = new Apartman(idApartmana, tip, brojSoba, brojGostiju, lokacija, datumZaIzdavanje,
+		Apartman a = new Apartman(id, tip, brojSoba, brojGostiju, lokacija, datumZaIzdavanje,
 				  domacin, cenaPoNoci,
 				 vremeZaPrijavu, vremeZaOdjavu, status);
 		ApartmanDAO.izmeniApartman(a);

@@ -12,7 +12,7 @@
     <form action="/AktivniApartmaniServlet" method="get">
    		<input type="text" name="pretraga">
 		<input type="submit" value="Pretraga">
-		<a href="/DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
+		<a href="/DodajApartmanServlet">Dodaj apartman</a>
    </form>
 
       <table border="1">
@@ -32,10 +32,10 @@
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
-            <td clas="text-center">
+            <td>
             	<a href="/PregledKomentaraGostijuNaApartmaneServlet?id=${apartman.id}"> komentari</a>
-            	<a href="IzmenaApartmanaServlet" class = "btn btn-warning">Izmeni</a>
-            	<a href="BrisanjeApartmanaServlet" class = "btn btn-danger">Izbrisi</a>
+            	<a href="/IzmenaApartmanaServlet?id=${apartman.id}">Izmeni</a>
+            	<a href="/BrisanjeApartmanaServlet?id=${apartman.id}">Izbrisi</a>
             </td>
          </tr>
          </c:forEach>

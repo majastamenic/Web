@@ -13,11 +13,11 @@
       <table>
                   <tr>
             <td>Broj soba:</td>
-            <td><input type="text" name="brojSoba" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+            <td><input type="text" value=${brojSoba} name="brojSoba" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>    
          <tr>
             <td>Broj gostiju:</td>
-            <td><input type="text" name="brojGostiju" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+            <td><input type="text" value=${brojGostiju} name="brojGostiju" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>  
          <tr>
             <td>Tip apartmana:</td>
@@ -51,7 +51,7 @@
          
          <tr>
             <td>Cena po noci:</td>
-            <td><input type="text" name="cenaPoNoci" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+            <td><input type="text" value="value=${cenaPoNoci}" name="cenaPoNoci" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>
          <tr>
             <td></td>
