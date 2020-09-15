@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Apartman;
 import beans.Domacin;
-import beans.KomentarZaApartman;
 import beans.Lokacija;
 import beans.StatusApartman;
 import beans.TipApartmana;
@@ -26,8 +25,7 @@ import dao.LokacijaDAO;
 @WebServlet("/DodajApartmanServlet")
 public class DodajApartmanServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       LokacijaDAO ld= new LokacijaDAO();
-       AmenitiesDAO ad= new AmenitiesDAO();
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,9 +38,9 @@ public class DodajApartmanServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LokacijaDAO.ucitajLokaciju();
-		request.setAttribute("listaLokacija", ld.findAll());
+		request.setAttribute("listaLokacija", LokacijaDAO.findAll());
 		AmenitiesDAO.ucitajPogodnosti();
-		request.setAttribute("listaPogodnosti", ad.findAll());
+		request.setAttribute("listaPogodnosti", AmenitiesDAO.findAll());
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/dodajApartman.jsp");
 		disp.forward(request, response);
 	}
@@ -65,7 +63,6 @@ public class DodajApartmanServlet extends HttpServlet {
 		Lokacija lokacija = new Lokacija();
 		Date datumZaIzdavanje = new Date();
 		Domacin domacin = (Domacin) LogInServlet.ulogovaniKorisnik;
-		KomentarZaApartman komentar = new KomentarZaApartman();
 		float cenaPoNoci = Float.parseFloat(request.getParameter("cenaPoNoci"));
 		String vremeZaPrijavu = request.getParameter("vremeZaPrijavu");
 		String vremeZaOdjavu = request.getParameter("vremeZaOdjavu");

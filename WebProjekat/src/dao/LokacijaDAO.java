@@ -44,7 +44,7 @@ private static Map<Integer, Lokacija> lokacija = new HashMap<>();
 		return lok;
 	}
 	
-	public Collection<Lokacija> findAll() {
+	public static Collection<Lokacija> findAll() {
 		return lokacija.values();
 	}
 	

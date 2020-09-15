@@ -17,7 +17,6 @@ import static util.Putanja._PROJECT_LOCATION;
 import beans.Apartman;
 import beans.Gost;
 import beans.KomentarZaApartman;
-import beans.Rezervacija;
 
 
 public class KomentarDAO {

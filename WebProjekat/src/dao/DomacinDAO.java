@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import beans.Apartman;
 import beans.Domacin;
 import beans.Pol;
 import beans.Uloga;
@@ -31,19 +30,10 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 		
 	}
 	
-	/***
-	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
-	 */
 	public DomacinDAO(String contextPath) {
 		ucitajDomacine();
 	}
 	
-	/**
-	 * Vraæa korisnika za prosleðeno korisnièko ime i šifru. Vraæa null ako korisnik ne postoji
-	 * @param username
-	 * @param password
-	 * @return
-	 */
 	public Domacin find(Integer id) {
 		if (!domacini.containsKey(id)) {
 			return null;
@@ -146,7 +136,6 @@ private static Map<Integer, Domacin> domacini = new HashMap<>();
 		try {
 			sacuvajSveDomacineIzMape();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return true;
@@ -261,6 +250,7 @@ public static void dodajDomacina(Domacin domacin) throws IOException {
 			domacin.setPol(izmenjenDomacin.getPol().toString());
 			domacin.setUloga(izmenjenDomacin.getUloga());
 			domacin.setApartmaniZaIzdavanje(izmenjenDomacin.getApartmaniZaIzdavanje());
+			
 
 			List<Domacin> domaciniLista= new ArrayList<Domacin>(domacini.values());
 			BufferedWriter out = null;
@@ -268,9 +258,9 @@ public static void dodajDomacina(Domacin domacin) throws IOException {
 				File file = new File(_PROJECT_LOCATION + "/domacini.txt");
 				out = new BufferedWriter(new FileWriter(file));
 				for(Domacin noviDomacin: domaciniLista) {
-					out.write(noviDomacin.getKorisnickoIme() + ";"+ noviDomacin.getLozinka()+ ";"+ noviDomacin.getIme()+ ";"
+					out.write(noviDomacin.getId() + ";" +noviDomacin.getKorisnickoIme() + ";"+ noviDomacin.getLozinka()+ ";"+ noviDomacin.getIme()+ ";"
 							+ noviDomacin.getPrezime()+ ";"+ noviDomacin.getPol().toString()+ ";"+ noviDomacin.getUloga().toString() 
-							+ ";"+ noviDomacin.getApartmaniZaIzdavanje().toString()+ "\n");
+							+"\n");
 				}
 					
 				

@@ -9,7 +9,7 @@
 		<h3>Pregled apartmana</h3>
 	</div>
 	<div class="col-md-4">
-		<form action="PrikazApartmanServlet" method="get">
+		<form action="PrikaziApartmanServlet" method="get">
 			<input type="text" name="pretraga" class = "form-control" placeholder="Pretraga...">
 			<input type="submit" value="Pretraga">
 			<a href="DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
@@ -22,7 +22,7 @@
 
 </head>
 <body>
-<form method="POST" action="/PrikaziApartmanServlet">
+<form method="POST" action="PrikaziApartmanServlet">
       <table class="table table-boardered table-striped table-hover">
       <thead>
          <tr>

@@ -10,27 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Administrator;
-import beans.Adresa;
-import beans.Amenities;
-import beans.Apartman;
 import beans.Domacin;
 import beans.Gost;
-import beans.KomentarZaApartman;
 import beans.Korisnik;
-import beans.Lokacija;
-import beans.Pol;
-import beans.Rezervacija;
-import beans.Uloga;
-import dao.AdministratorDAO;
-import dao.AdresaDAO;
-import dao.AmenitiesDAO;
-import dao.ApartmanDAO;
-import dao.DomacinDAO;
-import dao.GostDAO;
-import dao.KomentarDAO;
-import dao.RezervacijaDAO;
 import dao.UserDAO;
-import dao.LokacijaDAO;
+
 
 /**
  * Servlet implementation class LogInServlet
@@ -45,14 +29,14 @@ public class LogInServlet extends HttpServlet {
      */
     public LogInServlet() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/logovanje.jsp");
 		disp.forward(request, response);
@@ -101,7 +85,7 @@ public class LogInServlet extends HttpServlet {
 			System.out.println(korisnik);
 			if(korisnik!= null) {
 				if (korisnik instanceof Gost) {
-					Gost noviGost = (Gost) korisnik;
+//					Gost noviGost = (Gost) korisnik;
 					System.out.println("Logovao se korisnik");
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilGostServlet");
 					HttpSession session = request.getSession();
@@ -111,7 +95,7 @@ public class LogInServlet extends HttpServlet {
 					requestDispatcher.forward(request, response);
 				}
 				if (korisnik instanceof Domacin) {
-					Domacin noviDomacin = (Domacin) korisnik;
+//					Domacin noviDomacin = (Domacin) korisnik;
 					System.out.println("Logovao se domacin");
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilDomacinServlet");
 					HttpSession session = request.getSession();
@@ -121,7 +105,7 @@ public class LogInServlet extends HttpServlet {
 					requestDispatcher.forward(request, response);
 				}
 				if (korisnik instanceof Administrator) {
-					Administrator noviAdin = (Administrator) korisnik;
+//					Administrator noviAdin = (Administrator) korisnik;
 					System.out.println("Logovao se admin");
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilAdminServlet");
 					HttpSession session = request.getSession();

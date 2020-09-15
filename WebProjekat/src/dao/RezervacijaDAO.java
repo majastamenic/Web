@@ -20,7 +20,6 @@ import static util.Putanja._PROJECT_LOCATION;
 import beans.Apartman;
 import beans.Gost;
 import beans.Rezervacija;
-import beans.StatusApartman;
 import beans.StatusRezervacija;
 
 

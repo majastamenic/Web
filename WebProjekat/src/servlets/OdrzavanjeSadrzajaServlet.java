@@ -18,23 +18,22 @@ import dao.AmenitiesDAO;
 @WebServlet("/OdrzavanjeSadrzajaServlet")
 public class OdrzavanjeSadrzajaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	AmenitiesDAO ad = new AmenitiesDAO();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public OdrzavanjeSadrzajaServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ad.ucitajPogodnosti();
-		request.setAttribute("listaPogodnosti", ad.findAll());
+		
+		AmenitiesDAO.ucitajPogodnosti();
+		request.setAttribute("listaPogodnosti", AmenitiesDAO.findAll());
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/upravljanjePogodnostima.jsp");
 		disp.forward(request, response);
 	}
@@ -43,7 +42,7 @@ public class OdrzavanjeSadrzajaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		String vrednost= request.getParameter("pogodnost");
 		AmenitiesDAO.dodajPogodnostUMapu(new Amenities(AmenitiesDAO.vratiNajveciID(), vrednost));
 		AmenitiesDAO.sacuvajSvePogodnostiIzMape();

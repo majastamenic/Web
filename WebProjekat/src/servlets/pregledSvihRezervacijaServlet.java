@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.KomentarDAO;
 import dao.RezervacijaDAO;
 
 /**
@@ -18,22 +17,21 @@ import dao.RezervacijaDAO;
 @WebServlet("/pregledSvihRezervacijaServlet")
 public class pregledSvihRezervacijaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       RezervacijaDAO rezervacijaDAO = new RezervacijaDAO();
     /**
      * @see HttpServlet#HttpServlet()
      */
     public pregledSvihRezervacijaServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		rezervacijaDAO.ucitajRezervacije();
-		request.setAttribute("listaRezervacija", rezervacijaDAO.findAll());
+		
+		RezervacijaDAO.ucitajRezervacije();
+		request.setAttribute("listaRezervacija", RezervacijaDAO.findAll());
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledSvihRezervacija.jsp");
 		disp.forward(request, response);
 	}
@@ -42,7 +40,7 @@ public class pregledSvihRezervacijaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
 		doGet(request, response);
 	}
 

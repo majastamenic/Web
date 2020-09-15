@@ -15,7 +15,6 @@ import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
 
 import beans.Amenities;
-import beans.Gost;
 
 
 public class AmenitiesDAO {
@@ -49,7 +48,7 @@ private static Map<Integer, Amenities> pogodnosti = new HashMap<>();
 		return komm;
 	}
 	
-	public Collection<Amenities> findAll() {
+	public static Collection<Amenities> findAll() {
 		return pogodnosti.values();
 	}
 	
@@ -145,7 +144,7 @@ public static Boolean izbrisiPogodnost(Integer id) {
 	try {
 		sacuvajSvePogodnostiIzMape();
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
+		
 		e.printStackTrace();
 	}
 	return true;

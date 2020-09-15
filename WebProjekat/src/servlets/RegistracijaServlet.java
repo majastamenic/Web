@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Gost;
-import beans.Pol;
 import dao.GostDAO;
 
 
@@ -26,14 +25,14 @@ public class RegistracijaServlet extends HttpServlet {
      */
     public RegistracijaServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/registracija.jsp");
 		disp.forward(request, response);
 	}
