@@ -20,8 +20,8 @@ public class Apartman {
 	private String vremeZaPrijavu;
 	private String vremeZaOdjavu;
 	private StatusApartman status;
-	private List<Amenities> sadrzajApartmana;
-	private List<Rezervacija> rezervacije;
+	private List<Amenities> sadrzajApartmana = new ArrayList<Amenities>();
+	private List<Rezervacija> rezervacije = new ArrayList<Rezervacija>();
 	
 
 	public String ispisTXT() {

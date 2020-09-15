@@ -8,7 +8,11 @@
 <title>Apartman table</title>
 </head>
 <body>
-	<h1 style="color: black">Pregled apartmana[PRETRAGA]</h1>
+	<h1 style="color: black">Pregled apartmana</h1>
+	<form action="/PrikazApartmanServlet" method="get">
+   		<input type="text" name="pretraga">
+		<input type="submit" value="Pretraga">
+   </form>
 	<table border="1">
 		<thead>
 			<th>Tip apartmana:</th>
@@ -18,8 +22,7 @@
 			<td>Domacin: </td>
 		</thead>
 		<tbody>
-			<!--Izlistavanje apartmana -->
-			<c:forEach var="apartman" items="${(pretraga != null) ? apartman.find(pretraga) : apartman.findAll()}">
+			<c:forEach var="apartman" items="${(pretraga != null) ? ApartmanDAO.pretraga(pretraga) : mapaApartmana.values()}">
 					<tr>
 						<td>${apartman.tip}</td>
 						<td>${apartman.brojSoba}</td>
@@ -30,9 +33,5 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<form action="PrikazApartmanServlet" method="get">
-		<input type="text" name="pretraga">
-		<input type="submit" value="Pretraga">
-	</form>
 </body>
 </html>

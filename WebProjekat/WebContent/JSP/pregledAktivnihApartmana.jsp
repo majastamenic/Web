@@ -5,54 +5,41 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Pregled aktivnih apartmana</title>
 </head>
 <body>
-<form method="POST" action="/AktivniApartmaniServlet">
-<p><br/></p>
-	<div class="col-md-4">
-		<h1>Pregled aktivnih apartmana</h1>
-	</div>
-	<div class="col-md-4">
-		<form action="" method="get">
-			<input type = "text" class = "form-control" name = "pretraga" placeholder="Pretraga.."/>
-			<a href="DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
-		</form>
-	</div>
+<h1 style="color: black">Pregled aktivnih apartmana</h1>
+    <form action="/AktivniApartmaniServlet" method="get">
+   		<input type="text" name="pretraga">
+		<input type="submit" value="Pretraga">
+		<a href="/DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
+   </form>
 
-<p></p>
-      <table class="table table-bordered table-striped table-hover">
+      <table border="1">
       	<thead>
-         <tr>
-         <td>Id apartmana:</td>
-            <td>Tip apartmana:</td>
-            <td>Broj soba:</td>
-            <td>Broj gostiju:</td>
-            <td>Lokacija:</td>
-            <td>Domacin:</td>
-            
-         </tr> 
+            <th>Tip apartmana:</th>
+            <th>Broj soba:</th>
+            <th>Broj gostiju:</th>
+            <th>Lokacija:</th>
+            <th>Domacin:</th>
+             
          </thead>
          <tbody> 
-         <c:forEach items="${mapaAktivnihApartmana.values()}" var="apartman">    
+         <c:forEach var="apartman" items="${(pretraga != null) ? ApartmanDAO.pretraga(pretraga) : mapaAktivnihApartmana.values()}">    
          <tr>
-         <td>${apartman.getId()}</td>
            <td>${apartman.getTip()}</td>
             <td>${apartman.getBrojSoba()}</td>
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
-            
-            <td class="text-center">
-            <a href='PregledKomentaraGostijuNaApartmaneServlet?ID = ${apartman.id}'> Komentari</a>
-            <!--  a href="IzmenaApartmanaServlet" class = "btn btn-warning">Izmeni</a>-->
-            <!--  <a href="BrisanjeApartmanaServlet" class = "btn btn-danger">Izbrisi</a>-->
+            <td clas="text-center">
+            	<a href="IzmenaApartmanaServlet" class = "btn btn-warning">Izmeni</a>
+            	<a href="BrisanjeApartmanaServlet" class = "btn btn-danger">Izbrisi</a>
             </td>
          </tr>
          </c:forEach>
          
       </table>
-   </form>
 
 
 </body>
