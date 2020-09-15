@@ -18,7 +18,6 @@ import beans.StatusApartman;
 import beans.TipApartmana;
 import dao.AmenitiesDAO;
 import dao.ApartmanDAO;
-import dao.KomentarDAO;
 import dao.LokacijaDAO;
 
 /**
@@ -34,14 +33,12 @@ public class DodajApartmanServlet extends HttpServlet {
      */
     public DodajApartmanServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		LokacijaDAO.ucitajLokaciju();
 		request.setAttribute("listaLokacija", ld.findAll());
 		AmenitiesDAO.ucitajPogodnosti();

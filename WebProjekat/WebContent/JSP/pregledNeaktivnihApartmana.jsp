@@ -5,34 +5,38 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Pregled neaktivni apartmani</title>
 </head>
 <body>
-<form method="POST" action="/NeaktivniApartmaniServlet">
-      <table>
-      
-         <tr>
-         <td>Id apartmana:</td>
-            <td>Tip apartmana:</td>
-            <td>Broj soba:</td>
-            <td>Broj gostiju:</td>
-            <td>Lokacija:</td>
-            <td>Domacin:</td>
-            
-         </tr>  
-         <c:forEach items="${mapaNeaktivnihApartmana.values()}" var="apartman">    
-         <tr>
-         <td>${apartman.getId()}</td>
-           <td>${apartman.getTip()}</td>
-            <td>${apartman.getBrojSoba()}</td>
-            <td>${apartman.getBrojGostiju()}</td>
-            <td>${apartman.getLokacija().getId()}</td>
-            <td>${apartman.getDomacin().getId()}</td>
-         </tr>
-         </c:forEach>
-         
-      </table>
+	<h1 style="color: black">Pregled neaktivnih apartmana</h1>
+    <form action="/NeaktivniApartmaniServlet" method="get">
+   		<input type="text" name="pretraga">
+		<input type="submit" value="Pretraga">
+		<a href="/DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
    </form>
+      <table border="1">
+      
+         <thead>
+            <th>Tip apartmana:</th>
+            <th>Broj soba:</th>
+            <th>Broj gostiju:</th>
+            <th>Lokacija:</th>
+            <th>Domacin:</th>
+            
+         </thead>  
+         <tbody>
+	         <c:forEach var="apartman" items="${(pretraga != null) ? ApartmanDAO.pretraga(pretraga) : mapaNeaktivnihApartmana.values()}">    
+		         <tr>
+		            <td>${apartman.getTip()}</td>
+		            <td>${apartman.getBrojSoba()}</td>
+		            <td>${apartman.getBrojGostiju()}</td>
+		            <td>${apartman.getLokacija().getId()}</td>
+		            <td>${apartman.getDomacin().getId()}</td>
+		         </tr>
+	         </c:forEach>
+         </tbody>
+      </table>
+   
 
 
 </body>
