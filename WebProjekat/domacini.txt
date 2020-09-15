@@ -1,2 +1,5 @@
+<<<<<<< HEAD
 12;nata;pera;pera;pera;Muski;Domacin
 13;tasa;tasa;tasa;tasa;Zenski;Domacin
+=======
+>>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje.git

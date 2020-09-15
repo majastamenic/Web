@@ -30,14 +30,12 @@ public class PregledSvihKorisnikaServlet extends HttpServlet {
      */
     public PregledSvihKorisnikaServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		GostDAO.ucitajGoste();
 		request.setAttribute("listaGostiju", GostDAO.findAll());
 		AdministratorDAO.ucitajAdmine();
@@ -52,7 +50,6 @@ public class PregledSvihKorisnikaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

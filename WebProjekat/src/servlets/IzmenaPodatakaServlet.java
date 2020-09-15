@@ -86,44 +86,6 @@ public class IzmenaPodatakaServlet extends HttpServlet {
 				}
 			}
 		}
-		
-		/*		
-		if(lozinka.equals(ponovljenaLozinka)) {
-			if(korisnik.getUloga().equals(Uloga.Administrator)) {
-				java.util.Map<Integer, Administrator> adminMapa = AdministratorDAO.ucitajAdmine();
-				for(Administrator admin:adminMapa.values()) {
-					if(admin.getKorisnickoIme().equals(korisnik.getKorisnickoIme())) {
-						AdministratorDAO.izmeniAdministratora((Administrator) korisnik);
-						break;
-					}
-						
-				}
-				
-			}else if(korisnik.getUloga().equals(Uloga.Domacin)) {
-				
-				java.util.Map<Integer, Domacin> domacinMapa = DomacinDAO.ucitajDomacine();
-				for(Domacin domacin:domacinMapa.values()) {
-					if(domacin.getKorisnickoIme().equals(korisnik.getKorisnickoIme())) {
-						DomacinDAO.izmeniDomacina((Domacin) korisnik);
-						break;
-					}
-						
-				}
-				
-			}else if(korisnik.getUloga().equals(Uloga.Gost)) {
-				java.util.Map<Integer, Gost> gostMapa = GostDAO.ucitajGoste();
-				for(Gost gost:gostMapa.values()) {
-					if(gost.getKorisnickoIme().equals(korisnik.getKorisnickoIme())) {
-						GostDAO.izmeniGosta((Gost) korisnik);
-						break;
-					}
-						
-				}
-			}
-		}
-		
-		
-		*/
 	}
 
 }

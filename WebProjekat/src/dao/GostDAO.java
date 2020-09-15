@@ -214,7 +214,6 @@ public class GostDAO {
 			gost.setRezervacije(izmenjenGost.getRezervacije());
 			gost.setIznajmljeniApartmani(izmenjenGost.getIznajmljeniApartmani());
 			
-			
 			List<Gost> gostiLista= new ArrayList<Gost>(gosti.values());
 			BufferedWriter out = null;
 			try {
