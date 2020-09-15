@@ -22,7 +22,7 @@
 
 </head>
 <body>
-
+<form method="POST" action="/PrikaziApartmanServlet">
       <table class="table table-boardered table-striped table-hover">
       <thead>
          <tr>
@@ -36,7 +36,7 @@
          </tr>  
          </thead>
          <tbody>
-         <c:forEach var="apartman" items="${(pretraga != null) ? apartman.pretraga(pretraga) : mapaApartmana.values()}">   
+         <c:forEach items="${mapaApartmana}" var="apartman">   
          <tr>
          
             <td>${apartman.getTip()}</td>
@@ -53,6 +53,6 @@
          </tbody>
       </table>
       
-
+</form>
 </body>
 </html>
