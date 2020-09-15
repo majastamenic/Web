@@ -65,7 +65,34 @@ public class IzmenaPodatakaServlet extends HttpServlet {
 		String ponovljenaLozinka = request.getParameter("ponovljenaLozinka");
 		
 		Korisnik korisnik = new Korisnik(LogInServlet.ulogovaniKorisnik.getKorisnickoIme(), lozinka, ime, prezime, pol, LogInServlet.ulogovaniKorisnik.getUloga());
+
+		if(lozinka.equals(ponovljenaLozinka)) {
+			if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Administrator)) {
+				for(Administrator admin:AdministratorDAO.ucitajAdmine().values()) {
+					if(admin.getKorisnickoIme().equals(LogInServlet.ulogovaniKorisnik.getKorisnickoIme())) {
+						AdministratorDAO.izmeniAdministratora(new Administrator(admin.getId(), admin.getKorisnickoIme(), lozinka, ime, prezime, pol, admin.getUloga()));
+					}
+				}
+			}
+			
+			if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Gost)) {
+				for(Gost gost:GostDAO.ucitajGoste().values()) {
+					if(gost.getKorisnickoIme().equals(LogInServlet.ulogovaniKorisnik.getKorisnickoIme())) {
+						GostDAO.izmeniGosta(new Gost(gost.getId(), gost.getKorisnickoIme(), lozinka, ime, prezime, pol, gost.getUloga()));
+					}
+				}
+			}
+
+			if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Domacin)) {
+				for(Domacin domacin:DomacinDAO.ucitajDomacine().values()) {
+					if(domacin.getKorisnickoIme().equals(LogInServlet.ulogovaniKorisnik.getKorisnickoIme())) {
+						DomacinDAO.izmeniDomacina(new Domacin(domacin.getId(), domacin.getKorisnickoIme(), lozinka, ime, prezime, pol, domacin.getUloga()));
+					}
+				}
+			}
+		}
 		
+		/*		
 		if(lozinka.equals(ponovljenaLozinka)) {
 			if(korisnik.getUloga().equals(Uloga.Administrator)) {
 				java.util.Map<Integer, Administrator> adminMapa = AdministratorDAO.ucitajAdmine();
@@ -101,7 +128,7 @@ public class IzmenaPodatakaServlet extends HttpServlet {
 		}
 		
 		
-		
+		*/
 	}
 
 }
