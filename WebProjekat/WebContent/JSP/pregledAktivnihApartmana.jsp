@@ -43,7 +43,9 @@
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
-            <td clas="text-center">
+            
+            <td class="text-center">
+            <a href='PregledKomentaraGostijuNaApartmaneServlet?ID = ${apartman.id}'> Komentari</a>
             <!--  a href="IzmenaApartmanaServlet" class = "btn btn-warning">Izmeni</a>-->
             <!--  <a href="BrisanjeApartmanaServlet" class = "btn btn-danger">Izbrisi</a>-->
             </td>

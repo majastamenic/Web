@@ -14,7 +14,7 @@ public class Apartman {
 	private Date datumZaIzdavanje;
 	private List<Date> dostupnostPoDatumima;
 	private Domacin domacin;
-	private KomentarZaApartman komentar;
+	private List<KomentarZaApartman> komentar;
 	//slike
 	private float cenaPoNoci;
 	private String vremeZaPrijavu;
@@ -28,7 +28,7 @@ public class Apartman {
 		
 			return id + ";"+ tip.toString() + ";"+ brojSoba + ";"+ brojGostiju+ ";"+ lokacija.getId()+ ";"
 					+ datumZaIzdavanje.toString() + ";"+ domacin.getId() 
-					+ ";"+ komentar.getId() + ";"+ cenaPoNoci + ";"+ vremeZaPrijavu
+				 + ";"+ cenaPoNoci + ";"+ vremeZaPrijavu
 					+ ";"+ vremeZaOdjavu + ";"+ status.toString() + "\n";
 	
 	} 
@@ -40,7 +40,7 @@ public class Apartman {
 	}
 
 	public Apartman(int id, TipApartmana tip, int brojSoba, int brojGostiju, Lokacija lokacija, Date datumZaIzdavanje,
-			List<Date> dostupnostPoDatumima, Domacin domacin, KomentarZaApartman komentar, float cenaPoNoci,
+			List<Date> dostupnostPoDatumima, Domacin domacin, List<KomentarZaApartman> komentar, float cenaPoNoci,
 			String vremeZaPrijavu, String vremeZaOdjavu, StatusApartman status, List<Amenities> sadrzajApartmana,
 			List<Rezervacija> rezervacije) {
 		super();
@@ -52,7 +52,7 @@ public class Apartman {
 		this.datumZaIzdavanje = datumZaIzdavanje;
 		this.dostupnostPoDatumima = dostupnostPoDatumima;
 		this.domacin = domacin;
-		this.komentar = komentar;
+		this.setKomentar(komentar);
 		this.cenaPoNoci = cenaPoNoci;
 		this.vremeZaPrijavu = vremeZaPrijavu;
 		this.vremeZaOdjavu = vremeZaOdjavu;
@@ -62,7 +62,7 @@ public class Apartman {
 	}
 	
 	public Apartman(int id, TipApartmana tip, int brojSoba, int brojGostiju, Lokacija lokacija, Date datumZaIzdavanje,
-			 Domacin domacin, KomentarZaApartman komentar, float cenaPoNoci,
+			 Domacin domacin, float cenaPoNoci,
 			String vremeZaPrijavu, String vremeZaOdjavu, StatusApartman status) {
 		super();
 		this.id=id;
@@ -71,8 +71,7 @@ public class Apartman {
 		this.brojGostiju = brojGostiju;
 		this.lokacija = lokacija;
 		this.datumZaIzdavanje = datumZaIzdavanje;
-		this.domacin = domacin;
-		this.komentar = komentar;
+		this.domacin = domacin;	
 		this.cenaPoNoci = cenaPoNoci;
 		this.vremeZaPrijavu = vremeZaPrijavu;
 		this.vremeZaOdjavu = vremeZaOdjavu;
@@ -144,13 +143,7 @@ public class Apartman {
 		this.domacin = domacin;
 	}
 
-	public KomentarZaApartman getKomentar() {
-		return komentar;
-	}
-
-	public void setKomentar(KomentarZaApartman komentar) {
-		this.komentar = komentar;
-	}
+	
 
 	public float getCenaPoNoci() {
 		return cenaPoNoci;
@@ -206,6 +199,14 @@ public class Apartman {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public List<KomentarZaApartman> getKomentar() {
+		return komentar;
+	}
+
+	public void setKomentar(List<KomentarZaApartman> komentar) {
+		this.komentar = komentar;
 	}
 	
 	
