@@ -211,8 +211,6 @@ public class GostDAO {
 			gost.setPrezime(izmenjenGost.getPrezime());
 			gost.setPol(izmenjenGost.getPol().toString()); // izmenjenj je seter za POl.
 			gost.setUloga(izmenjenGost.getUloga());
-			gost.setIznajmljeniApartmani(gost.getIznajmljeniApartmani());
-			gost.setRezervacije(gost.getRezervacije());
 			
 			List<Gost> gostiLista= new ArrayList<Gost>(gosti.values());
 			BufferedWriter out = null;
@@ -220,9 +218,9 @@ public class GostDAO {
 				File file = new File(_PROJECT_LOCATION + "/gosti.txt");
 				out = new BufferedWriter(new FileWriter(file));
 				for(Gost noviGost: gostiLista) {
-					out.write(noviGost.getKorisnickoIme() + ";"+ noviGost.getLozinka()+ ";"+ noviGost.getIme()
+					out.write(noviGost.getId()+ ";" + noviGost.getKorisnickoIme() + ";"+ noviGost.getLozinka()+ ";"+ noviGost.getIme()
 					+ ";"+ noviGost.getPrezime()+ ";"+ noviGost.getPol().toString()+ ";"+ noviGost.getUloga().toString()
-					+ ";"+ noviGost.getIznajmljeniApartmani().toString()+";"+ noviGost.getRezervacije()+ "\n");
+					 +"\n");
 				}
 					
 				

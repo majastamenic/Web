@@ -20,7 +20,7 @@ import static util.Putanja._PROJECT_LOCATION;
 
 import beans.Apartman;
 import beans.Domacin;
-import beans.KomentarZaApartman;
+
 
 import beans.Lokacija;
 import beans.StatusApartman;
