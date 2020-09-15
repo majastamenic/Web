@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,18 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.javafx.collections.MappingChange.Map;
 
 import beans.Administrator;
 import beans.Domacin;
 import beans.Gost;
-import beans.Korisnik;
 import beans.Pol;
 import beans.Uloga;
 import dao.AdministratorDAO;
 import dao.DomacinDAO;
 import dao.GostDAO;
-import dao.UserDAO;
 
 /**
  * Servlet implementation class IzmenaPodatakaServlet
@@ -46,6 +42,7 @@ public class IzmenaPodatakaServlet extends HttpServlet {
 		request.setAttribute("ime", LogInServlet.ulogovaniKorisnik.getIme());
 		request.setAttribute("prezime", LogInServlet.ulogovaniKorisnik.getPrezime());
 		request.setAttribute("pol", LogInServlet.ulogovaniKorisnik.getPol());
+		request.setAttribute("lozinka", LogInServlet.ulogovaniKorisnik.getLozinka());
 		
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/izmenaPodataka.jsp");
 		disp.forward(request, response);
@@ -64,8 +61,6 @@ public class IzmenaPodatakaServlet extends HttpServlet {
 		String lozinka = request.getParameter("lozinka");
 		String ponovljenaLozinka = request.getParameter("ponovljenaLozinka");
 		
-		Korisnik korisnik = new Korisnik(LogInServlet.ulogovaniKorisnik.getKorisnickoIme(), lozinka, ime, prezime, pol, LogInServlet.ulogovaniKorisnik.getUloga());
-
 		if(lozinka.equals(ponovljenaLozinka)) {
 			if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Administrator)) {
 				for(Administrator admin:AdministratorDAO.ucitajAdmine().values()) {
