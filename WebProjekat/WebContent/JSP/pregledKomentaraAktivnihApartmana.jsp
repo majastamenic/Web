@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <form method="POST" action="/PregledKomentaraServlet">
+ <form method="POST" action="/PregledKomentaraGostijuNaApartmaneServlet">
       <table>
       
          <tr>

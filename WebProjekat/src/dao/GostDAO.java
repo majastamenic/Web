@@ -211,6 +211,8 @@ public class GostDAO {
 			gost.setPrezime(izmenjenGost.getPrezime());
 			gost.setPol(izmenjenGost.getPol().toString()); // izmenjenj je seter za POl.
 			gost.setUloga(izmenjenGost.getUloga());
+			gost.setRezervacije(izmenjenGost.getRezervacije());
+			gost.setIznajmljeniApartmani(izmenjenGost.getIznajmljeniApartmani());
 			
 			
 			List<Gost> gostiLista= new ArrayList<Gost>(gosti.values());

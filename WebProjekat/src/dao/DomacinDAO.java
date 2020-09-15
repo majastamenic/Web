@@ -260,6 +260,7 @@ public static void dodajDomacina(Domacin domacin) throws IOException {
 			domacin.setPrezime(izmenjenDomacin.getPrezime());
 			domacin.setPol(izmenjenDomacin.getPol().toString());
 			domacin.setUloga(izmenjenDomacin.getUloga());
+			domacin.setApartmaniZaIzdavanje(izmenjenDomacin.getApartmaniZaIzdavanje());
 			
 
 			List<Domacin> domaciniLista= new ArrayList<Domacin>(domacini.values());

@@ -33,7 +33,7 @@ public class PregledKomentaraGostijuNaApartmaneServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String idApartmana= request.getParameter("ID");
+		String idApartmana= request.getParameter("id");
 		Apartman apartman = new Apartman();
 		ApartmanDAO.ucitajApartmane();
 		apartman = ApartmanDAO.findApartmentById(Integer.parseInt(idApartmana));
@@ -48,7 +48,7 @@ public class PregledKomentaraGostijuNaApartmaneServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 	}
 
 }

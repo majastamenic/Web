@@ -33,6 +33,7 @@
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
             <td clas="text-center">
+            	<a href="/PregledKomentaraGostijuNaApartmaneServlet?id=${apartman.id}"> komentari</a>
             	<a href="IzmenaApartmanaServlet" class = "btn btn-warning">Izmeni</a>
             	<a href="BrisanjeApartmanaServlet" class = "btn btn-danger">Izbrisi</a>
             </td>
