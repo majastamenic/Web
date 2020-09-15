@@ -8,7 +8,7 @@
 <title>Apartman table</title>
 </head>
 <body>
-	<h1 style="color: black">JSP/Servlet Pregled apartmana[PRETRAGA]</h1>
+	<h1 style="color: black">Pregled apartmana[PRETRAGA]</h1>
 	<table border="1">
 		<thead>
 			<th>Tip apartmana:</th>
@@ -19,9 +19,7 @@
 		</thead>
 		<tbody>
 			<!--Izlistavanje apartmana -->
-			<c:forEach var="apartman" items="${(brIndeks != null) ? students.find(brIndeks) : students.findAll()}">
-				<c:if test="${Integer.parseInt(student.bodovi)>51 }"
-					var="condition">
+			<c:forEach var="apartman" items="${(pretraga != null) ? apartman.find(pretraga) : apartman.findAll()}">
 					<tr>
 						<td>${apartman.tip}</td>
 						<td>${apartman.brojSoba}</td>
@@ -29,7 +27,6 @@
 						<td>${apartman.lokacija}</td>
 						<td>${apartman.domacin}</td>
 					</tr>
-				</c:if>
 			</c:forEach>
 		</tbody>
 	</table>

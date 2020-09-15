@@ -16,11 +16,10 @@
 	<div class="col-md-4">
 		<form action="" method="get">
 			<input type = "text" class = "form-control" name = "pretraga" placeholder="Pretraga.."/>
+			<a href="DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
 		</form>
 	</div>
-	<div class = "col-md-4 text-right">
-		<a href="DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
-	</div>
+
 <p></p>
       <table class="table table-bordered table-striped table-hover">
       	<thead>
