@@ -94,14 +94,14 @@ public class ApartmanDAO {
 						Date dostupniDatumi = formatter.parse(st1.nextToken().trim());
 						dostupni.add(dostupniDatumi);
 						}*/
+			        
+			        
 						
 					int idDomacin = Integer.parseInt(st.nextToken().trim());
 					
 					Domacin domacin = DomacinDAO.findHostById(idDomacin);
 					
-					int idKomentar= Integer.parseInt(st.nextToken().trim());
-					KomentarDAO kd= new KomentarDAO();
-					KomentarZaApartman komentar = kd.find(idKomentar);
+					
 					
 					float cenaPoNoci= Float.parseFloat(st.nextToken().trim());
 					String vremeZaPrijavu= st.nextToken().trim();
@@ -132,10 +132,19 @@ public class ApartmanDAO {
 							Rezervacija rezervacija= rd.find(idRezervacija);
 							rezervacije.add(rezervacija);
 						}*/
+					
+					Apartman noviApartman = new Apartman(id, tip, brojSoba, brojGostiju, lokacija, dateStr, domacin, cenaPoNoci, vremeZaPrijavu, vremeZaOdjavu, status);
+					
+					for (Map.Entry<Integer, KomentarZaApartman> komentar : KomentarDAO.getKomentari().entrySet()) {		
+						if(komentar.getValue().getApartman().getId() == noviApartman.getId()) {
+							noviApartman.getKomentar().add(komentar.getValue());
+							komentar.getValue().setApartman(noviApartman);
+						}
+					}
 				        	
 				     
 					
-					apartmani.put(id, new Apartman(idKomentar, tip, brojSoba, brojGostiju, lokacija, dateStr, domacin, komentar, cenaPoNoci, vremeZaPrijavu, vremeZaOdjavu, status));
+					apartmani.put(id, noviApartman);
 				}
 				
 			}

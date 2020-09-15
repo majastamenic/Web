@@ -66,7 +66,7 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 
 		
 		Apartman a = new Apartman(idApartmana, tip, brojSoba, brojGostiju, lokacija, datumZaIzdavanje,
-				  domacin, komentar, cenaPoNoci,
+				  domacin, cenaPoNoci,
 				 vremeZaPrijavu, vremeZaOdjavu, status);
 		ApartmanDAO.izmeniApartman(a);
 		

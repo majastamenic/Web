@@ -17,6 +17,7 @@ import static util.Putanja._PROJECT_LOCATION;
 import beans.Apartman;
 import beans.Gost;
 import beans.KomentarZaApartman;
+import beans.Rezervacija;
 
 
 public class KomentarDAO {
@@ -26,7 +27,10 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 	public KomentarDAO() {
 		
 	}
-	
+
+	public static Map<Integer, KomentarZaApartman> getKomentari() {
+		return komentari;
+	}
 	/***
 	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
 	 */
@@ -144,6 +148,20 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 			}
 		}
 	      */
+	
+	public static Map<Integer, KomentarZaApartman> komentarNaApartman(Apartman apartman){
+		if(komentari.isEmpty())
+			komentari = ucitajKomentare();
+		
+		Map<Integer, KomentarZaApartman> komentariNaAktivne = new HashMap<Integer,KomentarZaApartman>();
+		for(Map.Entry<Integer , KomentarZaApartman> komentar : komentari.entrySet()) {
+				if(komentar.getValue().getApartman().getId() == apartman.getId()) {
+					komentariNaAktivne.put(komentar.getValue().getId(), komentar.getValue());
+				}
+			}
+		return komentariNaAktivne;
+		}
+	
 	
 	public static int vratiNajveciID() {
 		int maxId = 0;

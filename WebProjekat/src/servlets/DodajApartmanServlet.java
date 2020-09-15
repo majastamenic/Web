@@ -71,7 +71,7 @@ public class DodajApartmanServlet extends HttpServlet {
 		String vremeZaOdjavu = request.getParameter("vremeZaOdjavu");
 		StatusApartman status = StatusApartman.Neaktivno;
 		
-		Apartman a = new Apartman(id, tip, brojSoba, brojGostiju, lokacija, datumZaIzdavanje, domacin, komentar, cenaPoNoci, vremeZaPrijavu, vremeZaOdjavu, status);
+		Apartman a = new Apartman(id, tip, brojSoba, brojGostiju, lokacija, datumZaIzdavanje, domacin, cenaPoNoci, vremeZaPrijavu, vremeZaOdjavu, status);
 		
 		ApartmanDAO.ucitajApartmane();
 		ApartmanDAO.sacuvajSveApartmaneIzMape();
