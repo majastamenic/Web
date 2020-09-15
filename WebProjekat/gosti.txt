@@ -1,7 +1,7 @@
-23;IVona;123;IVona;IVona;Zenski;Gost
-24;Vna;123;Vna;Vna;Zenski;Gost
-26;dasa;123;dasa;dasa;Muski;Gost
-28;jami;123;jami;jami;Zenski;Gost
-29;mika;mika;mika;mika;Muski;Gost
-30;zika;zika;zika;zika;Muski;Gost
-31;Nastasja;tasa;Nastasja;Damjanac;Zenski;Gost
+IVona;123;IVona;IVona;Zenski;Gost;[null, null];[beans.Rezervacija@7ee65ed5, beans.Rezervacija@2f6190b7]
+Vna;123;Vna;Vna;Zenski;Gost;[];[]
+dasa;123;dasa;dasa;Muski;Gost;[];[]
+jami;123;jami;jami;Zenski;Gost;[];[]
+mika;mika;mika;mika;Muski;Gost;[beans.Apartman@5fc4d6c3];[beans.Rezervacija@51ac5989]
+zika;zika;ziko;ziko;Zenski;Gost;[];[]
+Nastasja;tasa;Nastasja;Damjanac;Zenski;Gost;[];[]

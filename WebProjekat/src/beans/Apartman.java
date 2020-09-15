@@ -10,18 +10,18 @@ public class Apartman {
 	private TipApartmana tip;
 	private int brojSoba;
 	private int brojGostiju;
-	private Lokacija lokacija;
-	private Date datumZaIzdavanje;
-	private List<Date> dostupnostPoDatumima;
-	private Domacin domacin;
-	private KomentarZaApartman komentar;
+	private Lokacija lokacija = new Lokacija();
+	private Date datumZaIzdavanje = new Date();
+	private List<Date> dostupnostPoDatumima = new ArrayList<Date>();
+	private Domacin domacin = new Domacin();
+	private KomentarZaApartman komentar = new KomentarZaApartman();
 	//slike
 	private float cenaPoNoci;
 	private String vremeZaPrijavu;
 	private String vremeZaOdjavu;
 	private StatusApartman status;
-	private List<Amenities> sadrzajApartmana;
-	private List<Rezervacija> rezervacije;
+	private List<Amenities> sadrzajApartmana = new ArrayList<Amenities>();
+	private List<Rezervacija> rezervacije = new ArrayList<Rezervacija>();
 	
 
 	public String ispisTXT() {

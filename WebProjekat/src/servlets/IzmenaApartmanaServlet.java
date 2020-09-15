@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Amenities;
+import beans.Apartman;
 import beans.Domacin;
 import beans.KomentarZaApartman;
 import beans.Lokacija;
@@ -49,7 +50,6 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 			RequestDispatcher disp = request.getRequestDispatcher("/JSP/izmenaApartmana.jsp");
 			disp.forward(request, response);
 		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -58,6 +58,7 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 		
+		String idApartmana = request.getParameter("ID");
 		TipApartmana tip = TipApartmana.valueOf(request.getParameter("tip"));
 		int brojSoba = Integer.parseInt(request.getParameter("brojSoba"));
 		int brojGostiju = Integer.parseInt(request.getParameter("brojGostiju"));;
@@ -72,6 +73,8 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 		StatusApartman status = StatusApartman.valueOf(request.getParameter("status"));
 		List<Amenities> sadrzajApartmana = new ArrayList<Amenities>();
 		List<Rezervacija> rezervacije = new ArrayList<Rezervacija>();
+		
+		
 	}
 
 }

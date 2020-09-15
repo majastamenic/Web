@@ -15,17 +15,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import static util.Putanja._PROJECT_LOCATION;
 
-import beans.Amenities;
 import beans.Apartman;
 import beans.Domacin;
 import beans.KomentarZaApartman;
 
 import beans.Lokacija;
-import beans.Rezervacija;
 import beans.StatusApartman;
 import beans.TipApartmana;
 
@@ -196,6 +193,31 @@ public class ApartmanDAO {
 		}
 		else
 			return null;
+	}
+	
+	public static List<Apartman> pretraga(String tekst){
+		List<Apartman> listaApartmana = new ArrayList<Apartman>();
+		apartmani = ucitajApartmane();
+		
+		for(Apartman apartman:apartmani.values()) {
+			if(tekst.equals(apartman.getTip())) {
+				listaApartmana.add(apartman);
+			}
+			
+			if(Integer.parseInt(tekst) == apartman.getBrojSoba() || Integer.parseInt(tekst) == apartman.getBrojGostiju()) {
+				listaApartmana.add(apartman);
+			}
+			
+			if(tekst.contains(apartman.getLokacija().getAdresa().getNaseljenoMesto())) {
+				listaApartmana.add(apartman);
+			}
+			
+			if(tekst.contains(apartman.getDomacin().getKorisnickoIme())) {
+				listaApartmana.add(apartman);
+			}
+		}
+		
+		return listaApartmana;
 	}
 	
 	public static ArrayList<Apartman> find(){

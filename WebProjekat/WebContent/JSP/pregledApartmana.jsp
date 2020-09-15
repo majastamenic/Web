@@ -36,10 +36,10 @@
          </tr>  
          </thead>
          <tbody>
-         <c:forEach var="apartman" items="${(pretraga != null) ? apartman.find(pretraga) : mapaApartmana.values()}">   
+         <c:forEach var="apartman" items="${(pretraga != null) ? apartman.pretraga(pretraga) : mapaApartmana.values()}">   
          <tr>
          
-           <td>${apartman.getTip()}</td>
+            <td>${apartman.getTip()}</td>
             <td>${apartman.getBrojSoba()}</td>
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
