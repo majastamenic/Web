@@ -1,2 +1,2 @@
-12;nata;nata;Natalija;Nikolic;Zenski;Domacin
+12;nata;pera;pera;pera;Muski;Domacin
 13;tasa;tasa;tasa;tasa;Zenski;Domacin

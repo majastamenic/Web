@@ -260,7 +260,7 @@ public static void dodajDomacina(Domacin domacin) throws IOException {
 			domacin.setPrezime(izmenjenDomacin.getPrezime());
 			domacin.setPol(izmenjenDomacin.getPol().toString());
 			domacin.setUloga(izmenjenDomacin.getUloga());
-			domacin.setApartmaniZaIzdavanje(izmenjenDomacin.getApartmaniZaIzdavanje());
+			
 
 			List<Domacin> domaciniLista= new ArrayList<Domacin>(domacini.values());
 			BufferedWriter out = null;
@@ -268,9 +268,9 @@ public static void dodajDomacina(Domacin domacin) throws IOException {
 				File file = new File(_PROJECT_LOCATION + "/domacini.txt");
 				out = new BufferedWriter(new FileWriter(file));
 				for(Domacin noviDomacin: domaciniLista) {
-					out.write(noviDomacin.getKorisnickoIme() + ";"+ noviDomacin.getLozinka()+ ";"+ noviDomacin.getIme()+ ";"
+					out.write(noviDomacin.getId() + ";" +noviDomacin.getKorisnickoIme() + ";"+ noviDomacin.getLozinka()+ ";"+ noviDomacin.getIme()+ ";"
 							+ noviDomacin.getPrezime()+ ";"+ noviDomacin.getPol().toString()+ ";"+ noviDomacin.getUloga().toString() 
-							+ ";"+ noviDomacin.getApartmaniZaIzdavanje().toString()+ "\n");
+							+"\n");
 				}
 					
 				
