@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
 import static util.Putanja._PROJECT_LOCATION;
 
 import beans.Amenities;
@@ -202,6 +205,15 @@ public class ApartmanDAO {
 		}
 		else
 			return null;
+	}
+	
+	public static ArrayList<Apartman> find(){
+		ArrayList<Apartman> listaApartmana = new ArrayList<Apartman>();
+		apartmani = ucitajApartmane();
+		
+		
+		
+		return listaApartmana;
 	}
 	
 	public static int vratiNajveciID() {

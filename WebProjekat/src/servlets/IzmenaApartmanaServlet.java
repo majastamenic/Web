@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,6 +44,11 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String idApartmana = request.getParameter("ID");
+		if(idApartmana!=null) {
+			RequestDispatcher disp = request.getRequestDispatcher("/JSP/izmenaApartmana.jsp");
+			disp.forward(request, response);
+		}
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

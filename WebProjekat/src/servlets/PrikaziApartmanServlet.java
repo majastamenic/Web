@@ -2,8 +2,7 @@ package servlets;
 
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Apartman;
+
 import dao.ApartmanDAO;
 
 /**
@@ -35,12 +34,17 @@ public class PrikaziApartmanServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stu
-		apartmandao.ucitajApartmane();
-		request.setAttribute("listaApartmana", apartmandao.findAll());
-		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
-		disp.forward(request, response);
-		
+		String pretraga = request.getParameter("pretraga");
+		request.setAttribute("mapaApartmana", ApartmanDAO.ucitajApartmane());
+		if(pretraga!=null) {
+			if(pretraga =="") {
+				getServletContext().setAttribute("pretraga", null);
+			}else {
+				getServletContext().setAttribute("pretraga", pretraga);
+			}
+			RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
+			disp.forward(request, response);
+		}
 	}
 
 	/**

@@ -38,6 +38,7 @@ import dao.LokacijaDAO;
 
 public class LogInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public static Korisnik ulogovaniKorisnik;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -91,12 +92,12 @@ public class LogInServlet extends HttpServlet {
 		String korisnickoIme = request.getParameter("korisnickoIme");
 		String lozinka = request.getParameter("lozinka");
 		
-		
 		if(korisnickoIme.isEmpty() || lozinka.isEmpty()) {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
 			requestDispatcher.forward(request, response);
 		}else {
 			Korisnik korisnik = UserDAO.findUserByCredentials(korisnickoIme, lozinka);
+			ulogovaniKorisnik = korisnik;
 			System.out.println(korisnik);
 			if(korisnik!= null) {
 				if (korisnik instanceof Gost) {

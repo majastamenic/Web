@@ -62,9 +62,7 @@ public class UserDAO {
 	 * @param _PROJECT_LOCATION 
 	 * @param contextPath Putanja do aplikacije u Tomcatu
 	 */
-	public static void loadUsers() {
-		
-		
+	public static void loadUsers() {		
 		DomacinDAO.ucitajDomacine();
 		GostDAO.ucitajGoste();
 		AdministratorDAO.ucitajAdmine();
