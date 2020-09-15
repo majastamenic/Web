@@ -43,6 +43,9 @@ public class PrikaziApartmanServlet extends HttpServlet {
 			}
 			RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
 			disp.forward(request, response);
+		}else {
+			RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
+			disp.forward(request, response);
 		}
 	}
 

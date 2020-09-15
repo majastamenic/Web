@@ -13,6 +13,7 @@
 	<p>  <a href= "/kreiranjeRezervacijeServlet"> Kreiranje rezervacija.</a></p><br/>
 	<p>  <a href= "/dodavanjeKomentaraServlet"> Komentar .</a></p><br/>
 	<p>  <a href= "/SortiranjeApartmanaServlet"> Sortiranje</a></p><br/>
+	<p>  <a href="/PrikaziApartmanGostNeulogovaniServlet">Prikazi apartmane</a></p><br/>
 	
 </body>
 </html>

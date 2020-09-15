@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Apartman;
 import beans.Domacin;
-import beans.KomentarZaApartman;
 import beans.Lokacija;
 import beans.StatusApartman;
 import beans.TipApartmana;
@@ -37,12 +36,19 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String idApartmana = request.getParameter("ID");
+		
 		if(idApartmana!=null) {
+			Apartman apartman = ApartmanDAO.findApartmentById(Integer.parseInt(idApartmana));
+			request.setAttribute("brojSoba", apartman.getBrojSoba());
+			request.setAttribute("brojGostiju", apartman.getBrojGostiju());
+			request.setAttribute("cenaPoNoci", apartman.getCenaPoNoci());
 			RequestDispatcher disp = request.getRequestDispatcher("/JSP/izmenaApartmana.jsp");
 			disp.forward(request, response);
 		}
+		
+		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
+		disp.forward(request, response);
 	}
 
 	/**
@@ -58,7 +64,6 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 		Lokacija lokacija = new Lokacija();
 		Date datumZaIzdavanje = new Date();
 		Domacin domacin = new Domacin();
-		KomentarZaApartman komentar = new KomentarZaApartman();
 		float cenaPoNoci = Float.parseFloat(request.getParameter("cenaPoNoci"));
 		String vremeZaPrijavu = request.getParameter("vremeZaPrijavu");
 		String vremeZaOdjavu = request.getParameter("vremeZaOdjavu");

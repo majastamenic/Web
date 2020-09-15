@@ -13,35 +13,11 @@
       <table>
                   <tr>
             <td>Broj soba:</td>
-            <td><select name="sobe" id="sobe">
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="10">10</option>
-  
-</select></td>
+            <td><input type="text" name="brojSoba" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>    
          <tr>
             <td>Broj gostiju:</td>
-            <td><select name="gosti" id="gosti">
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="10">10</option>
-  
-</select></td>
+            <td><input type="text" name="brojGostiju" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>  
          <tr>
             <td>Tip apartmana:</td>
@@ -75,7 +51,7 @@
          
          <tr>
             <td>Cena po noci:</td>
-            <td><input type="text" name="cena" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+            <td><input type="text" name="cenaPoNoci" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>
          <tr>
             <td></td>

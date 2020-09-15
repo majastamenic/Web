@@ -45,8 +45,8 @@
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
             <td class="text-center">
-            	<a href='IzmenaApartmanaServlet?ID=${apartman.id} ' class="btn btn-warning">Izmeni</a>
-            	<a href="BrisanjeApartmanaServlet?ID=${apartman.id }" class="btn btn-danger">Obrisi</a>
+            	<a href='IzmenaApartmanaServlet?ID=${apartman.getId()} ' class="btn btn-warning">Izmeni</a>
+            	<a href="BrisanjeApartmanaServlet?ID=${apartman.getId() }" class="btn btn-danger">Obrisi</a>
             </td>
          </tr>
          </c:forEach>
