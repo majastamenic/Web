@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Uloga;
 import dao.ApartmanDAO;
 
 /**
@@ -32,7 +33,12 @@ public class SortiraniApartmaniOpadajuceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ApartmanDAO.ucitajApartmane();
-		request.setAttribute("listaApartmana", ApartmanDAO.sortiranjePoCeniOpadajuce());
+		
+		if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Domacin))
+			request.setAttribute("listaApartmana", ApartmanDAO.sortiranjePoCeniOpadajuceDomacin());
+		else
+			request.setAttribute("listaApartmana", ApartmanDAO.sortiranjePoCeniOpadajuce());
+		
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmanaSortiraniOpadajuce.jsp");
 		disp.forward(request, response);
 	}
