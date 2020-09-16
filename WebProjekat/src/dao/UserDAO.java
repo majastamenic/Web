@@ -195,8 +195,7 @@ ArrayList<Korisnik> nadjeniKorisnici = new ArrayList<Korisnik>();
 		}
 		
 		return pronadjeniGosti;
-	}
-	
+	}	
 	
 }
 

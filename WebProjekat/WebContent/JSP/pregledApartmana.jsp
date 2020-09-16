@@ -13,7 +13,9 @@
 			<input type="text" name="pretraga" class = "form-control" placeholder="Pretraga...">
 			<input type="submit" value="Pretraga">
 			<a href="DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
-			<a href="VisestrukaPretragaServlet">Visestruka pretraga</a>
+			<a href="VisestrukaPretragaServlet" class="btn btn-primary">Visestruka pretraga</a>
+			<a href="SortiraniApartmaniRastuceServlet">Sortiraj apartmane po ceni rastuce</a>
+			<a href="SortiraniApartmaniOpadajuceServlet">Sortiraj apartmane po ceni opadajuce</a>
 		</form>
 	</div>
 </div>
@@ -32,7 +34,11 @@
             <td>Broj gostiju: </td>
             <td>Lokacija: </td>
             <td>Domacin: </td>
+<<<<<<< HEAD
             <td>Status: </td>
+=======
+            <td>Cena po noci: </td>
+>>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje
             <th class="text-center">Akcije </th>
          </tr>  
          </thead>
@@ -45,10 +51,16 @@
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
+<<<<<<< HEAD
             <td>${apartman.getStatus()}</td>
+=======
+            <td>${apartman.getCenaPoNoci()}</td>
+>>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje
             <td class="text-center">
-            	<a href='IzmenaApartmanaServlet?id=${apartman.getId()} ' class="btn btn-warning">Izmeni</a>
-            	<a href="BrisanjeApartmanaServlet?id=${apartman.getId()} " class="btn btn-danger">Obrisi</a>
+
+            	<a href='/IzmenaApartmanaServlet?id=${apartman.id} ' class="btn btn-warning">Izmeni</a>
+            	<a href="BrisanjeApartmanaServlet?id=${apartman.id} " class="btn btn-danger">Obrisi</a>
+
             </td>
          </tr>
          </c:forEach>

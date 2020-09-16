@@ -13,6 +13,8 @@ import beans.Administrator;
 import beans.Domacin;
 import beans.Gost;
 import beans.Korisnik;
+import dao.ApartmanDAO;
+import dao.RezervacijaDAO;
 import dao.UserDAO;
 
 
@@ -41,6 +43,12 @@ public class LogInServlet extends HttpServlet {
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/logovanje.jsp");
 		disp.forward(request, response);
 		
+		//ApartmanDAO.ucitajApartmane();
+		//ApartmanDAO.sortiranjePoCeniRastuce();
+		//ApartmanDAO.sortiranjePoCeniOpadajuce();
+		//RezervacijaDAO.ucitajRezervacije();
+		//RezervacijaDAO.sortiranjePoCeniOpadajuce();
+		//RezervacijaDAO.sortiranjePoCeniRastuce();
 		//GostDAO.izbrisiGosta(28);
 		//DomacinDAO.izbrisiDomacina(11);
 		//AdministratorDAO.izbrisiAdmina(31);
@@ -117,8 +125,12 @@ public class LogInServlet extends HttpServlet {
 			
 			}
 			else {
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
-				requestDispatcher.forward(request, response);
+				request.setAttribute("err", "Ne postoji korisnik sa datim username/password");
+				doGet(request, response);
+				return;
+				
+				//RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
+				//requestDispatcher.forward(request, response);
 				
 			}
 			

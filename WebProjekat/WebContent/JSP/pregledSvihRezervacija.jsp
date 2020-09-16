@@ -24,6 +24,8 @@
 <body>
  <form method="POST" action="/pregledSvihRezervacijaServlet">
       <table>
+      <a href="SortiraneRezervacijeRastuceServlet">Sortiraj rezervacije po ceni rastuce</a>
+		<a href="SortiraneRezervacijeOpadajuceServlet">Sortiraj rezervacije po ceni opadajuce</a>
       
          <tr>
          <td>Rezervisan apartman:</td>

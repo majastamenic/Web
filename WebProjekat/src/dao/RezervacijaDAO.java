@@ -135,6 +135,55 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 			
 		}
 	
+	public static List<Rezervacija> sortiranjePoCeniOpadajuce(){
+		Float a;
+		Float b;
+		Rezervacija c;
+		Rezervacija d;
+		rezervacija = ucitajRezervacije();
+		List<Rezervacija> nesortiraneRezervacije = new ArrayList<Rezervacija>(rezervacija.values());
+		for(int i = 0; i<nesortiraneRezervacije.size() ; i++) {
+			for(int j = 0 ; j < nesortiraneRezervacije.size()-i-1 ; j++) {
+				a=nesortiraneRezervacije.get(j).getUkupnaCena();
+				b=nesortiraneRezervacije.get(j+1).getUkupnaCena();
+				c=nesortiraneRezervacije.get(j);
+				d=nesortiraneRezervacije.get(j+1);
+				
+				if(a.compareTo(b)<0) {
+					Rezervacija temp=d;
+					nesortiraneRezervacije.set(j+1, c);
+					nesortiraneRezervacije.set(j, temp);
+				}
+			}
+		}
+		
+		return nesortiraneRezervacije;
+	}
+	public static List<Rezervacija> sortiranjePoCeniRastuce(){
+		Float a;
+		Float b;
+		Rezervacija c;
+		Rezervacija d;
+		rezervacija = ucitajRezervacije();
+		List<Rezervacija> nesortiraneRezervacije = new ArrayList<Rezervacija>(rezervacija.values());
+		for(int i = 0; i<nesortiraneRezervacije.size() ; i++) {
+			for(int j = 0 ; j < nesortiraneRezervacije.size()-i-1 ; j++) {
+				a=nesortiraneRezervacije.get(j).getUkupnaCena();
+				b=nesortiraneRezervacije.get(j+1).getUkupnaCena();
+				c=nesortiraneRezervacije.get(j);
+				d=nesortiraneRezervacije.get(j+1);
+				
+				if(a.compareTo(b)>0) {
+					Rezervacija temp=d;
+					nesortiraneRezervacije.set(j+1, c);
+					nesortiraneRezervacije.set(j, temp);
+				}
+			}
+		}
+		
+		return nesortiraneRezervacije;
+	}
+	
 	public static int vratiNajveciID() {
 		int maxId = 0;
 		for (Map.Entry<Integer , Rezervacija> rezervacije : rezervacija.entrySet())
@@ -179,40 +228,7 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 			}
 		}
 
-	
-	/*public static void dodajRezervaciju(Rezervacija rezervacija) throws IOException {
-		RezervacijaDAO.rezervacija= ucitajRezervacije();
-		RezervacijaDAO.rezervacija.put(rezervacija.getId(), rezervacija);
-		List<Rezervacija> listaRezervacija= new ArrayList<Rezervacija>(RezervacijaDAO.rezervacija.values());
-		
-		
-		BufferedWriter out = null;
-		try {
-			File file = new File(_PROJECT_LOCATION + "/rezervacije.txt");
-			out = new BufferedWriter(new FileWriter(file));
-			for(Rezervacija novaRezervacija: listaRezervacija) {
-				out.write(novaRezervacija.getRezervisanApartman().toString() + ";"+ novaRezervacija.getPocetniDatum().toString()+ ";"
-						+ novaRezervacija.getBrojNocenja()+ ";"+ novaRezervacija.getUkupnaCena()+ ";"+ novaRezervacija.getPoruka()
-						+ ";"+ novaRezervacija.getGost().toString() + ";"+ novaRezervacija.getStatus().toString() + "\n");
-			}
-				
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-			finally {
-		}
-			if (out != null) {
-				try {
-					out.close();
-				}
-				catch (Exception e) { }
-			}
-		}
-	      
-	
 
-*/
 
 	public static Boolean izbrisiRezervaciju(Integer id) {
 		rezervacija = ucitajRezervacije();

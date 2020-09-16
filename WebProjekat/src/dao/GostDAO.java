@@ -240,6 +240,21 @@ public class GostDAO {
 		}else
 			return false;
 	}
+	
+public static Gost findGuestByUsername(String username) {
+		
+			if(gosti.size()==0) {
+				ucitajGoste();
+			}
+			List<Gost> gostiLista= new ArrayList<Gost>(gosti.values());
+			for(Gost noviGost: gostiLista) {
+				if(noviGost.getKorisnickoIme().equals(username)) {
+					return noviGost;
+				}
+			}
+			return null;	
+			
+		}
 
 	public static Gost pretragaPoId(int id) {
 		gosti = ucitajGoste();

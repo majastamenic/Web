@@ -36,5 +36,8 @@
         </tr>
       </table>
    </form>
+   <% if (request.getAttribute("err") != null) { %>
+		<p style="color: red"><%=request.getAttribute("err")%></p>
+	<% } %>
 </body>
 </html>

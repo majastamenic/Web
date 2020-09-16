@@ -396,6 +396,110 @@ public class ApartmanDAO {
 		}
 		return nadjeniApartmani;
 	}
+
+	
+	public static List<Apartman> sortiranjePoCeniRastuce(){
+		Float a;
+		Float b;
+		Apartman c;
+		Apartman d;
+		apartmani = ucitajApartmane();
+		List<Apartman> nesortiraniApartmani = new ArrayList<Apartman>(apartmani.values());
+		for(int i = 0; i<nesortiraniApartmani.size() ; i++) {
+			for(int j = 0 ; j < nesortiraniApartmani.size()-i-1 ; j++) {
+				a=nesortiraniApartmani.get(j).getCenaPoNoci();
+				b=nesortiraniApartmani.get(j+1).getCenaPoNoci();
+				c=nesortiraniApartmani.get(j);
+				d=nesortiraniApartmani.get(j+1);
+				
+				if(a.compareTo(b)>0) {
+					Apartman temp=d;
+					nesortiraniApartmani.set(j+1, c);
+					nesortiraniApartmani.set(j, temp);
+				}
+			}
+		}
+		
+		return nesortiraniApartmani;
+	}
+	public static List<Apartman> sortiranjePoCeniRastuceDomacin(){
+		Float a;
+		Float b;
+		Apartman c;
+		Apartman d;
+		apartmani = ucitajApartmaneOdDomacina((Domacin) LogInServlet.ulogovaniKorisnik);
+		List<Apartman> nesortiraniApartmani = new ArrayList<Apartman>(apartmani.values());
+		for(int i = 0; i<nesortiraniApartmani.size() ; i++) {
+			for(int j = 0 ; j < nesortiraniApartmani.size()-i-1 ; j++) {
+				a=nesortiraniApartmani.get(j).getCenaPoNoci();
+				b=nesortiraniApartmani.get(j+1).getCenaPoNoci();
+				c=nesortiraniApartmani.get(j);
+				d=nesortiraniApartmani.get(j+1);
+				
+				if(a.compareTo(b)>0) {
+					Apartman temp=d;
+					nesortiraniApartmani.set(j+1, c);
+					nesortiraniApartmani.set(j, temp);
+				}
+			}
+		}
+		
+		return nesortiraniApartmani;
+	}
+	
+	
+	public static List<Apartman> sortiranjePoCeniOpadajuceDomacin(){
+		Float a;
+		Float b;
+		Apartman c;
+		Apartman d;
+		apartmani = ucitajApartmaneOdDomacina((Domacin) LogInServlet.ulogovaniKorisnik);
+		List<Apartman> nesortiraniApartmani = new ArrayList<Apartman>(apartmani.values());
+		for(int i = 0; i<nesortiraniApartmani.size() ; i++) {
+			for(int j = 0 ; j < nesortiraniApartmani.size()-i-1 ; j++) {
+				a=nesortiraniApartmani.get(j).getCenaPoNoci();
+				b=nesortiraniApartmani.get(j+1).getCenaPoNoci();
+				c=nesortiraniApartmani.get(j);
+				d=nesortiraniApartmani.get(j+1);
+				
+				if(a.compareTo(b)<0) {
+					Apartman temp=d;
+					nesortiraniApartmani.set(j+1, c);
+					nesortiraniApartmani.set(j, temp);
+				}
+			}
+		}
+		
+		return nesortiraniApartmani;
+	}
+	
+	public static List<Apartman> sortiranjePoCeniOpadajuce(){
+		Float a;
+		Float b;
+		Apartman c;
+		Apartman d;
+		apartmani = ucitajApartmane();
+		List<Apartman> nesortiraniApartmani = new ArrayList<Apartman>(apartmani.values());
+		for(int i = 0; i<nesortiraniApartmani.size() ; i++) {
+			for(int j = 0 ; j < nesortiraniApartmani.size()-i-1 ; j++) {
+				a=nesortiraniApartmani.get(j).getCenaPoNoci();
+				b=nesortiraniApartmani.get(j+1).getCenaPoNoci();
+				c=nesortiraniApartmani.get(j);
+				d=nesortiraniApartmani.get(j+1);
+				
+				if(a.compareTo(b)<0) {
+					Apartman temp=d;
+					nesortiraniApartmani.set(j+1, c);
+					nesortiraniApartmani.set(j, temp);
+				}
+			}
+		}
+		
+		return nesortiraniApartmani;
+	}
+	
+
+
 	
 	public static ArrayList<Apartman> pretragaPoCeni(float pocetnaCena, float krajnjaCena){
 		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
