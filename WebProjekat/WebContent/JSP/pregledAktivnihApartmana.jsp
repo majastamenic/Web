@@ -22,7 +22,7 @@
             <th>Broj gostiju:</th>
             <th>Lokacija:</th>
             <th>Domacin:</th>
-             
+             <td>Cena po noci: </td>
          </thead>
          <tbody> 
          <c:forEach var="apartman" items="${(pretraga != null) ? ApartmanDAO.pretraga(pretraga) : mapaAktivnihApartmana.values()}">    
@@ -32,6 +32,7 @@
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
+            <td>${apartman.getCenaPoNoci()}</td>
             <td>
             	<a href="/PregledKomentaraGostijuNaApartmaneServlet?id=${apartman.id}"> komentari</a>
             	<a href="/IzmenaApartmanaServlet?id=${apartman.id}">Izmeni</a>

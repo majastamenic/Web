@@ -8,9 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.Gost;
+import beans.Korisnik;
 import dao.GostDAO;
+import dao.UserDAO;
 
 
 /**
@@ -49,23 +52,32 @@ public class RegistracijaServlet extends HttpServlet {
 		String pol = request.getParameter("pol");
 //		Uloga uloga = Uloga.valueOf(request.getParameter("uloga"));
 		
-		System.out.println(korisnickoIme  + " " + lozinka);
-		Gost noviGost = new Gost();
-		noviGost.setKorisnickoIme(korisnickoIme);
-		noviGost.setLozinka(lozinka);
-		noviGost.setPol(pol);
-		noviGost.setIme(ime);
-		noviGost.setPrezime(prezime);
-		GostDAO.dodajGostaUMapu(noviGost);
-		GostDAO.sacuvajSveGosteIzMape();
+		Gost gost= GostDAO.findGuestByUsername(korisnickoIme);
+		LogInServlet.ulogovaniKorisnik = gost;
+		if (gost == null) {
+			System.out.println(korisnickoIme  + " " + lozinka);
+			Gost noviGost = new Gost();
+			noviGost.setKorisnickoIme(korisnickoIme);
+			noviGost.setLozinka(lozinka);
+			noviGost.setPol(pol);
+			noviGost.setIme(ime);
+			noviGost.setPrezime(prezime);
+			GostDAO.dodajGostaUMapu(noviGost);
+			GostDAO.sacuvajSveGosteIzMape();
+			
+			HttpSession session = request.getSession();
+			request.setAttribute("ulogovaniKorisnik", gost);				
+			session.setAttribute("ulogovaniKorisnik", gost);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilGostServlet");
+			requestDispatcher.forward(request, response);
+		}
 		
-		if(korisnickoIme.isEmpty() || lozinka.isEmpty()) {
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
-			requestDispatcher.forward(request, response);
-		}else {
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/uspesnaRegistracija.jsp");
-			requestDispatcher.forward(request, response);
+		else {
+			request.setAttribute("err", "Vec postoji korisnik sa datim username, izaberite drugi username");
+			doGet(request, response);
+			return;
+		}
 		}
 	}
 
-}
+

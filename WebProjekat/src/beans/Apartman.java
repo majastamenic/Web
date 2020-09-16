@@ -1,5 +1,7 @@
 package beans;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,9 +27,9 @@ public class Apartman {
 	
 
 	public String ispisTXT() {
-		
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			return id + ";"+ tip.toString() + ";"+ brojSoba + ";"+ brojGostiju+ ";"+ lokacija.getId()+ ";"
-					+ datumZaIzdavanje.toString() + ";"+ domacin.getId() 
+					+ dateFormat.format(datumZaIzdavanje) + ";"+ domacin.getId() 
 				 + ";"+ cenaPoNoci + ";"+ vremeZaPrijavu
 					+ ";"+ vremeZaOdjavu + ";"+ status.toString() + "\n";
 	

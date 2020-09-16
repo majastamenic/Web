@@ -8,32 +8,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="POST" action="/pregledRezervacijaServlet">
-		<a href="SortiraneRezervacijeRastuceServlet">Sortiraj rezervacije po ceni rastuce</a>
-		<a href="SortiraneRezervacijeOpadajuceServlet">Sortiraj rezervacije po ceni opadajuce</a>
-      <table>
-      
-         <tr>
-         	<td>Rezervisan apartman:</td>
+<form method="POST" action="SortiraneRezervacijeRastuceServlet">
+      <table class="table table-boardered table-striped table-hover">
+      <thead>
+         
+         
+           <tr>
+         <td>Rezervisan apartman:</td>
             <td>Broj nocenja:</td>
             <td>Cena:</td>
             <td>Status:</td>
+            <td>Gost:</td>
+            
+         </tr>  
             
            
-         </tr>  
-         <c:forEach items="${ulogovaniKorisnik.rezervacije}" var="rezervacija"> 
-            
+         </thead>
+         <tbody>
+         <c:forEach items="${listaRezervacija}" var="rezervacija">   
          <tr>
+         
             <td> ${rezervacija.getRezervisanApartman().getId()} </td>
             <td> ${rezervacija.getBrojNocenja()}</td>
             <td> ${rezervacija.getUkupnaCena()}</td>
             <td> ${rezervacija.getStatus()}</td>
+            <td> ${rezervacija.getGost().getId()}</td>
             
          </tr>
          </c:forEach>
-         
+         </tbody>
       </table>
-   </form>
+      
+</form>
 
 </body>
 </html>

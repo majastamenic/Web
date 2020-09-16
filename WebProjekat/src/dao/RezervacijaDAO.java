@@ -133,6 +133,55 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 			
 		}
 	
+	public static List<Rezervacija> sortiranjePoCeniOpadajuce(){
+		Float a;
+		Float b;
+		Rezervacija c;
+		Rezervacija d;
+		rezervacija = ucitajRezervacije();
+		List<Rezervacija> nesortiraneRezervacije = new ArrayList<Rezervacija>(rezervacija.values());
+		for(int i = 0; i<nesortiraneRezervacije.size() ; i++) {
+			for(int j = 0 ; j < nesortiraneRezervacije.size()-i-1 ; j++) {
+				a=nesortiraneRezervacije.get(j).getUkupnaCena();
+				b=nesortiraneRezervacije.get(j+1).getUkupnaCena();
+				c=nesortiraneRezervacije.get(j);
+				d=nesortiraneRezervacije.get(j+1);
+				
+				if(a.compareTo(b)<0) {
+					Rezervacija temp=d;
+					nesortiraneRezervacije.set(j+1, c);
+					nesortiraneRezervacije.set(j, temp);
+				}
+			}
+		}
+		
+		return nesortiraneRezervacije;
+	}
+	public static List<Rezervacija> sortiranjePoCeniRastuce(){
+		Float a;
+		Float b;
+		Rezervacija c;
+		Rezervacija d;
+		rezervacija = ucitajRezervacije();
+		List<Rezervacija> nesortiraneRezervacije = new ArrayList<Rezervacija>(rezervacija.values());
+		for(int i = 0; i<nesortiraneRezervacije.size() ; i++) {
+			for(int j = 0 ; j < nesortiraneRezervacije.size()-i-1 ; j++) {
+				a=nesortiraneRezervacije.get(j).getUkupnaCena();
+				b=nesortiraneRezervacije.get(j+1).getUkupnaCena();
+				c=nesortiraneRezervacije.get(j);
+				d=nesortiraneRezervacije.get(j+1);
+				
+				if(a.compareTo(b)>0) {
+					Rezervacija temp=d;
+					nesortiraneRezervacije.set(j+1, c);
+					nesortiraneRezervacije.set(j, temp);
+				}
+			}
+		}
+		
+		return nesortiraneRezervacije;
+	}
+	
 	public static int vratiNajveciID() {
 		int maxId = 0;
 		for (Map.Entry<Integer , Rezervacija> rezervacije : rezervacija.entrySet())

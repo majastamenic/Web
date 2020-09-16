@@ -96,14 +96,7 @@ public class UserDAO {
 	}
 
 	
-	public static Korisnik findUserByUsername(String korisnickoIme) {
-		if (!users.containsKey(korisnickoIme)) {
-			return null;
-		}
-		Korisnik user = users.get(korisnickoIme);
-		
-		return user;
-	}
+	
 	
 	
 }

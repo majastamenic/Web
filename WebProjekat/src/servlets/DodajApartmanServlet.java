@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.Apartman;
 import beans.Domacin;
+import beans.Gost;
 import beans.Lokacija;
 import beans.StatusApartman;
 import beans.TipApartmana;
@@ -58,17 +60,34 @@ public class DodajApartmanServlet extends HttpServlet {
 			tip=TipApartmana.Apartman;
 		else
 			tip=TipApartmana.Soba;
-		int brojSoba = Integer.parseInt(request.getParameter("brojSoba"));
-		int brojGostiju = Integer.parseInt(request.getParameter("brojGostiju"));;
-		Lokacija lokacija = new Lokacija();
-		Date datumZaIzdavanje = new Date();
-		Domacin domacin = (Domacin) LogInServlet.ulogovaniKorisnik;
-		float cenaPoNoci = Float.parseFloat(request.getParameter("cenaPoNoci"));
-		String vremeZaPrijavu = request.getParameter("vremeZaPrijavu");
-		String vremeZaOdjavu = request.getParameter("vremeZaOdjavu");
-		StatusApartman status = StatusApartman.Neaktivno;
+	
 		
-		Apartman a = new Apartman(id, tip, brojSoba, brojGostiju, lokacija, datumZaIzdavanje, domacin, cenaPoNoci, vremeZaPrijavu, vremeZaOdjavu, status);
+		int brojSoba = Integer.parseInt(request.getParameter("brojSoba"));
+		int brojGostiju = Integer.parseInt(request.getParameter("brojGostiju"));
+		String idlokacija = request.getParameter("lokacija");
+		
+		Lokacija lokacija1 = new Lokacija();
+		
+		Date datumZaIzdavanje = new Date();
+		HttpSession session = request.getSession();
+		Domacin domacin= (Domacin) session.getAttribute("ulogovaniKorisnik");
+		float cenaPoNoci = Float.parseFloat(request.getParameter("cenaPoNoci"));
+		String vremeZaPrijavu = "14:00";
+		String vremeZaOdjavu = "10:00";
+		StatusApartman status = StatusApartman.Neaktivno;
+		Apartman a= new Apartman();
+		a.setId(id);
+		a.setBrojGostiju(brojGostiju);
+		a.setBrojSoba(brojSoba);
+		a.setCenaPoNoci(cenaPoNoci);
+		a.setDatumZaIzdavanje(datumZaIzdavanje);
+		a.setDomacin(domacin);
+		a.setStatus(status);
+		a.setLokacija(lokacija1);
+		a.setTip(tip);
+		a.setVremeZaOdjavu(vremeZaOdjavu);
+		a.setVremeZaPrijavu(vremeZaPrijavu);
+		
 		
 		ApartmanDAO.ucitajApartmane();
 		ApartmanDAO.sacuvajSveApartmaneIzMape();

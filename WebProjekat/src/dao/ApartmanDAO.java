@@ -379,6 +379,104 @@ public class ApartmanDAO {
 		}
 		return nadjeniApartmani;
 	}
+	/* String a;
+	   String b;
+	   Person c;
+	   Person d;
+	   for (int i=0; i< list.size(); i++){
+	      for(int j=i; j< list.size()-1; j++){
+	         a = list.get(i).getLastName();
+	         b = list.get(j+1).getLastName();
+	         c = list.get(i);
+	         d = list.get(j+1);
+
+	         if ( a.compareTo(b) > 0 )  {
+
+	             Person temp = d;
+	             list.set(j+1, c);        
+	             list.set(i, temp); 
+	        }
+	     }
+	  }
+	  for(Person person: list){
+	      System.out.println(person.lastName);
+	  }
+	}*/
+	
+	public static List<Apartman> sortiranjePoCeniRastuce(){
+		Float a;
+		Float b;
+		Apartman c;
+		Apartman d;
+		apartmani = ucitajApartmane();
+		List<Apartman> nesortiraniApartmani = new ArrayList<Apartman>(apartmani.values());
+		for(int i = 0; i<nesortiraniApartmani.size() ; i++) {
+			for(int j = 0 ; j < nesortiraniApartmani.size()-i-1 ; j++) {
+				a=nesortiraniApartmani.get(j).getCenaPoNoci();
+				b=nesortiraniApartmani.get(j+1).getCenaPoNoci();
+				c=nesortiraniApartmani.get(j);
+				d=nesortiraniApartmani.get(j+1);
+				
+				if(a.compareTo(b)>0) {
+					Apartman temp=d;
+					nesortiraniApartmani.set(j+1, c);
+					nesortiraniApartmani.set(j, temp);
+				}
+			}
+		}
+		/*List<Apartman> sortiraniApartmani = new ArrayList<Apartman>();
+		apartmani = ucitajApartmane();
+		List<Apartman> nesortiraniApartmani = new ArrayList<Apartman>(apartmani.values());
+		Float max= nesortiraniApartmani.get(0).getCenaPoNoci();
+		
+		for(int i = 0; i < nesortiraniApartmani.size();i++) {
+			if(nesortiraniApartmani.get(i).getCenaPoNoci()> max) {
+				
+				
+			}
+		}
+		return sortiraniApartmani;*/
+		return nesortiraniApartmani;
+	}
+	
+	public static List<Apartman> sortiranjePoCeniOpadajuce(){
+		Float a;
+		Float b;
+		Apartman c;
+		Apartman d;
+		apartmani = ucitajApartmane();
+		List<Apartman> nesortiraniApartmani = new ArrayList<Apartman>(apartmani.values());
+		for(int i = 0; i<nesortiraniApartmani.size() ; i++) {
+			for(int j = 0 ; j < nesortiraniApartmani.size()-i-1 ; j++) {
+				a=nesortiraniApartmani.get(j).getCenaPoNoci();
+				b=nesortiraniApartmani.get(j+1).getCenaPoNoci();
+				c=nesortiraniApartmani.get(j);
+				d=nesortiraniApartmani.get(j+1);
+				
+				if(a.compareTo(b)<0) {
+					Apartman temp=d;
+					nesortiraniApartmani.set(j+1, c);
+					nesortiraniApartmani.set(j, temp);
+				}
+			}
+		}
+		/*List<Apartman> sortiraniApartmani = new ArrayList<Apartman>();
+		apartmani = ucitajApartmane();
+		List<Apartman> nesortiraniApartmani = new ArrayList<Apartman>(apartmani.values());
+		Float max= nesortiraniApartmani.get(0).getCenaPoNoci();
+		
+		for(int i = 0; i < nesortiraniApartmani.size();i++) {
+			if(nesortiraniApartmani.get(i).getCenaPoNoci()> max) {
+				
+				
+			}
+		}
+		return sortiraniApartmani;*/
+		return nesortiraniApartmani;
+	}
+	
+
+
 	
 	//Pretraga po nazivu drzave?
 	
