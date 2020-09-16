@@ -18,6 +18,7 @@ import static util.Putanja._PROJECT_LOCATION;
 
 
 import beans.Apartman;
+import beans.Domacin;
 import beans.Gost;
 import beans.Rezervacija;
 import beans.StatusRezervacija;
@@ -52,6 +53,7 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 	}
 	
 	public static Collection<Rezervacija> findAll() {
+		rezervacija = ucitajRezervacije();
 		return rezervacija.values();
 	}
 	
@@ -312,6 +314,30 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 			}
 		}
 		return rezervacijeLista;
+	}
+	public static ArrayList<Rezervacija> ucitajRezervacijeZaDomacina(Domacin domacin) {
+		ArrayList<Rezervacija> rezervacije = new ArrayList<Rezervacija>();
+		rezervacija = ucitajRezervacije();		
+		for(Rezervacija rez:rezervacija.values()) {
+			for(Apartman apartman:ApartmanDAO.ucitajApartmaneOdDomacina(domacin).values()) {
+				if(apartman.equals(rez.getRezervisanApartman())) {
+					rezervacije.add(rez);
+				}
+			}
+		}
+		return rezervacije;
+	}
+	public static ArrayList<Rezervacija> ucitajRezervacijeZaGosta(Gost gost) {
+		ArrayList<Rezervacija> rezervacije = new ArrayList<Rezervacija>();
+		rezervacija = ucitajRezervacije();		
+		for(Rezervacija rez:rezervacija.values()) {
+			for(Apartman apartman:ApartmanDAO.ucitajApartmane().values()) {
+				if(apartman.equals(rez.getRezervisanApartman()) && rez.getGost().equals(gost)) {
+					rezervacije.add(rez);
+				}
+			}
+		}
+		return rezervacije;
 	}
 
 }

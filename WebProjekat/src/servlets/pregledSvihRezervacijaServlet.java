@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Domacin;
+import beans.Gost;
+import beans.Uloga;
 import dao.RezervacijaDAO;
 
 /**
@@ -28,10 +31,16 @@ public class pregledSvihRezervacijaServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unused")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				
+		if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Domacin))
+			request.setAttribute("rezervacije", RezervacijaDAO.ucitajRezervacijeZaDomacina((Domacin) LogInServlet.ulogovaniKorisnik));
+		else if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Gost))
+			request.setAttribute("rezervacije", RezervacijaDAO.ucitajRezervacijeZaGosta((Gost) LogInServlet.ulogovaniKorisnik));
+		else
+			request.setAttribute("rezervacije", RezervacijaDAO.findAll());
 		
-		RezervacijaDAO.ucitajRezervacije();
-		request.setAttribute("listaRezervacija", RezervacijaDAO.findAll());
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledSvihRezervacija.jsp");
 		disp.forward(request, response);
 	}

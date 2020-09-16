@@ -1,11 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<p><br/></p>
+<div class ="row">
+	<div class="col-md-4">
+		<h3>Pregled rezervacija</h3>
+	</div>
+	<div class="col-md-4">
+		<form action="/pregledSvihRezervacijaServlet" method="get">
+			<input type="text" name="pretraga" class = "form-control" placeholder="Pretraga...">
+			<input type="submit" value="Pretraga">
+			<a href="/DodajRezervacijuServlet" class="btn btn-primary">Dodaj rezervaciju</a>
+			<a href="/VisestrukaPretragaRezervacijaServlet">Visestruka pretraga</a>
+		</form>
+	</div>
+</div>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Pregled rezervacija</title>
 </head>
 <body>
  <form method="POST" action="/pregledSvihRezervacijaServlet">
@@ -19,7 +33,7 @@
             <td>Gost:</td>
             
          </tr>  
-         <c:forEach items="${listaRezervacija}" var="rezervacija">    
+         <c:forEach items="${rezervacije}" var="rezervacija">    
          <tr>
             <td> ${rezervacija.getRezervisanApartman().getId()} </td>
             <td> ${rezervacija.getBrojNocenja()}</td>

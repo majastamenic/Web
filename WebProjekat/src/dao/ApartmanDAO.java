@@ -165,12 +165,12 @@ public class ApartmanDAO {
 		return apartmani;
 	}
 	
-	public static Map<Integer, Apartman> ucitajApartmaneOdDomacina(){
+	public static Map<Integer, Apartman> ucitajApartmaneOdDomacina(Domacin domacin){
 		apartmani = ucitajApartmane();
 		Map<Integer, Apartman> apartmaniOdDomacina = new HashMap<Integer, Apartman>();
 		
 		for(Apartman apartman: apartmani.values()) {
-			if(apartman.getDomacin().getKorisnickoIme().equals(LogInServlet.ulogovaniKorisnik.getKorisnickoIme())) {
+			if(apartman.getDomacin().getKorisnickoIme().equals(domacin.getKorisnickoIme())) {
 				apartmaniOdDomacina.put(apartman.getId(), apartman);
 			}
 		}
