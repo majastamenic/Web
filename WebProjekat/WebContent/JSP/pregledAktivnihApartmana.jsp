@@ -12,7 +12,7 @@
     <form action="/AktivniApartmaniServlet" method="get">
    		<input type="text" name="pretraga">
 		<input type="submit" value="Pretraga">
-		<a href="/DodajApartmanServlet">Dodaj apartman</a>
+		<a href="VisestrukaPretragaServlet">Visestruka pretraga</a>
    </form>
 
       <table border="1">
@@ -22,7 +22,8 @@
             <th>Broj gostiju:</th>
             <th>Lokacija:</th>
             <th>Domacin:</th>
-             <td>Cena po noci: </td>
+            <th>Cena po noci:</th>
+             
          </thead>
          <tbody> 
          <c:forEach var="apartman" items="${(pretraga != null) ? ApartmanDAO.pretraga(pretraga) : mapaAktivnihApartmana.values()}">    

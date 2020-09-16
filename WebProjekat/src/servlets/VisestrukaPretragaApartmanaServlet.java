@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,13 +23,13 @@ import dao.LokacijaDAO;
  * Servlet implementation class VisestrukaPretragaServlet
  */
 @WebServlet("/VisestrukaPretragaServlet")
-public class VisestrukaPretragaServlet extends HttpServlet {
+public class VisestrukaPretragaApartmanaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VisestrukaPretragaServlet() {
+    public VisestrukaPretragaApartmanaServlet() {
         super();
         
     }
@@ -48,24 +49,38 @@ public class VisestrukaPretragaServlet extends HttpServlet {
 		String krajnjaCenaString = request.getParameter("krajnjaCena");
 		ArrayList<Apartman> pronadjeniApartmani = new ArrayList<Apartman>();
 		
+		for(Apartman apartman:ApartmanDAO.ucitajApartmaneSpramUloge().values()) {
+			pronadjeniApartmani.add(apartman);
+		}
+		
 		if(pocetniBrojSobaString!=null && krajnjiBrojSobaString!=null && pocetniBrojSobaString!="" && krajnjiBrojSobaString!="") {
 			try {
+				List<Apartman> apartmaniZaBrisanje = new ArrayList<Apartman>();
 				int pocetniBrojSoba = Integer.parseInt(pocetniBrojSobaString);
 				int krajnjiBrojSoba = Integer.parseInt(krajnjiBrojSobaString);
 				
-				ArrayList<Apartman> apartmani = ApartmanDAO.pretragaPoBrojuSoba(pocetniBrojSoba, krajnjiBrojSoba);
-				pronadjeniApartmani.addAll(apartmani);
+				for(Apartman apartman:pronadjeniApartmani) {
+					if(!(apartman.getBrojSoba()>=pocetniBrojSoba && apartman.getBrojSoba()<=krajnjiBrojSoba)) {
+						apartmaniZaBrisanje.add(apartman);
+					}
+				}
+				pronadjeniApartmani.removeAll(apartmaniZaBrisanje);
 				
 			} catch (Exception e) {}
 		}
 		
 		if(pocetniBrojGostijuString!=null && krajnjiBrojGostijuString!=null && pocetniBrojGostijuString!="" && krajnjiBrojGostijuString!="") {
 			try {
+				List<Apartman> apartmaniZaBrisanje = new ArrayList<Apartman>();
 				int pocetniBrojGostiju = Integer.parseInt(pocetniBrojGostijuString);
 				int krajnjiBrojGostiju = Integer.parseInt(krajnjiBrojGostijuString);
 				
-				ArrayList<Apartman> apartmani = ApartmanDAO.pretragaPoBrOsoba(pocetniBrojGostiju, krajnjiBrojGostiju);
-				pronadjeniApartmani.addAll(apartmani);
+				for(Apartman apartman:pronadjeniApartmani) {
+					if(!(apartman.getBrojGostiju()>=pocetniBrojGostiju && apartman.getBrojGostiju()<=krajnjiBrojGostiju)) {
+						apartmaniZaBrisanje.add(apartman);
+					}
+				}
+				pronadjeniApartmani.removeAll(apartmaniZaBrisanje);
 			}catch (Exception e) {}
 		}
 		
@@ -75,23 +90,41 @@ public class VisestrukaPretragaServlet extends HttpServlet {
 				tip = TipApartmana.Apartman;
 			else
 				tip = TipApartmana.Soba;
-			ArrayList<Apartman> apartmani = ApartmanDAO.pretragaPoTipu(tip);
-			pronadjeniApartmani.addAll(apartmani);
+			List<Apartman> apartmaniZaBrisanje = new ArrayList<Apartman>();
+			
+			for(Apartman apartman:pronadjeniApartmani) {
+				if(!apartman.getTip().equals(tip)) {
+					apartmaniZaBrisanje.add(apartman);
+				}
+			}
+			pronadjeniApartmani.removeAll(apartmaniZaBrisanje);
 		}
 		
 		if(lokacijaString!=null && lokacijaString!="") {
 			try {
 				Lokacija lokacija = LokacijaDAO.findLocationById(Integer.parseInt(lokacijaString));
-				ArrayList<Apartman> apartmani = ApartmanDAO.pretragaLokaciji(lokacija);
-				pronadjeniApartmani.addAll(apartmani);
+				List<Apartman> apartmaniZaBrisanje = new ArrayList<Apartman>();
+				
+				for(Apartman apartman:pronadjeniApartmani) {
+					if(!(apartman.getLokacija().equals(lokacija))) {
+						apartmaniZaBrisanje.add(apartman);
+					}
+				}
+				pronadjeniApartmani.removeAll(apartmaniZaBrisanje);
 			}catch (Exception e) {}
 		}
 		
 		if(pogodnostiString!=null && pogodnostiString!="") {
 			try {
 				Amenities pogodnost = AmenitiesDAO.pronadjiPoNazivu(pogodnostiString);
-				ArrayList<Apartman> apartmani = ApartmanDAO.pretragaPoPogodnostima(pogodnost);
-				pronadjeniApartmani.addAll(apartmani);
+				List<Apartman> apartmaniZaBrisanje = new ArrayList<Apartman>();
+				
+				for(Apartman apartman:pronadjeniApartmani) {
+					if(!(apartman.getSadrzajApartmana().contains(pogodnost))) {
+						apartmaniZaBrisanje.add(apartman);
+					}
+				}
+				pronadjeniApartmani.removeAll(apartmaniZaBrisanje);
 				
 			} catch (Exception e) {}
 		}
@@ -100,9 +133,14 @@ public class VisestrukaPretragaServlet extends HttpServlet {
 			try {
 				float pocetnaCena = Float.parseFloat(pocetnaCenaString);
 				float krajnjaCena = Float.parseFloat(krajnjaCenaString);
+				List<Apartman> apartmaniZaBrisanje = new ArrayList<Apartman>();
 				
-				ArrayList<Apartman> apartmani = ApartmanDAO.pretragaPoCeni(pocetnaCena, krajnjaCena);
-				pronadjeniApartmani.addAll(apartmani);
+				for(Apartman apartman:pronadjeniApartmani) {
+					if(!(apartman.getCenaPoNoci()>=pocetnaCena && apartman.getCenaPoNoci()<=krajnjaCena)) {
+						apartmaniZaBrisanje.add(apartman);
+					}
+				}
+				pronadjeniApartmani.removeAll(apartmaniZaBrisanje);
 				
 			} catch (Exception e) {}
 		}

@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 1;1;2020-11-11;4;2000;Kolika je udaljenost od plaze?;101;Kreirana
 2;2;2020-12-12;3;5500;Da li su dozvoljeni kucni ljubimci?;102;Odbijena
 3;2;2020-10-10;2;1000;Kako se krece temperatura?;103;Odbijena
+=======
+1;1;2020-11-11;4;2000;Kolika je udaljenost od plaze?;1;Odbijena
+2;2;2020-12-12;3;1500;Da li su dozvoljeni kucni ljubimci?;19;Odbijena
+3;2;2020-10-10;2;1000;Kako se krece temperatura?;1;Odbijena
+>>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje.git

@@ -124,7 +124,7 @@ public class GostDAO {
 	}
 	
 	public static Gost findGuestById(Integer id) {
-		
+		gosti = ucitajGoste();
 		Gost trazeniGost = null;
 			if(gosti.size()==0) {
 				ucitajGoste();
@@ -256,5 +256,28 @@ public static Gost findGuestByUsername(String username) {
 			
 		}
 
+	public static Gost pretragaPoId(int id) {
+		gosti = ucitajGoste();
+		Gost pronadjeniGost = new Gost();
+		
+		for(Gost gost:gosti.values()) {
+			if(gost.getId() == id)
+				pronadjeniGost = gost;
+		}
+		
+		return pronadjeniGost;
+	}
+	
+	public static Gost pretragaPoKorisnickomImenu(String korisnickoIme) {
+		gosti = ucitajGoste();
+		Gost pronadjeniGost = new Gost();
+		
+		for(Gost gost:gosti.values()) {
+			if(gost.getKorisnickoIme().equals(korisnickoIme))
+				pronadjeniGost = gost;
+		}
+		
+		return pronadjeniGost;
+	}
 
 }

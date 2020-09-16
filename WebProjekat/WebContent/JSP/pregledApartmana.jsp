@@ -34,7 +34,11 @@
             <td>Broj gostiju: </td>
             <td>Lokacija: </td>
             <td>Domacin: </td>
+<<<<<<< HEAD
+            <td>Status: </td>
+=======
             <td>Cena po noci: </td>
+>>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje
             <th class="text-center">Akcije </th>
          </tr>  
          </thead>
@@ -47,7 +51,11 @@
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
+<<<<<<< HEAD
+            <td>${apartman.getStatus()}</td>
+=======
             <td>${apartman.getCenaPoNoci()}</td>
+>>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje
             <td class="text-center">
 
             	<a href='/IzmenaApartmanaServlet?id=${apartman.id} ' class="btn btn-warning">Izmeni</a>

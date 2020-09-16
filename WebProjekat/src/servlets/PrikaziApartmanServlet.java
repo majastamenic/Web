@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Domacin;
 import beans.Uloga;
 import dao.ApartmanDAO;
 
@@ -36,7 +37,7 @@ public class PrikaziApartmanServlet extends HttpServlet {
 		String pretraga = request.getParameter("pretraga");
 		
 		if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Domacin))
-			request.setAttribute("mapaApartmana", ApartmanDAO.ucitajApartmaneOdDomacina());
+			request.setAttribute("mapaApartmana", ApartmanDAO.ucitajApartmaneOdDomacina((Domacin) LogInServlet.ulogovaniKorisnik));
 		else
 			request.setAttribute("mapaApartmana", ApartmanDAO.ucitajApartmane());
 				
