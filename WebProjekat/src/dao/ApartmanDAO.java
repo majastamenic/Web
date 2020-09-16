@@ -18,6 +18,7 @@ import java.util.StringTokenizer;
 
 import static util.Putanja._PROJECT_LOCATION;
 
+import beans.Amenities;
 import beans.Apartman;
 import beans.Domacin;
 
@@ -354,8 +355,8 @@ public class ApartmanDAO {
 			return false;
 	}
 	//Nisam sigurna da je ovo dobra logika!
-	public static List<Apartman> pretragaPoDatumu(Date pocetniDatum, Date krajnjiDatum){
-		List<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+	public static ArrayList<Apartman> pretragaPoDatumu(Date pocetniDatum, Date krajnjiDatum){
+		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
 		ApartmanDAO.apartmani = ucitajApartmane();
 		
 		for(Apartman apartman:apartmani.values()) {
@@ -368,8 +369,8 @@ public class ApartmanDAO {
 		return nadjeniApartmani;
 	}
 	
-	public static List<Apartman> pretragaPoGradu(String nazivGrada){
-		List<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+	public static ArrayList<Apartman> pretragaPoGradu(String nazivGrada){
+		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
 		apartmani = ucitajApartmane();
 		
 		for(Apartman apartman:apartmani.values()) {
@@ -382,8 +383,8 @@ public class ApartmanDAO {
 	
 	//Pretraga po nazivu drzave?
 	
-	public static List<Apartman> pretragaPoCeni(float pocetnaCena, float krajnjaCena){
-		List<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+	public static ArrayList<Apartman> pretragaPoCeni(float pocetnaCena, float krajnjaCena){
+		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
 		apartmani = ucitajApartmane();
 		
 		for(Apartman apartman:apartmani.values()) {
@@ -394,8 +395,8 @@ public class ApartmanDAO {
 		return nadjeniApartmani;
 	}
 	
-	public static List<Apartman> pretragaPoBrojuSoba(int pocetniBrSoba, int krajnjiBrSoba){
-		List<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+	public static ArrayList<Apartman> pretragaPoBrojuSoba(int pocetniBrSoba, int krajnjiBrSoba){
+		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
 		apartmani = ucitajApartmane();
 		
 		for(Apartman apartman:apartmani.values()) {
@@ -406,12 +407,45 @@ public class ApartmanDAO {
 		return nadjeniApartmani;
 	}
 	
-	public static List<Apartman> pretragaPoBrOsoba(int brojOsoba){
-		List<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+	public static ArrayList<Apartman> pretragaPoBrOsoba(int pocetniBrojOsoba, int krajnjiBrojSoba){
+		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
 		apartmani = ucitajApartmane();
 		
 		for(Apartman apartman:apartmani.values()) {
-			if(apartman.getBrojGostiju() == brojOsoba) {
+			if(apartman.getBrojGostiju()>=pocetniBrojOsoba && apartman.getBrojGostiju()<=krajnjiBrojSoba) {
+				nadjeniApartmani.add(apartman);
+			}
+		}
+		return nadjeniApartmani;
+	}
+	public static ArrayList<Apartman> pretragaPoTipu(TipApartmana tip) {
+		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+		apartmani = ucitajApartmane();
+		
+		for(Apartman apartman:apartmani.values()) {
+			if(apartman.getTip().equals(tip)) {
+				nadjeniApartmani.add(apartman);
+			}
+		}
+		return nadjeniApartmani;
+	}
+	public static ArrayList<Apartman> pretragaLokaciji(Lokacija lokacija) {
+		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+		apartmani = ucitajApartmane();
+		
+		for(Apartman apartman:apartmani.values()) {
+			if(apartman.getLokacija().equals(lokacija)) {
+				nadjeniApartmani.add(apartman);
+			}
+		}
+		return nadjeniApartmani;
+	}
+	public static ArrayList<Apartman> pretragaPoPogodnostima(Amenities pogodnost) {
+		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
+		apartmani = ucitajApartmane();
+		
+		for(Apartman apartman:apartmani.values()) {
+			if(apartman.getSadrzajApartmana().contains(pogodnost)) {
 				nadjeniApartmani.add(apartman);
 			}
 		}
