@@ -22,6 +22,8 @@
 <body>
 <form method="POST" action="/PrikaziApartmanGostNeulogovaniServlet">
       <table border="1">
+      <a href="SortiranjeApartmanaRastuceGostNeulogovaniServlet">Sortiraj apartmane po ceni rastuce</a>
+		<a href="SortiranjeApartmanaOpadajuceGostNeulogovaniServlet">Sortiraj apartmane po ceni opadajuce</a>
       <thead>
          <tr>
          

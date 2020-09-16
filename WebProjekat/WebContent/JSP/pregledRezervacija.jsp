@@ -28,7 +28,12 @@
             <td> ${rezervacija.getBrojNocenja()}</td>
             <td> ${rezervacija.getUkupnaCena()}</td>
             <td> ${rezervacija.getStatus()}</td>
-            
+
+    <c:if test="${rezervacija.getStatus().equals('Kreirana')}" var="condition">
+        <td><a href="OdustanakRezervacijeServlet">Odustanak</a></td>
+    </c:if>
+
+           
          </tr>
          </c:forEach>
          
