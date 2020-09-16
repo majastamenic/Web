@@ -13,7 +13,7 @@
 			<input type="text" name="pretraga" class = "form-control" placeholder="Pretraga...">
 			<input type="submit" value="Pretraga">
 			<a href="DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
-			<a href="VisestrukaPretragaServlet" class="btn btn-primary">Visestruka pretraga</a>
+			<a href="VisestrukaPretragaServlet">Visestruka pretraga</a>
 		</form>
 	</div>
 </div>
@@ -32,6 +32,7 @@
             <td>Broj gostiju: </td>
             <td>Lokacija: </td>
             <td>Domacin: </td>
+            <td>Status: </td>
             <th class="text-center">Akcije </th>
          </tr>  
          </thead>
@@ -44,6 +45,7 @@
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
+            <td>${apartman.getStatus()}</td>
             <td class="text-center">
             	<a href='IzmenaApartmanaServlet?id=${apartman.getId()} ' class="btn btn-warning">Izmeni</a>
             	<a href="BrisanjeApartmanaServlet?id=${apartman.getId()} " class="btn btn-danger">Obrisi</a>

@@ -1,14 +1,20 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 
 import beans.Administrator;
+import beans.Apartman;
 import beans.Domacin;
 import beans.Gost;
 import beans.Korisnik;
+import beans.Pol;
+import beans.Rezervacija;
+import beans.Uloga;
+import servlets.LogInServlet;
 
 
 /***
@@ -95,6 +101,25 @@ public class UserDAO {
 		return null;
 	}
 
+	public static ArrayList<Korisnik> ucitajKorisnikeSpramUloge(){
+		ArrayList<Korisnik> korisnici = new ArrayList<Korisnik>();
+		Collection<Apartman> apartmaniDomacina = ApartmanDAO.ucitajApartmaneOdDomacina().values();
+		if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Domacin)) {
+			for(Rezervacija rezervacija:RezervacijaDAO.ucitajRezervacije().values()) {
+				for(Apartman apartman:apartmaniDomacina) {
+					if(rezervacija.getRezervisanApartman().equals(apartman)) {
+						korisnici.add(rezervacija.getGost());
+					}
+				}
+			}
+			
+		}else {
+			korisnici.addAll(AdministratorDAO.ucitajAdmine().values());
+			korisnici.addAll(GostDAO.ucitajGoste().values());
+			korisnici.addAll(DomacinDAO.ucitajDomacine().values());
+		}
+		return korisnici;
+	}
 	
 	public static Korisnik findUserByUsername(String korisnickoIme) {
 		if (!users.containsKey(korisnickoIme)) {
@@ -103,6 +128,73 @@ public class UserDAO {
 		Korisnik user = users.get(korisnickoIme);
 		
 		return user;
+	}
+
+	public static ArrayList<Korisnik> pretragaPoImenu(String ime) {
+		ArrayList<Korisnik> nadjeniKorisnici = new ArrayList<Korisnik>();
+		
+		for(Korisnik korisnik:ucitajKorisnikeSpramUloge()) {
+			if(korisnik.getIme().contains(ime)) {
+				nadjeniKorisnici.add(korisnik);
+			}
+		}
+		
+		return nadjeniKorisnici;
+	}
+
+
+	public static ArrayList<Korisnik> pretragaPoPrezimenu(String prezime) {
+ArrayList<Korisnik> nadjeniKorisnici = new ArrayList<Korisnik>();
+		
+		for(Korisnik korisnik:ucitajKorisnikeSpramUloge()) {
+			if(korisnik.getPrezime().contains(prezime)) {
+				nadjeniKorisnici.add(korisnik);
+			}
+		}
+		
+		return nadjeniKorisnici;
+	}
+
+	public static ArrayList<Korisnik> pretragaPoPolu(Pol pol) {
+		ArrayList<Korisnik> nadjeniKorisnici = new ArrayList<Korisnik>();
+		
+		for(Korisnik korisnik:ucitajKorisnikeSpramUloge()) {
+			if(korisnik.getPol().equals(pol)) {
+				nadjeniKorisnici.add(korisnik);
+			}
+		}
+		
+		return nadjeniKorisnici;
+	}
+
+	public static ArrayList<Korisnik> pronadjiAdministratore() {
+		ArrayList<Korisnik> pronadjeniAdministratori = new ArrayList<Korisnik>();
+		
+		for(Administrator admin:AdministratorDAO.ucitajAdmine().values()) {
+			pronadjeniAdministratori.add(admin);
+		}
+		
+		return pronadjeniAdministratori;
+	}
+
+	public static ArrayList<Korisnik> pronadjiDomacine() {
+		ArrayList<Korisnik> pronadjeniDomacini = new ArrayList<Korisnik>();
+		
+		for(Domacin domacin:DomacinDAO.ucitajDomacine().values()) {
+			pronadjeniDomacini.add(domacin);
+		}
+		
+		return pronadjeniDomacini;
+	}
+
+	public static Collection<? extends Korisnik> pronadjiGoste() {
+		ArrayList<Korisnik> pronadjeniGosti = new ArrayList<Korisnik>();
+		
+		for(Gost gost:GostDAO.ucitajGoste().values()) {
+			pronadjeniGosti.add(gost);
+		}
+		
+		return pronadjeniGosti;
 	}
 	
 	
