@@ -266,5 +266,17 @@ public static void sacuvajSvePogodnostiIzMape() throws IOException {
 			return false;
 	}
 
+	public static Amenities pronadjiPoNazivu(String pogodnostiString) {
+		Amenities nadjenaPogodnost = new Amenities();
+		pogodnosti = ucitajPogodnosti();
+		
+		for(Amenities pogodnost:pogodnosti.values()) {
+			if(pogodnost.getNaziv().equals(pogodnostiString)) {
+				nadjenaPogodnost = pogodnost;
+			}
+		}
+		return nadjenaPogodnost;
+	}
+
 
 }

@@ -39,7 +39,7 @@
          </tr>  
          </thead>
          <tbody>
-         <c:forEach items="${mapaApartmana}" var="apartman">   
+         <c:forEach items="${mapaApartmana.values()}" var="apartman">   
          <tr>
          
             <td>${apartman.getTip()}</td>
@@ -49,8 +49,10 @@
             <td>${apartman.getDomacin().getId()}</td>
             <td>${apartman.getCenaPoNoci()}</td>
             <td class="text-center">
+
             	<a href='/IzmenaApartmanaServlet?id=${apartman.id} ' class="btn btn-warning">Izmeni</a>
             	<a href="BrisanjeApartmanaServlet?id=${apartman.id} " class="btn btn-danger">Obrisi</a>
+
             </td>
          </tr>
          </c:forEach>
