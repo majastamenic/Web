@@ -26,6 +26,8 @@ import beans.Domacin;
 import beans.Lokacija;
 import beans.StatusApartman;
 import beans.TipApartmana;
+import beans.Uloga;
+import servlets.LogInServlet;
 
 
 
@@ -163,6 +165,19 @@ public class ApartmanDAO {
 		return apartmani;
 	}
 	
+	public static Map<Integer, Apartman> ucitajApartmaneOdDomacina(){
+		apartmani = ucitajApartmane();
+		Map<Integer, Apartman> apartmaniOdDomacina = new HashMap<Integer, Apartman>();
+		
+		for(Apartman apartman: apartmani.values()) {
+			if(apartman.getDomacin().getKorisnickoIme().equals(LogInServlet.ulogovaniKorisnik.getKorisnickoIme())) {
+				apartmaniOdDomacina.put(apartman.getId(), apartman);
+			}
+		}
+		
+		return apartmaniOdDomacina;
+	}
+	
 	public static Map<Integer, Apartman> aktivniApartmani(){
 		apartmani = ucitajApartmane();
 		Map<Integer, Apartman> aktivniApartmani = new HashMap<Integer, Apartman>();
@@ -190,7 +205,15 @@ public class ApartmanDAO {
 	}
 	
 	
-
+	public static Map<Integer, Apartman> ucitajApartmaneSpramUloge(){
+		try {
+			if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Administrator) || LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Domacin))
+				return ucitajApartmane();
+			
+		} catch (Exception e) {}
+		return aktivniApartmani();			
+	}
+	
 	public static Apartman findApartmentById(Integer id) {
 		Apartman trazeniApartman = null;
 		
@@ -206,9 +229,9 @@ public class ApartmanDAO {
 	}
 	
 	@SuppressWarnings("unlikely-arg-type")
-	public static List<Apartman> pretraga(String tekst){
-		List<Apartman> listaApartmana = new ArrayList<Apartman>();
-		apartmani = ucitajApartmane();
+	public static ArrayList<Apartman> pretraga(String tekst){
+		ArrayList<Apartman> listaApartmana = new ArrayList<Apartman>();
+		apartmani = ucitajApartmaneSpramUloge();
 		
 		for(Apartman apartman:apartmani.values()) {
 			if(tekst.equals(apartman.getTip())) {
@@ -231,14 +254,7 @@ public class ApartmanDAO {
 		return listaApartmana;
 	}
 	
-	public static ArrayList<Apartman> find(){
-		ArrayList<Apartman> listaApartmana = new ArrayList<Apartman>();
-		apartmani = ucitajApartmane();
-		
-		
-		
-		return listaApartmana;
-	}
+
 	
 	public static int vratiNajveciID() {
 		int maxId = 0;
@@ -357,7 +373,7 @@ public class ApartmanDAO {
 	//Nisam sigurna da je ovo dobra logika!
 	public static ArrayList<Apartman> pretragaPoDatumu(Date pocetniDatum, Date krajnjiDatum){
 		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
-		ApartmanDAO.apartmani = ucitajApartmane();
+		ApartmanDAO.apartmani = ucitajApartmaneSpramUloge();
 		
 		for(Apartman apartman:apartmani.values()) {
 			if(apartman.getDostupnostPoDatumima().contains(pocetniDatum) && apartman.getDostupnostPoDatumima().contains(krajnjiDatum)) {
@@ -371,7 +387,7 @@ public class ApartmanDAO {
 	
 	public static ArrayList<Apartman> pretragaPoGradu(String nazivGrada){
 		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
-		apartmani = ucitajApartmane();
+		apartmani = ucitajApartmaneSpramUloge();
 		
 		for(Apartman apartman:apartmani.values()) {
 			if(apartman.getLokacija().getAdresa().getNaseljenoMesto().equals(nazivGrada)) {
@@ -381,11 +397,9 @@ public class ApartmanDAO {
 		return nadjeniApartmani;
 	}
 	
-	//Pretraga po nazivu drzave?
-	
 	public static ArrayList<Apartman> pretragaPoCeni(float pocetnaCena, float krajnjaCena){
 		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
-		apartmani = ucitajApartmane();
+		apartmani = ucitajApartmaneSpramUloge();
 		
 		for(Apartman apartman:apartmani.values()) {
 			if(apartman.getCenaPoNoci()>=pocetnaCena && apartman.getCenaPoNoci()<=krajnjaCena) {
@@ -397,7 +411,7 @@ public class ApartmanDAO {
 	
 	public static ArrayList<Apartman> pretragaPoBrojuSoba(int pocetniBrSoba, int krajnjiBrSoba){
 		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
-		apartmani = ucitajApartmane();
+		apartmani = ucitajApartmaneSpramUloge();
 		
 		for(Apartman apartman:apartmani.values()) {
 			if(apartman.getBrojSoba()>=pocetniBrSoba && apartman.getBrojSoba()<=krajnjiBrSoba) {
@@ -409,7 +423,7 @@ public class ApartmanDAO {
 	
 	public static ArrayList<Apartman> pretragaPoBrOsoba(int pocetniBrojOsoba, int krajnjiBrojSoba){
 		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
-		apartmani = ucitajApartmane();
+		apartmani = ucitajApartmaneSpramUloge();
 		
 		for(Apartman apartman:apartmani.values()) {
 			if(apartman.getBrojGostiju()>=pocetniBrojOsoba && apartman.getBrojGostiju()<=krajnjiBrojSoba) {
@@ -420,7 +434,7 @@ public class ApartmanDAO {
 	}
 	public static ArrayList<Apartman> pretragaPoTipu(TipApartmana tip) {
 		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
-		apartmani = ucitajApartmane();
+		apartmani = ucitajApartmaneSpramUloge();
 		
 		for(Apartman apartman:apartmani.values()) {
 			if(apartman.getTip().equals(tip)) {
@@ -431,7 +445,7 @@ public class ApartmanDAO {
 	}
 	public static ArrayList<Apartman> pretragaLokaciji(Lokacija lokacija) {
 		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
-		apartmani = ucitajApartmane();
+		apartmani = ucitajApartmaneSpramUloge();
 		
 		for(Apartman apartman:apartmani.values()) {
 			if(apartman.getLokacija().equals(lokacija)) {
@@ -442,7 +456,7 @@ public class ApartmanDAO {
 	}
 	public static ArrayList<Apartman> pretragaPoPogodnostima(Amenities pogodnost) {
 		ArrayList<Apartman> nadjeniApartmani = new ArrayList<Apartman>();
-		apartmani = ucitajApartmane();
+		apartmani = ucitajApartmaneSpramUloge();
 		
 		for(Apartman apartman:apartmani.values()) {
 			if(apartman.getSadrzajApartmana().contains(pogodnost)) {
@@ -451,5 +465,7 @@ public class ApartmanDAO {
 		}
 		return nadjeniApartmani;
 	}
+	
+	
 
 }

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import beans.Uloga;
 import dao.ApartmanDAO;
 
 /**
@@ -34,9 +34,12 @@ public class PrikaziApartmanServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pretraga = request.getParameter("pretraga");
-		ApartmanDAO.ucitajApartmane();
-		request.setAttribute("mapaApartmana", ApartmanDAO.findAll());
 		
+		if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Domacin))
+			request.setAttribute("mapaApartmana", ApartmanDAO.ucitajApartmaneOdDomacina());
+		else
+			request.setAttribute("mapaApartmana", ApartmanDAO.ucitajApartmane());
+				
 		
 		if(pretraga!=null) {
 			if(pretraga =="") {

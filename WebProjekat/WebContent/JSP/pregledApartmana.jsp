@@ -36,7 +36,7 @@
          </tr>  
          </thead>
          <tbody>
-         <c:forEach items="${mapaApartmana}" var="apartman">   
+         <c:forEach items="${mapaApartmana.values()}" var="apartman">   
          <tr>
          
             <td>${apartman.getTip()}</td>
