@@ -48,6 +48,7 @@ body {
          <tr>
             <td>Lokacija:</td>
             <td><select name="lokacija" id="lokacija" class="form-control form-control-sm">
+            <option value=""></option>
             <c:forEach items="${listaLokacija}" var="lokacija"> 
             <option value="lokacija">${lokacija.getId()}</option> 
             </c:forEach>  
@@ -57,6 +58,7 @@ body {
           <tr>
             <td>Pogodnosti:</td>
             <td><select name="Pogodnosti" id="Pogodnosti" class="form-control form-control-sm">
+            <option value=""></option>
             <c:forEach items="${listaPogodnosti}" var="Pogodnosti"> 
             <option value="Pogodnosti">${Pogodnosti.getNaziv()}</option> 
             </c:forEach>  

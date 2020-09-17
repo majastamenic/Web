@@ -41,7 +41,6 @@ body {
             </select></td>
          </tr> 
 		 <tr>
-         <c:if test="${LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Administrator)}">
             	<td>Uloga:</td>
             	<td><select name="uloga" id="uloga" class="form-control form-control-sm">
             		<option value=""></option>
@@ -49,7 +48,6 @@ body {
   					<option value="gost">Gost</option>
   					<option value="administrator">Administrator</option>
             	</select></td>
-         </c:if>
 		</tr>
 		<tr>
         	<td></td>

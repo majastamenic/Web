@@ -24,9 +24,11 @@ body {
 	<p><br/></p>
    <form method="POST" action="/LogInServlet">
    <div class="container">
-            <div class="col-sm-3 my-1">
-            <h3 style="color: black"><b>LogIn</b></h3>
+            <div class="col-sm-4 my-1">
+            
+            <h3 style="color: black"><b>Prijava</b></h3>
             <p><br/></p>
+            <div class="card wow fadeInLeft" data-wow-delay="0.3s">
       			<label class="sr-only" for="inlineFormInputGroupUsername">KorisnickoIme</label>
       			<div class="input-group">
         			<div class="input-group-prepend">
@@ -40,13 +42,23 @@ body {
         			<input type="password" name="lozinka" class="form-control" id="inlineFormInputGroupUsername" placeholder="Lozinka"/>
       			</div>
   				<a href="/JSP/registracija.jsp">Registracija</a><br/>
-				<input type="submit" class="btn btn-primary" value="Prijavi se"><br/>
-				<a href="/JSP/neulogovaniKorisnik.jsp">Niste ulogovani?</a><br/>
-        </div>
-        </div>
+  				</div>
+				<input type="submit" class="form-control btn btn-primary" value="Prijavi se"><br/>
+				<p><br/></p>
+				<p><br/></p>
+				     
+    <a href= "/PrikaziApartmanGostNeulogovaniServlet" class="form-control btn btn-info">Prikaz Apartmani </a>
+    <p><br/></p>
+    <a href= "/PregledKomentaraGostijuNaApartmaneServlet" class="form-control btn btn-info"> Pregled komentara gostiju</a>
+      </div> 
+ 
+      </div>
    </form>
    <% if (request.getAttribute("err") != null) { %>
-		<p style="color: red"><%=request.getAttribute("err")%></p>
+   		<div class="alert alert-danger" role="alert">
+	<p style="color: red"><%=request.getAttribute("err")%></p>
+	</div>
+		
 	<% } %>
 </body>
 </html>

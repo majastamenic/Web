@@ -49,7 +49,8 @@ private static Map<Integer, Adresa> adrese = new HashMap<>();
 		return adresa;
 	}
 	
-	public Collection<Adresa> findAll() {
+	public static Collection<Adresa> findAll() {
+		adrese = ucitajAdrese();
 		return adrese.values();
 	}
 	

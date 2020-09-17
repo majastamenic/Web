@@ -30,9 +30,9 @@ body {
          <td><b>Pogodnosti</b></td>   
          </tr>  
          <c:forEach items="${listaPogodnosti}" var="pogodnost">    
-         <tr class="form-control form-control-sm">
+         <tr>
          <td>${pogodnost.getNaziv()}</td>
-          <td><a href="\IzmeniPogodnostServlet?id=${pogodnost.id}">Izmeni</a></td>
+          <td><a href="/IzmeniPogodnostServlet?id=${pogodnost.id}">Izmeni</a></td>
            
          </tr>
          </c:forEach>

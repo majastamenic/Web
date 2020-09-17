@@ -49,6 +49,7 @@ private static Map<Integer, Amenities> pogodnosti = new HashMap<>();
 	}
 	
 	public static Collection<Amenities> findAll() {
+		pogodnosti = ucitajPogodnosti();
 		return pogodnosti.values();
 	}
 	

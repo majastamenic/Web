@@ -90,7 +90,7 @@ public class VisestrukaPretragaKorisnikaServlet extends HttpServlet {
 			pronadjeniKorisnici.removeAll(korisniciZaBrisanje);
 		}
 
-		if (ulogaString != null && !ulogaString.isEmpty()) {
+		if (ulogaString != null && !ulogaString.isEmpty() && LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Administrator)) {
 			Uloga uloga = pretvoriUlogu(ulogaString);
 			List<Korisnik> korisniciZaBrisanje = new ArrayList<Korisnik>();
 			for (Korisnik korisnik : pronadjeniKorisnici) {

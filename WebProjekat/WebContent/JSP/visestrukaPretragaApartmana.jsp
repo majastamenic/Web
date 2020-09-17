@@ -80,6 +80,7 @@ body {
             <th>Broj gostiju: </th>
             <th>Lokacija: </th>
             <th>Domacin: </th>
+            <th>Cena po noci:</th>
          </tr>  
          </thead>
          <tbody>
@@ -91,6 +92,7 @@ body {
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
+            <td>${apartman.getCenaPoNoci()}</td>
          </tr>
          </c:forEach>
          </tbody>

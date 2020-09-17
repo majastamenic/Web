@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import beans.Gost;
 import dao.GostDAO;
+import dao.UserDAO;
 
 
 /**
@@ -66,8 +67,11 @@ public class RegistracijaServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			request.setAttribute("ulogovaniKorisnik", gost);				
 			session.setAttribute("ulogovaniKorisnik", gost);
+			
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilGostServlet");
 			requestDispatcher.forward(request, response);
+			
+			LogInServlet.ulogovaniKorisnik = UserDAO.findUserByCredentials(korisnickoIme, lozinka);
 		}
 		
 		else {
