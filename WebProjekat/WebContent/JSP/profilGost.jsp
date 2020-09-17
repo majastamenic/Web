@@ -41,6 +41,7 @@ body {
 		<td></td>
 		<td><a href= "/kreiranjeRezervacijeServlet" class="btn btn-info"> Kreiranje rezervacija.</a></td>
 		<td><a href= "/dodavanjeKomentaraServlet" class="btn btn-info"> Komentar .</a></td>
+		<td><a href= "/PregledKomentaraNeulogovaniServlet" class="btn btn-info"> Pregled komentara na apartmane.</a></td>
 	</tr>
 	</tbody>
 	</table>

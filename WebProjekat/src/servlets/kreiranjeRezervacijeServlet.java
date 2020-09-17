@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,8 +9,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
+import beans.Apartman;
+import beans.Gost;
+import beans.Rezervacija;
+import beans.StatusRezervacija;
 import dao.ApartmanDAO;
+import dao.RezervacijaDAO;
 
 /**
  * Servlet implementation class kreiranjeRezervacijeServlet
@@ -42,6 +51,41 @@ public class kreiranjeRezervacijeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		doGet(request, response);
+		String idApartmana = request.getParameter("apartman");
+		
+		Apartman apartman = new Apartman();
+		ApartmanDAO.ucitajApartmane();
+		apartman= ApartmanDAO.findApartmentById(Integer.parseInt(idApartmana));
+		String datumPocetkaString = request.getParameter("datum");
+		String brojNocenjaString = request.getParameter("brojNocenja");
+		String poruka = request.getParameter("poruka");
+		
+		Rezervacija rezervacija = new Rezervacija();
+		
+		
+			rezervacija.setId(RezervacijaDAO.vratiNajveciID());
+			rezervacija.setRezervisanApartman(apartman);
+			try {
+				try {SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		        
+					rezervacija.setPocetniDatum(formatter.parse(datumPocetkaString));
+				} catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (ParseException e) {}
+			
+			rezervacija.setBrojNocenja(Integer.parseInt(brojNocenjaString));
+			rezervacija.setPoruka(poruka);
+			rezervacija.setGost((Gost) LogInServlet.ulogovaniKorisnik);
+			rezervacija.setStatus(StatusRezervacija.Kreirana);
+			rezervacija.setUkupnaCena(rezervacija.getRezervisanApartman().getCenaPoNoci() * rezervacija.getBrojNocenja());
+			
+			
+			RezervacijaDAO.ucitajRezervacije();
+			RezervacijaDAO.sacuvajSveRezervacijeIzMape();
+			RezervacijaDAO.dodajRezervacijuUMapu(rezervacija);
+			RezervacijaDAO.sacuvajSveRezervacijeIzMape();
 	}
 
 }

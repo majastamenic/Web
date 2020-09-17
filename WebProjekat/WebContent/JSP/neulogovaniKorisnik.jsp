@@ -26,7 +26,7 @@ body {
   <tr>
     <td></td>
     <td><a href= "/PrikaziApartmanGostNeulogovaniServlet" class="btn btn-info"> Apartmani </a></td>
-    <td><a href= "/PregledKomentaraGostijuNaApartmaneServlet" class="btn btn-info"> Pregled komentara gostiju.</a></td>
+    <td><a href= "/PregledKomentaraNeulogovaniServlet" class="btn btn-info"> Pregled komentara gostiju.</a></td>
   </tr>
   <tr></tr>
   </tbody>

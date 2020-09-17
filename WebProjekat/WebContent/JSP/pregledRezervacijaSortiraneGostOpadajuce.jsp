@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-
 <p><br/></p>
-
 <head>
 <style>
 body {
@@ -21,47 +19,41 @@ body {
 <title>Pregled rezervacija</title>
 </head>
 <body>
-
-<form method="POST" action="/pregledRezervacijaServlet">
+<form method="POST" action="SortiraneRezervacijeOpadajuceGostServlet">
 <div class = "container">
-	<div class="col-md-4">
-		<h3 style="color: black"><b>Rezervacije</b></h3>
-	</div>
-	<p><br/></p>
-	<a href="SortiraneRezervacijeRastuceGostServlet" class="btn btn-secondary">Sortiraj rezervacije po ceni rastuce</a>
-	<a href="SortiraneRezervacijeOpadajuceGostServlet" class="btn btn-secondary">Sortiraj rezervacije po ceni opadajuce</a>
-	
-		
+	<h3 style="color: black"><b>Rezervacije</b></h3>
+	<p><br/><p>
       <table class="table table-boardered table-striped table-hover table-light">
       <thead class="thead-dark">
-         <tr>
-         	<th>Rezervisan apartman:</th>
+         
+         
+           <tr>
+         <th>Rezervisan apartman:</th>
             <th>Broj nocenja:</th>
             <th>Cena:</th>
             <th>Status:</th>
+            <th>Gost:</th>
+            
+         </tr>  
             
            
-         </tr>  
          </thead>
-         <c:forEach items="${ulogovaniKorisnik.rezervacije}" var="rezervacija"> 
-            
+         <tbody>
+         <c:forEach items="${listaRezervacija}" var="rezervacija">   
          <tr>
+         
             <td> ${rezervacija.getRezervisanApartman().getId()} </td>
             <td> ${rezervacija.getBrojNocenja()}</td>
             <td> ${rezervacija.getUkupnaCena()}</td>
             <td> ${rezervacija.getStatus()}</td>
-
-    <c:if test="${rezervacija.getStatus().equals('Kreirana')}" var="condition">
-        <td><a href="OdustanakRezervacijeServlet">Odustanak</a></td>
-    </c:if>
-
-           
+            <td> ${rezervacija.getGost().getId()}</td>
+            
          </tr>
          </c:forEach>
-         
+         </tbody>
       </table>
-     </div> 
-   </form>
+  </div>    
+</form>
 
 </body>
 </html>

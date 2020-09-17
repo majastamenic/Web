@@ -170,7 +170,7 @@ public class ApartmanDAO {
 		Map<Integer, Apartman> apartmaniOdDomacina = new HashMap<Integer, Apartman>();
 		
 		for(Apartman apartman: apartmani.values()) {
-			if(apartman.getDomacin().getKorisnickoIme().equals(domacin.getKorisnickoIme())) {
+			if(apartman.getDomacin().equals(domacin)) {
 				apartmaniOdDomacina.put(apartman.getId(), apartman);
 			}
 		}

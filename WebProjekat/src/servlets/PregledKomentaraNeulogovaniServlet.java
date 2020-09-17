@@ -1,8 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,21 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Domacin;
-import beans.Rezervacija;
-import dao.RezervacijaDAO;
+import dao.KomentarDAO;
 
 /**
- * Servlet implementation class pregledRezervacijaDomacinServlet
+ * Servlet implementation class PregledKomentaraNeulogovaniServlet
  */
-@WebServlet("/pregledRezervacijaDomacinServlet")
-public class pregledRezervacijaDomacinServlet extends HttpServlet {
+@WebServlet("/PregledKomentaraNeulogovaniServlet")
+public class PregledKomentaraNeulogovaniServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public pregledRezervacijaDomacinServlet() {
+    public PregledKomentaraNeulogovaniServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,10 +30,10 @@ public class pregledRezervacijaDomacinServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HashSet<Rezervacija> setRezervacije = new HashSet<Rezervacija>(RezervacijaDAO.ucitajRezervacijeZaDomacina((Domacin) LogInServlet.ulogovaniKorisnik));
-		ArrayList<Rezervacija> listaRezervacija = new ArrayList<Rezervacija>(setRezervacije);
-		request.setAttribute("rezervacije", listaRezervacija);
-		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledRezervacijaDomacin.jsp");
+		// TODO Auto-generated method stub
+		KomentarDAO.ucitajKomentare();
+		request.setAttribute("listaKomentara", KomentarDAO.ucitajKomentareNaAktivne().values());
+		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledKomentaraNeulogovani.jsp");
 		disp.forward(request, response);
 	}
 

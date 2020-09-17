@@ -162,6 +162,21 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 		return komentariNaAktivne;
 		}
 	
+	public static Map<Integer, KomentarZaApartman> ucitajKomentareNaAktivne(){
+		komentari = ucitajKomentare();
+		Map<Integer, KomentarZaApartman> komentariNaAktivne = new HashMap<Integer, KomentarZaApartman>();
+		
+		for(Apartman apartman: ApartmanDAO.aktivniApartmani().values()) {
+			for(KomentarZaApartman komentar: komentari.values()) {
+				if(komentar.getApartman().getId()==apartman.getId()) {
+					komentariNaAktivne.put(komentar.getId(), komentar);
+				}
+			}
+		}
+		
+		return komentariNaAktivne;
+	}
+	
 	
 	public static int vratiNajveciID() {
 		int maxId = 0;

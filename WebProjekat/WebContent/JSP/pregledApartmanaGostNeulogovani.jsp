@@ -25,8 +25,8 @@ body {
 	<h3 style="color: black"><b>Apartmani</b></h3>
     </div>
     <p><br/></p>
-    <a href="SortiraniApartmaniRastuceServlet" class="btn btn-secondary">Sortiraj apartmane po ceni rastuce</a>
-    <a href="SortiraniApartmaniOpadajuceServlet" class="btn btn-secondary">Sortiraj apartmane po ceni opadajuce</a>
+    <a href="SortiranjeApartmanaRastuceGostNeulogovaniServlet" class="btn btn-secondary">Sortiraj apartmane po ceni rastuce</a>
+    <a href="SortiranjeApartmanaOpadajuceGostNeulogovaniServlet" class="btn btn-secondary">Sortiraj apartmane po ceni opadajuce</a>
     <div class="text-right">
     <a href="VisestrukaPretragaServlet" class="btn btn-primary">Pretraga</a>
     </div>

@@ -134,6 +134,55 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 				return null;
 			
 		}
+	public static List<Rezervacija> rezervacijeGosta(Gost gost){
+		return gost.getRezervacije();
+	}
+	
+	public static List<Rezervacija> sortiranjePoCeniGostOpadajuce(Gost gost){
+		Float a;
+		Float b;
+		Rezervacija c;
+		Rezervacija d;
+		List<Rezervacija> nesortiraneRezervacije = rezervacijeGosta(gost);
+		for(int i = 0; i<nesortiraneRezervacije.size() ; i++) {
+			for(int j = 0 ; j < nesortiraneRezervacije.size()-i-1 ; j++) {
+				a=nesortiraneRezervacije.get(j).getUkupnaCena();
+				b=nesortiraneRezervacije.get(j+1).getUkupnaCena();
+				c=nesortiraneRezervacije.get(j);
+				d=nesortiraneRezervacije.get(j+1);
+				
+				if(a.compareTo(b)<0) {
+					Rezervacija temp=d;
+					nesortiraneRezervacije.set(j+1, c);
+					nesortiraneRezervacije.set(j, temp);
+				}
+			}
+		}
+		return nesortiraneRezervacije;
+	}
+	
+	public static List<Rezervacija> sortiranjePoCeniGostRastuce(Gost gost){
+		Float a;
+		Float b;
+		Rezervacija c;
+		Rezervacija d;
+		List<Rezervacija> nesortiraneRezervacije = rezervacijeGosta(gost);
+		for(int i = 0; i<nesortiraneRezervacije.size() ; i++) {
+			for(int j = 0 ; j < nesortiraneRezervacije.size()-i-1 ; j++) {
+				a=nesortiraneRezervacije.get(j).getUkupnaCena();
+				b=nesortiraneRezervacije.get(j+1).getUkupnaCena();
+				c=nesortiraneRezervacije.get(j);
+				d=nesortiraneRezervacije.get(j+1);
+				
+				if(a.compareTo(b)>0) {
+					Rezervacija temp=d;
+					nesortiraneRezervacije.set(j+1, c);
+					nesortiraneRezervacije.set(j, temp);
+				}
+			}
+		}
+		return nesortiraneRezervacije;
+	}
 	
 	public static List<Rezervacija> sortiranjePoCeniOpadajuce(){
 		Float a;
@@ -336,8 +385,10 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 		rezervacija = ucitajRezervacije();		
 		for(Rezervacija rez:rezervacija.values()) {
 			for(Apartman apartman:ApartmanDAO.ucitajApartmaneOdDomacina(domacin).values()) {
-				if(apartman.equals(rez.getRezervisanApartman())) {
-					rezervacije.add(rez);
+				if(apartman.getDomacin().getId()==rez.getRezervisanApartman().getDomacin().getId()) {
+					
+							rezervacije.add(rez);
+					
 				}
 			}
 		}
