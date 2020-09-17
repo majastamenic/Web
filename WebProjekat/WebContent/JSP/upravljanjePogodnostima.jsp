@@ -7,9 +7,10 @@
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Upravljenje pogodnostima</title>
 </head>
 <body>
+<h3 style="color: black"><b>Pogodnosti</b></h3>
  <form method="POST" action="/OdrzavanjeSadrzajaServlet">
       <table>
       

@@ -7,16 +7,16 @@
 <p><br/></p>
 <div class ="row">
 	<div class="col-md-4">
-		<h3>Pregled apartmana</h3>
+		<h3 style="color: black"><b>Apartmani</b></h3>
 	</div>
 	<div class="col-md-4">
 		<form action="PrikaziApartmanServlet" method="get">
-			<input type="text" name="pretraga" class = "form-control" placeholder="Pretraga...">
-			<input type="submit" value="Pretraga">
+			<a href="SortiraniApartmaniRastuceServlet" class = "fore-control">Sortiraj apartmane po ceni rastuce</a>
+			<a href="SortiraniApartmaniOpadajuceServlet" class = "fore-control">Sortiraj apartmane po ceni opadajuce</a>
+			<a href="VisestrukaPretragaServlet" class="btn btn-primary">Pretraga</a>
+			<div class="col-md-4 text-right">
 			<a href="DodajApartmanServlet" class="btn btn-success">Dodaj apartman</a>
-			<a href="VisestrukaPretragaServlet" class="btn btn-primary">Visestruka pretraga</a>
-			<a href="SortiraniApartmaniRastuceServlet">Sortiraj apartmane po ceni rastuce</a>
-			<a href="SortiraniApartmaniOpadajuceServlet">Sortiraj apartmane po ceni opadajuce</a>
+			</div>
 		</form>
 	</div>
 </div>
@@ -27,6 +27,7 @@
 </head>
 <body>
 <form method="POST" action="PrikaziApartmanServlet">
+	<div class = "container">
       <table class="table table-boardered table-striped table-hover">
       <thead>
          <tr>
@@ -62,7 +63,7 @@
          </c:forEach>
          </tbody>
       </table>
-      
+      </div>
 </form>
 </body>
 </html>

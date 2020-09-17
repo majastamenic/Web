@@ -10,7 +10,8 @@
 <title>Dodavanje apartmana</title>
 </head>
 <body>
-	<h1 style="color: black"><b>Dodavanje apartmana</b></h1>
+<p><br/></p>
+	<h3 style="color: black"><b>Dodavanje apartmana</b></h3>
    <form method="POST" action="/DodajApartmanServlet">
       <table>
                   <tr>

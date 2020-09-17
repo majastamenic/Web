@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h3 style="color: black"><b>Rezervacije</b></h3>
 <form method="POST" action="SortiraneRezervacijeOpadajuceServlet">
       <table class="table table-boardered table-striped table-hover">
       <thead>

@@ -10,7 +10,8 @@
 <title>Izmena apartmana</title>
 </head>
 <body>
-	<h1 style="color: black"><b>Izmena apartmana</b></h1>
+	<p><br/></p>
+	<h3 style="color: black"><b>Izmena apartmana</b></h3>
    <form method="POST" action="/IzmenaApartmanaServlet">
       <table>
                   <tr>

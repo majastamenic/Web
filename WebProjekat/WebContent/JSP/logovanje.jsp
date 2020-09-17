@@ -11,6 +11,7 @@
 <title>Log in</title>
 </head>
 <body>
+	<p><br/></p>
 	<h3 style="color: black"><b>LogIn</b></h3>
    <form method="POST" action="/LogInServlet">
             <div class="col-sm-3 my-1">

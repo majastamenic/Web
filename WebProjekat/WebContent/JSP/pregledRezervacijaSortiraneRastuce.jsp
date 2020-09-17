@@ -7,9 +7,11 @@
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Sortirane rezervacije</title>
 </head>
 <body>
+<p><br/></p>
+<h3 style="color: black"><b>Sortirane rezervacije</b></h3>
 <form method="POST" action="SortiraneRezervacijeRastuceServlet">
       <table class="table table-boardered table-striped table-hover">
       <thead>

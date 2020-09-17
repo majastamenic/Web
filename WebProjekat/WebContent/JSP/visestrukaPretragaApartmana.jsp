@@ -9,7 +9,7 @@
 <title>Pretraga apartmana</title>
 </head>
 <body>
-	<h1 style="color: black"><b>Pretraga apartmana</b></h1>
+	<h3 style="color: black"><b>Pretraga apartmana</b></h3>
    <form method="GET" action="/VisestrukaPretragaServlet">
       <table>
          <tr>

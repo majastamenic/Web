@@ -7,10 +7,11 @@
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Apartman table</title>
+<title>Pretraga apartmana</title>
 </head>
 <body>
-	<h1 style="color: black">Pregled apartmana</h1>
+<p><br/></p>
+	<h3 style="color: black">Pretraga apartmana</h3>
 	<form action="/PrikazApartmanServlet" method="get">
    		<input type="text" name="pretraga">
 		<input type="submit" value="Pretraga" class="">

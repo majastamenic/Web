@@ -9,7 +9,8 @@
 <title>Izmena podataka</title>
 </head>
 <body>
-	<h1 style="color: black"><b>Izmena podataka</b></h1>
+<p><br/></p>
+	<h3 style="color: black"><b>Izmena podataka</b></h3>
    <form method="POST" action="/IzmenaPodatakaServlet">
       <table>
       <p>  Dobrodosli, <%=request.getSession().getAttribute("LogInServlet.ulogovaniKorisnik.korisnickoIme()")%></p>

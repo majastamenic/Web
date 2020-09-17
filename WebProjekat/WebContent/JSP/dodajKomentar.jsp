@@ -7,10 +7,11 @@
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Dodavanje komentara</title>
 </head>
 <body>
-<h1 style="color: black"><b>Dodajte komentar</b></h1>
+<p><br/></p>
+<h3 style="color: black"><b>Dodavanje komentara</b></h3>
    <form method="POST" action="dodavanjeKomentaraServlet">
       <table>
                  

@@ -7,10 +7,11 @@
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Kreiranje rezervacije</title>
 </head>
 <body>
-<h1 style="color: black"><b>Kreiranje rezervacije</b></h1>
+<p><br/></p>
+<h3 style="color: black"><b>Kreiranje rezervacije</b></h3>
    <form method="POST" action="/kreiranjeRezervacijeServlet">
       <table>
                  

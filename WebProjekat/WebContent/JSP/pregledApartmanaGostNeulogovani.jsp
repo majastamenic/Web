@@ -4,15 +4,14 @@
     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
+<p><br/></p>
 <div class ="row">
 	<div class="col-md-4">
-		<h3>Pregled apartmana</h3>
+		<h3 style="color: black"><b>Apartmani</b></h3>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4 text-right">
 		<form action="PrikazApartmanServlet" method="get">
-			<input type="text" name="pretraga" class = "form-control" placeholder="Pretraga...">
-			<input type="submit" value="Pretraga">
-			<a href="VisestrukaPretragaServlet" class="btn btn-primary">Visestruka pretraga</a>
+			<a href="VisestrukaPretragaServlet" class="btn btn-primary">Pretraga</a>
 		</form>
 	</div>
 </div>
@@ -23,6 +22,7 @@
 </head>
 <body>
 <form method="POST" action="/PrikaziApartmanGostNeulogovaniServlet">
+	<div class= "container">
       <table class="table table-boardered table-striped table-hover">
       <thead>
          <tr>
@@ -53,7 +53,7 @@
          </c:forEach>
          </tbody>
       </table>
-      
+      </div>
 </form>
 </body>
 </html>

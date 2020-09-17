@@ -6,7 +6,7 @@
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Neuspesna registracija</title>
 </head>
 <body>
 	<a><b>Morate uneti korisnicko ime i lozinku.</b></a>

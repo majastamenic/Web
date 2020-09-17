@@ -9,7 +9,7 @@
 <title>Registracija</title>
 </head>
 <body>
-	<h1 style="color: black"><b>Registracija</b></h1>
+	<h3 style="color: black"><b>Registracija</b></h3>
    <form method="POST" action="/RegistracijaServlet">
       <table>
          <tr>

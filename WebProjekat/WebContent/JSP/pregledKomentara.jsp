@@ -7,9 +7,10 @@
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Komentari</title>
 </head>
 <body>
+<h3 style="color: black"><b>Komentari</b></h3>
  <form method="POST" action="/PregledKomentaraServlet">
       <table class="table table-boardered table-striped table-hover">
       

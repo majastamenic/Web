@@ -7,28 +7,29 @@
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Visestruka pretraga korisnika</title>
+<title>Pretraga korisnika</title>
 </head>
 <body>
-	<h1 style="color: black"><b>Visestruka pretraga</b></h1>
+	<p><br/></p>
+	<h3 style="color: black"><b>Pretraga korisnika</b></h3>
    <form method="GET" action="/VisestrukaPretragaKorisnikaServlet">
       <table>
          <tr>
             <td>Korisnicko ime:</td>
-            <td><input type="text" name="korisnickoIme"/></td>
+            <td><input type="text" class="form-control form-control-sm" placeholder="Unesite korisnicko ime.." name="korisnickoIme"/></td>
          </tr>  
          <tr>
             <td>Ime:</td>
-            <td><input type="text" name="ime"/></td>
+            <td><input type="text" class="form-control form-control-sm" placeholder="Unesite ime.." name="ime"/></td>
          </tr>  
          <tr>
             <td>Prezime:</td>
-            <td><input type="text" name="prezime"/></td>
+            <td><input type="text" class="form-control form-control-sm" placeholder="Unesite prezime.." name="prezime"/></td>
          </tr> 
                 
          <tr>
             <td>Pol:</td>
-            <td><select name="pol" id="pol">
+            <td><select name="pol" id="pol" class="form-control form-control-sm">
             <option value=""></option>
             <option value="muski">Muski</option>
             <option value="zenski">Zenski</option>  
@@ -37,7 +38,7 @@
          <c:if test="${LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Administrator)}">
           	<tr>
             	<td>Uloga:</td>
-            	<td><select name="uloga" id="uloga">
+            	<td><select name="uloga" id="uloga" class="form-control form-control-sm">
             		<option value=""></option>
   					<option value="domacin">Domacin</option>
   					<option value="gost">Gost</option>
@@ -48,9 +49,10 @@
 
          <tr>
             <td></td>
-            <td><input type="submit" value="Pretrazi"></td>
+            <td><input type="submit" value="Pretrazi" class="form-control form-control-sm btn btn-primary"></td>
         </tr>
       </table>
+      <p><br/></p>
       <table class="table table-boardered table-striped table-hover">
       <thead>
          <tr>
