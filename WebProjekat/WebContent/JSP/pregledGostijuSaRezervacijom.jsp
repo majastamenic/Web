@@ -5,6 +5,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+body {
+  background-image: url('https://cdn.cnn.com/cnnnext/dam/assets/190423135710-girls-in-car-coupons-travel-widget.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -12,20 +21,21 @@
 
 <form method="POST" action="/PregledKorisnikaKojiImajuRezervacijuServlet">
  <div class="conatiner">
-      <table class="table table-boardered table-striped table-hover">
-      	
-      
+      <table class="table table-boardered table-striped table-hover table-light">
+     
+      <thead class="thead-dark">
          <tr>
-         <td>Korisnicko ime:</td>
-            <td>Ime:</td>
-            <td>prezime:</td>
-            <td>Pol:</td>
-            <td>Uloga:</td>
-            
-         </tr>  
+         <th>Korisnicko ime:</th>
+            <th>Ime:</th>
+            <th>Prezime:</th>
+            <th>Pol:</th>
+            <th>Uloga:</th>
+           
+         </tr>
+         </thead>
          <c:forEach items="${listaGostiju}" var="gost">    
          <tr>
-         	<td>${gost.getKorisnickoIme()}</td>
+          <td>${gost.getKorisnickoIme()}</td>
             <td>${gost.getIme()}</td>
             <td>${gost.getPrezime()}</td>
             <td>${gost.getPol()}</td>
