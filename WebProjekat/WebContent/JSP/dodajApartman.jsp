@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
+<link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Dodavanje apartmana</title>
 </head>
 <body>
-	<h1 style="color: black"><b>Dodavanje apartmana</b></h1>
+<p><br/></p>
+	<h3 style="color: black"><b>Dodavanje apartmana</b></h3>
    <form method="POST" action="/DodajApartmanServlet">
       <table>
                   <tr>

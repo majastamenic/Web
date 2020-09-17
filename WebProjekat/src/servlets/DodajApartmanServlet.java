@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import beans.Apartman;
 import beans.Domacin;
-import beans.Gost;
 import beans.Lokacija;
 import beans.StatusApartman;
 import beans.TipApartmana;
@@ -64,7 +63,7 @@ public class DodajApartmanServlet extends HttpServlet {
 		
 		int brojSoba = Integer.parseInt(request.getParameter("brojSoba"));
 		int brojGostiju = Integer.parseInt(request.getParameter("brojGostiju"));
-		String idlokacija = request.getParameter("lokacija");
+//		String idlokacija = request.getParameter("lokacija");
 		
 		Lokacija lokacija1 = new Lokacija();
 		

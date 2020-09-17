@@ -6,3 +6,4 @@
 7;Pice
 8;Lift
 9;Plaza
+10;lalaala

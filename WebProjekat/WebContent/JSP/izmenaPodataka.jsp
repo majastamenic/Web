@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <title>Izmena podataka</title>
 </head>
 <body>
-	<h1 style="color: black"><b>Izmena podataka</b></h1>
+<p><br/></p>
+	<h3 style="color: black"><b>Izmena podataka</b></h3>
    <form method="POST" action="/IzmenaPodatakaServlet">
       <table>
       <p>  Dobrodosli, <%=request.getSession().getAttribute("LogInServlet.ulogovaniKorisnik.korisnickoIme()")%></p>

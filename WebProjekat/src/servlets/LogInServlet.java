@@ -13,8 +13,6 @@ import beans.Administrator;
 import beans.Domacin;
 import beans.Gost;
 import beans.Korisnik;
-import dao.ApartmanDAO;
-import dao.RezervacijaDAO;
 import dao.UserDAO;
 
 

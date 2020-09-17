@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
+<link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Visestruka pretraga rezervacija</title>
+<title>Pretraga rezervacija</title>
 </head>
 <body>
-	<h1 style="color: black"><b>Visestruka pretraga</b></h1>
+	<h3 style="color: black"><b>Pretraga rezervacija</b></h3>
    <form method="GET" action="/VisestrukaPretragaRezervacijaServlet">
       <table>
          <tr>
             <td>Korisnicko ime gosta:</td>
-            <td><input type="text" name="korisnickoIme"/></td>
+            <td><input type="text" name="korisnickoIme" placeholder="Unesite korisnicko ime gosta"/></td>
          </tr>  
          <tr>
             <td>Status:</td>

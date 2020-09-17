@@ -1,19 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}" />
     
 <!DOCTYPE html>
 <html>
-
+<head>
+<link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
+</head>
 <body>
 	<p>  Dobrodosli, ${ulogovaniKorisnik.korisnickoIme} id ${ulogovaniKorisnik.getId()} <a href="LogOutServlet">Logout</a></p><br/>
-
-	<p>  <a href= "/IzmenaPodatakaServlet"> Izmena podataka.</a></p><br/>
-	<p>  <a href= "/pregledKomentaraServlet"> Pregled komentara.</a></p><br/>
-	<p>  <a href= "/pregledRezervacijaServlet"> Pregled rezervacija.</a></p><br/>
-	<p>  <a href= "/kreiranjeRezervacijeServlet"> Kreiranje rezervacija.</a></p><br/>
-	<p>  <a href= "/dodavanjeKomentaraServlet"> Komentar .</a></p><br/>
-	<p>  <a href= "/SortiranjeApartmanaServlet"> Sortiranje</a></p><br/>
-	<p>  <a href="/PrikaziApartmanGostNeulogovaniServlet">Prikazi apartmane</a></p><br/>
 	
+	<table class="table table-hover">
+	<tbody>
+	<tr>
+		<td></td>
+		<td><a href= "/IzmenaPodatakaServlet" class="btn btn-info"> Izmena podataka.</a></td>
+		<td></td>
+		<td></td>
+		<td><a href="/PrikaziApartmanGostNeulogovaniServlet" class="btn btn-info">Prikazi apartmane</a></td>
+		<td><a href= "/pregledRezervacijaServlet" class="btn btn-info"> Pregled rezervacija.</a></td>
+	</tr>
+	</tbody>
+	</table>
+	<table class="table table-hover">
+	<tbody>
+	<tr>	
+		<td></td>
+		<td><a href= "/kreiranjeRezervacijeServlet" class="btn btn-info"> Kreiranje rezervacija.</a></td>
+		<td><a href= "/pregledKomentaraServlet" class="btn btn-info"> Pregled komentara.</a></td>
+		<td><a href= "/dodavanjeKomentaraServlet" class="btn btn-info"> Komentar .</a></td>
+	</tr>
+	</tbody>
+	</table>
 </body>
 </html>
