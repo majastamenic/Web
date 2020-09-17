@@ -254,5 +254,18 @@ public static void sacuvajSveAdmineIzMape() throws IOException {
 			return false;
 	}
 
+	public static Administrator findAdminByUsername(String korisnickoIme) {
+		if(administratori.size()==0) {
+			ucitajAdmine();
+		}
+		List<Administrator> adminLista= new ArrayList<Administrator>(administratori.values());
+		for(Administrator noviAdmin: adminLista) {
+			if(noviAdmin.getKorisnickoIme().equals(korisnickoIme)) {
+				return noviAdmin;
+			}
+		}
+		return null;
+	}
+
 
 }

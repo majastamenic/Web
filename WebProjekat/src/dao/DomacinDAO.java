@@ -280,6 +280,19 @@ public static void dodajDomacina(Domacin domacin) throws IOException {
 			return false;
 	}
 
+	public static Domacin findHostByUsername(String korisnickoIme) {
+		if(domacini.size()==0) {
+			ucitajDomacine();
+		}
+		List<Domacin> domaciniLista= new ArrayList<Domacin>(domacini.values());
+		for(Domacin noviDomacin: domaciniLista) {
+			if(noviDomacin.getKorisnickoIme().equals(korisnickoIme)) {
+				return noviDomacin;
+			}
+		}
+		return null;
+	}
+
 	
 	
 }

@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.Administrator;
+import beans.Domacin;
 import beans.Gost;
+import dao.AdministratorDAO;
+import dao.DomacinDAO;
 import dao.GostDAO;
 import dao.UserDAO;
 
@@ -51,8 +55,10 @@ public class RegistracijaServlet extends HttpServlet {
 		String pol = request.getParameter("pol");
 		
 		Gost gost= GostDAO.findGuestByUsername(korisnickoIme);
-		LogInServlet.ulogovaniKorisnik = gost;
-		if (gost == null) {
+		Domacin domacin = DomacinDAO.findHostByUsername(korisnickoIme);
+		Administrator admin = AdministratorDAO.findAdminByUsername(korisnickoIme);
+
+		if (gost == null && domacin==null && admin==null) {
 			System.out.println(korisnickoIme  + " " + lozinka);
 			Gost noviGost = new Gost();
 			noviGost.setKorisnickoIme(korisnickoIme);
