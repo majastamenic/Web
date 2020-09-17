@@ -19,6 +19,7 @@
          <c:forEach items="${listaPogodnosti}" var="pogodnost">    
          <tr>
          <td>${pogodnost.getNaziv()}</td>
+          <td><a href="IzmeniPogodnostServlet?id=${apartman.id}">Izmeni</a></td>
            
          </tr>
          </c:forEach>
