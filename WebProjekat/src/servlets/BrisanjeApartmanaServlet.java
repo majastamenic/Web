@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ApartmanDAO;
+
 /**
  * Servlet implementation class BrisanjeApartmanaServlet
  */
@@ -27,7 +29,14 @@ public class BrisanjeApartmanaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String idApartmana = request.getParameter("id");
+		
+		Integer id= Integer.parseInt(idApartmana);
+		ApartmanDAO.findApartmentById(id);
+		ApartmanDAO.ucitajApartmane();
+		ApartmanDAO.sacuvajSveApartmaneIzMape();
+		ApartmanDAO.izbrisiApartman(id);
+		ApartmanDAO.sacuvajSveApartmaneIzMape();
 	}
 
 	/**

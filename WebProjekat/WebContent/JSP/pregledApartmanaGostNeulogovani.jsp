@@ -24,6 +24,8 @@
 <form method="POST" action="/PrikaziApartmanGostNeulogovaniServlet">
 	<div class= "container">
       <table class="table table-boardered table-striped table-hover">
+      <a href="SortiranjeApartmanaRastuceGostNeulogovaniServlet">Sortiraj apartmane po ceni rastuce</a>
+		<a href="SortiranjeApartmanaOpadajuceGostNeulogovaniServlet">Sortiraj apartmane po ceni opadajuce</a>
       <thead>
          <tr>
          
