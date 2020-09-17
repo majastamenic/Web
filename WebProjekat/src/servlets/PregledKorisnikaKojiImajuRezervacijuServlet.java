@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,25 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Administrator;
-import beans.Amenities;
-import beans.Apartman;
-import dao.AdministratorDAO;
-import dao.AmenitiesDAO;
-import dao.ApartmanDAO;
+import beans.Domacin;
+import beans.Gost;
+import dao.DomacinDAO;
+import dao.GostDAO;
 
 /**
- * Servlet implementation class IzmeniPogodnostServlet
+ * Servlet implementation class PregledKorisnikaKojiImajuRezervacijuServlet
  */
-@WebServlet("/IzmeniPogodnostServlet")
-public class IzmeniPogodnostServlet extends HttpServlet {
+@WebServlet("/PregledKorisnikaKojiImajuRezervacijuServlet")
+public class PregledKorisnikaKojiImajuRezervacijuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public String idPogodnosti;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IzmeniPogodnostServlet() {
+    public PregledKorisnikaKojiImajuRezervacijuServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,14 +35,11 @@ public class IzmeniPogodnostServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		idPogodnosti = request.getParameter("id");
-		if(idPogodnosti != null) {
-			AmenitiesDAO.ucitajPogodnosti();
-			Amenities pogodnost = AmenitiesDAO.findAmenitiesById(Integer.parseInt(idPogodnosti));
-			
-			request.setAttribute("naziv", pogodnost.getNaziv());
-		}
-		RequestDispatcher disp = request.getRequestDispatcher("/JSP/izmenaPogodnosti.jsp");
+
+		GostDAO.ucitajGoste();
+		List<Gost> gosti= GostDAO.ucitajGosteZaDomacina((Domacin) LogInServlet.ulogovaniKorisnik);
+		request.setAttribute("listaGostiju", gosti);
+		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledGostijuSaRezervacijom.jsp");
 		disp.forward(request, response);
 	}
 
@@ -54,18 +49,6 @@ public class IzmeniPogodnostServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		idPogodnosti = request.getParameter("id");
-		String naziv = request.getParameter("naziv");
-		
-		for(Amenities pogodnost:AmenitiesDAO.ucitajPogodnosti().values()) {
-			if(pogodnost.getId().toString().equals(idPogodnosti)) {
-				
-				AmenitiesDAO.izmeniPogodnost(new Amenities(pogodnost.getId(), naziv));
-				
-			}
-		}
-		
-		
 	}
 
 }

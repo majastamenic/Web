@@ -9,25 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Administrator;
-import beans.Amenities;
-import beans.Apartman;
-import dao.AdministratorDAO;
-import dao.AmenitiesDAO;
-import dao.ApartmanDAO;
+import beans.Domacin;
+import beans.Gost;
+import dao.RezervacijaDAO;
 
 /**
- * Servlet implementation class IzmeniPogodnostServlet
+ * Servlet implementation class pregledRezervacijaDomacinServlet
  */
-@WebServlet("/IzmeniPogodnostServlet")
-public class IzmeniPogodnostServlet extends HttpServlet {
+@WebServlet("/pregledRezervacijaDomacinServlet")
+public class pregledRezervacijaDomacinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public String idPogodnosti;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IzmeniPogodnostServlet() {
+    public pregledRezervacijaDomacinServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,14 +33,9 @@ public class IzmeniPogodnostServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		idPogodnosti = request.getParameter("id");
-		if(idPogodnosti != null) {
-			AmenitiesDAO.ucitajPogodnosti();
-			Amenities pogodnost = AmenitiesDAO.findAmenitiesById(Integer.parseInt(idPogodnosti));
-			
-			request.setAttribute("naziv", pogodnost.getNaziv());
-		}
-		RequestDispatcher disp = request.getRequestDispatcher("/JSP/izmenaPogodnosti.jsp");
+		RezervacijaDAO.ucitajRezervacije();
+		request.setAttribute("rezervacije", RezervacijaDAO.ucitajRezervacijeZaDomacina((Domacin) LogInServlet.ulogovaniKorisnik));
+		RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledRezervacijaDomacin.jsp");
 		disp.forward(request, response);
 	}
 
@@ -54,18 +45,6 @@ public class IzmeniPogodnostServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		idPogodnosti = request.getParameter("id");
-		String naziv = request.getParameter("naziv");
-		
-		for(Amenities pogodnost:AmenitiesDAO.ucitajPogodnosti().values()) {
-			if(pogodnost.getId().toString().equals(idPogodnosti)) {
-				
-				AmenitiesDAO.izmeniPogodnost(new Amenities(pogodnost.getId(), naziv));
-				
-			}
-		}
-		
-		
 	}
 
 }

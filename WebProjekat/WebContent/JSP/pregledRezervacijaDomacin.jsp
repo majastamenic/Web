@@ -1,23 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-<p></br></p>
-<div class ="row">
-	<div class="col-md-4">
-		
-	</div>
-</div>
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Pregled rezervacija</title>
 </head>
-<body>
 <h3 style="color: black"><b>Rezervacije</b></h3>
-<form method="POST" action="/pregledRezervacijaServlet">
+<form method="POST" action="/pregledRezervacijaDomacinServlet">
 	<p><br/></p>
 	<div class="text-right">
 		<a href="SortiraneRezervacijeRastuceServlet">Sortiraj rezervacije po ceni rastuce</a>
@@ -34,7 +27,7 @@
             
            
          </tr>  
-         <c:forEach items="${ulogovaniKorisnik.rezervacije}" var="rezervacija"> 
+         <c:forEach items="${rezervacije}" var="rezervacija"> 
             
          <tr>
             <td> ${rezervacija.getRezervisanApartman().getId()} </td>

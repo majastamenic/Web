@@ -37,20 +37,14 @@
             <td>Broj gostiju: </td>
             <td>Lokacija: </td>
             <td>Domacin: </td>
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje.git
+
+
             <td>Status: </td>
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje.git
             <td>Cena po noci: </td>
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje.git
+
             <th class="text-center">Akcije </th>
          </tr>  
          </thead>
@@ -63,20 +57,11 @@
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje.git
             <td>${apartman.getStatus()}</td>
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje.git
             <td>${apartman.getCenaPoNoci()}</td>
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/majastamenic/WebProgramiranje.git
             <td class="text-center">
 
             	<a href='/IzmenaApartmanaServlet?id=${apartman.id} ' class="btn btn-warning">Izmeni</a>

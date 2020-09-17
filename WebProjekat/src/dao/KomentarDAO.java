@@ -15,6 +15,7 @@ import java.util.StringTokenizer;
 import static util.Putanja._PROJECT_LOCATION;
 
 import beans.Apartman;
+import beans.Domacin;
 import beans.Gost;
 import beans.KomentarZaApartman;
 
@@ -172,6 +173,21 @@ private static Map<Integer, KomentarZaApartman> komentari = new HashMap<>();
 		    }
 		}
 		return maxId;
+	}
+	
+	public static Map<Integer, KomentarZaApartman> ucitajKomentareNaApartmaneOdDomacina(Domacin domacin){
+		komentari = ucitajKomentare();
+		Map<Integer, KomentarZaApartman> komentariNaApartmane = new HashMap<Integer, KomentarZaApartman>();
+		
+		for(Apartman apartman: ApartmanDAO.ucitajApartmaneOdDomacina(domacin).values()) {
+			for(KomentarZaApartman komentar: komentari.values()) {
+				if(komentar.getApartman().getId()==apartman.getId()) {
+					komentariNaApartmane.put(komentar.getId(), komentar);
+				}
+			}
+		}
+		
+		return komentariNaApartmane;
 	}
 	
 	public static void dodajKomentarUMapu(KomentarZaApartman noviKomentar) {

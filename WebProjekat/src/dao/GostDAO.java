@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-
+import beans.Apartman;
+import beans.Domacin;
 import beans.Gost;
 import beans.Pol;
 import beans.Rezervacija;
@@ -239,6 +240,19 @@ public class GostDAO {
 			return true;
 		}else
 			return false;
+	}
+	
+	public static ArrayList<Gost> ucitajGosteZaDomacina(Domacin domacin) {
+		ArrayList<Gost> gosti1 = new ArrayList<Gost>();
+		gosti = ucitajGoste();		
+		for(Gost gost:gosti.values()) {
+			for(Rezervacija rez:RezervacijaDAO.ucitajRezervacijeZaDomacina(domacin)) {
+				if(gost.equals(rez.getGost())) {
+					gosti1.add(gost);
+				}
+			}
+		}
+		return gosti1;
 	}
 	
 public static Gost findGuestByUsername(String username) {

@@ -27,7 +27,6 @@
 	<tr>	
 		<td></td>
 		<td><a href= "/kreiranjeRezervacijeServlet" class="btn btn-info"> Kreiranje rezervacija.</a></td>
-		<td><a href= "/pregledKomentaraServlet" class="btn btn-info"> Pregled komentara.</a></td>
 		<td><a href= "/dodavanjeKomentaraServlet" class="btn btn-info"> Komentar .</a></td>
 	</tr>
 	</tbody>

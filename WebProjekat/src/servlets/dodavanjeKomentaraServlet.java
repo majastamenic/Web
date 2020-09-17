@@ -61,6 +61,7 @@ public class dodavanjeKomentaraServlet extends HttpServlet {
 		String ocena =request.getParameter("ocena");
 		Integer ocena1= Integer.parseInt(ocena);
 		KomentarZaApartman komentar = new KomentarZaApartman();
+		komentar.setId(KomentarDAO.vratiNajveciID());
 		komentar.setApartman(apartman);
 		komentar.setGost(gost);
 		komentar.setOcena(ocena1);

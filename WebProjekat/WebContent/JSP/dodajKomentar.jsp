@@ -28,7 +28,7 @@
          
          <tr>
             <td>Unesite komentar:</td>
-            <td><input type="text" name="komentar" id="komentar" pattern="^([a-zA-ZćĆžŽĐđšŠčČ]+)[1-9]*" required/></td>
+            <td><input type="text" name="komentar" id="komentar" pattern="^([a-zA-ZćĆžŽĐđšŠčČ]+)" required/></td>
          </tr>
          <tr>
             <td>Unesite ocenu:</td>

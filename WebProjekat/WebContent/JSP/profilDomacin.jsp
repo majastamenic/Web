@@ -16,7 +16,7 @@
 	<tr>
 		<td></td>
 		<td><a href= "/IzmenaPodatakaServlet" class="btn btn-info"> Izmeni podatke.</a></td>
-		<td><a href= "/PregledSvihKorisnikaServlet" class="btn btn-info"> Pregled korisnika koji imaju rezervaciju.</a></td>
+		<td><a href= "/PregledKorisnikaKojiImajuRezervacijuServlet" class="btn btn-info"> Pregled korisnika koji imaju rezervaciju.</a></td>
 		<td><a href= "/PrikaziApartmanServlet" class="btn btn-info"> Pregled apartmana.</a></td>
 	</tr>
 	</tbody>
@@ -26,8 +26,8 @@
 	<tr>	
 		<td></td>
 		<td></td>
-		<td><a href= "/pregledRezervacijaServlet" class="btn btn-info"> Pregled rezervacija.</a></td>
-		<td><a href= "/PregledKomentaraServlet" class="btn btn-info"> Pregled komentara.</a></td>
+		<td><a href= "/pregledRezervacijaDomacinServlet" class="btn btn-info"> Pregled rezervacija.</a></td>
+		<td><a href= "/PregledKomentaraDomacinServlet" class="btn btn-info"> Pregled komentara.</a></td>
 	</tr>
 	</tbody>
 	</table>

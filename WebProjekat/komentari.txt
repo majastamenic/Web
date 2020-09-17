@@ -1,4 +1,4 @@
-1;23;1;lalala;6
-2;23;1;Ja sam car;8
-3;29;1;Carina;8
-4;23;2;lalalaa;7
+1;101;1;hhahahhah;10
+2;101;1;lalalla;10
+3;102;2;super;6
+4;102;3;super;6

@@ -55,7 +55,7 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-		
+		idApartmana = request.getParameter("id");
 		Integer id = Integer.parseInt(idApartmana);
 		TipApartmana tip = TipApartmana.valueOf(request.getParameter("tip"));
 		int brojSoba = Integer.parseInt(request.getParameter("brojSoba"));
