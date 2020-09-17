@@ -63,10 +63,11 @@ public class DodajApartmanServlet extends HttpServlet {
 		
 		int brojSoba = Integer.parseInt(request.getParameter("brojSoba"));
 		int brojGostiju = Integer.parseInt(request.getParameter("brojGostiju"));
-//		String idlokacija = request.getParameter("lokacija");
+		String idlokacija = request.getParameter("lokacija");
 		
-		Lokacija lokacija1 = new Lokacija();
-		
+		Lokacija lokacija = new Lokacija();
+		LokacijaDAO.ucitajLokaciju();
+		lokacija= LokacijaDAO.findLocationById(Integer.parseInt(idlokacija));		
 		Date datumZaIzdavanje = new Date();
 		HttpSession session = request.getSession();
 		Domacin domacin= (Domacin) session.getAttribute("ulogovaniKorisnik");
@@ -82,7 +83,7 @@ public class DodajApartmanServlet extends HttpServlet {
 		a.setDatumZaIzdavanje(datumZaIzdavanje);
 		a.setDomacin(domacin);
 		a.setStatus(status);
-		a.setLokacija(lokacija1);
+		a.setLokacija(lokacija);
 		a.setTip(tip);
 		a.setVremeZaOdjavu(vremeZaOdjavu);
 		a.setVremeZaPrijavu(vremeZaPrijavu);

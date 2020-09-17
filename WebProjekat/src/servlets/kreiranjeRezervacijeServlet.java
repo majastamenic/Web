@@ -2,7 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.text.ParseException;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,9 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 import beans.Apartman;
 import beans.Gost;
@@ -51,7 +49,7 @@ public class kreiranjeRezervacijeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doGet(request, response);
+		
 		String idApartmana = request.getParameter("apartman");
 		
 		Apartman apartman = new Apartman();
@@ -66,7 +64,7 @@ public class kreiranjeRezervacijeServlet extends HttpServlet {
 		
 			rezervacija.setId(RezervacijaDAO.vratiNajveciID());
 			rezervacija.setRezervisanApartman(apartman);
-			try {
+			
 				try {SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		        
 					rezervacija.setPocetniDatum(formatter.parse(datumPocetkaString));
@@ -74,7 +72,7 @@ public class kreiranjeRezervacijeServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} catch (ParseException e) {}
+
 			
 			rezervacija.setBrojNocenja(Integer.parseInt(brojNocenjaString));
 			rezervacija.setPoruka(poruka);
@@ -87,6 +85,8 @@ public class kreiranjeRezervacijeServlet extends HttpServlet {
 			RezervacijaDAO.sacuvajSveRezervacijeIzMape();
 			RezervacijaDAO.dodajRezervacijuUMapu(rezervacija);
 			RezervacijaDAO.sacuvajSveRezervacijeIzMape();
+			
+			doGet(request, response);
 	}
 
 }

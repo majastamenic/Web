@@ -1,5 +1,7 @@
 package beans;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Rezervacija {
@@ -13,7 +15,8 @@ public class Rezervacija {
 	private StatusRezervacija status;
 	
 	public String ispisTXT() {
-		return id + ";"+ rezervisanApartman.getId() + ";"+ pocetniDatum.toString() + ";"+ brojNocenja
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		return id + ";"+ rezervisanApartman.getId() + ";"+ dateFormat.format(pocetniDatum) + ";"+ brojNocenja
 				+ ";"+ ukupnaCena+ ";"+ poruka + ";"+ gost.getId()+";"+ status.toString() + "\n";
 	} 
 	
