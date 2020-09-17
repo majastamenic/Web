@@ -7,12 +7,14 @@
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Sortirane rezervacije</title>
+<title>Rezervacije</title>
 </head>
 <body>
 <p><br/></p>
-<h3 style="color: black"><b>Sortirane rezervacije</b></h3>
 <form method="POST" action="SortiraneRezervacijeRastuceServlet">
+	<div class = "container">
+		<h3 style="color: black"><b>Rezervacije</b></h3>
+		<p><br/></p>
       <table class="table table-boardered table-striped table-hover">
       <thead>
          
@@ -42,7 +44,7 @@
          </c:forEach>
          </tbody>
       </table>
-      
+      </div>
 </form>
 
 </body>

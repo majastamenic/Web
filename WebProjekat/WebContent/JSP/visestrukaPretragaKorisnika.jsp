@@ -11,8 +11,10 @@
 </head>
 <body>
 	<p><br/></p>
-	<h3 style="color: black"><b>Pretraga korisnika</b></h3>
    <form method="GET" action="/VisestrukaPretragaKorisnikaServlet">
+     <div class="container"> 
+     	<h3 style="color: black"><b>Pretraga korisnika</b></h3>
+     	<p><br/></p>
       <table>
          <tr>
             <td>Korisnicko ime:</td>
@@ -77,7 +79,7 @@
          </c:forEach>
          </tbody>
       </table>
-      
+     </div> 
 </form>
 
 </body>

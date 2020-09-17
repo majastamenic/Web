@@ -9,6 +9,8 @@
 <title>Neuspesna registracija</title>
 </head>
 <body>
+<div class="alert alert-danger" role="alert">
 	<a><b>Morate uneti korisnicko ime i lozinku.</b></a>
+	</div>
 </body>
 </html>

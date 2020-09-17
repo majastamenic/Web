@@ -25,7 +25,7 @@
       			
       			<label class="sr-only" for="inlineFormInputGroupUsername">KorisnickoIme</label>
       			<div class="input-group">
-        			<input type="text" name="lozinka" class="form-control" id="inlineFormInputGroupUsername" placeholder="Lozinka"/>
+        			<input type="password" name="lozinka" class="form-control" id="inlineFormInputGroupUsername" placeholder="Lozinka"/>
       			</div>
   				<a href="/JSP/registracija.jsp">Registracija</a><br/>
 				<input type="submit" class="btn btn-primary" value="Prijavi se"><br/>

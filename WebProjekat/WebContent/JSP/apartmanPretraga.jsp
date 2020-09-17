@@ -12,10 +12,6 @@
 <body>
 <p><br/></p>
 	<h3 style="color: black">Pretraga apartmana</h3>
-	<form action="/PrikazApartmanServlet" method="get">
-   		<input type="text" name="pretraga">
-		<input type="submit" value="Pretraga" class="">
-   </form>
 	<table border="1">
 		<thead>
 			<th>Tip apartmana:</th>

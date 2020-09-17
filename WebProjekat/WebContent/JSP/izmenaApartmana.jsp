@@ -13,18 +13,19 @@
 	<p><br/></p>
 	<h3 style="color: black"><b>Izmena apartmana</b></h3>
    <form method="POST" action="/IzmenaApartmanaServlet">
+   <div class="container">
       <table>
                   <tr>
             <td>Broj soba:</td>
-            <td><input type="text" value=${brojSoba} name="brojSoba" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+            <td><input type="text" value=${brojSoba} name="brojSoba" class="form-control form-control-sm" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>    
          <tr>
             <td>Broj gostiju:</td>
-            <td><input type="text" value=${brojGostiju} name="brojGostiju" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+            <td><input type="text" value=${brojGostiju} name="brojGostiju" class="form-control form-control-sm" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>  
          <tr>
             <td>Tip apartmana:</td>
-            <td><select name="tip" id="tip">
+            <td><select name="tip" id="tip" class="form-control form-control-sm">
   <option value="apartman">Apartman</option>
   <option value="soba">Soba</option>
   
@@ -35,7 +36,7 @@
          
          <tr>
             <td>Lokacija:</td>
-            <td><select name="lokacija" id="lokacija">
+            <td><select name="lokacija" id="lokacija" class="form-control form-control-sm">
             <c:forEach items="${listaLokacija}" var="lokacija"> 
             <option value="lokacija">${lokacija.getId()}</option> 
             </c:forEach>  
@@ -44,7 +45,7 @@
          </tr> 
           <tr>
             <td>Pogodnosti:</td>
-            <td><select name="Pogodnosti" id="Pogodnosti">
+            <td><select name="Pogodnosti" id="Pogodnosti" class="form-control form-control-sm">
             <c:forEach items="${listaPogodnosti}" var="Pogodnosti"> 
             <option value="Pogodnosti">${Pogodnosti.getNaziv()}</option> 
             </c:forEach>  
@@ -54,13 +55,14 @@
          
          <tr>
             <td>Cena po noci:</td>
-            <td><input type="text" value="value=${cenaPoNoci}" name="cenaPoNoci" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+            <td><input type="text" value="value=${cenaPoNoci}" class="form-control form-control-sm" name="cenaPoNoci" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>
          <tr>
             <td></td>
-            <td><input type="submit" value="Izmeni"></td>
+            <td><input type="submit" class="form-control form-control-sm btn btn-primary" value="Izmeni"></td>
         </tr>
       </table>
+      </div>
    </form>
 </body>
 </html>

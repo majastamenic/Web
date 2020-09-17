@@ -6,9 +6,11 @@
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Uspesna registracija</title>
 </head>
 <body>
-	<a><b>Welcome</b></a>
+	<div class="alert alert-success" role="alert">
+	<a><b>Uspesno ste se registrovali.</b></a>
+	</div>
 </body>
 </html>

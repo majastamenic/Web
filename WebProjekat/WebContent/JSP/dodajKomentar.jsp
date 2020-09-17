@@ -13,6 +13,7 @@
 <p><br/></p>
 <h3 style="color: black"><b>Dodavanje komentara</b></h3>
    <form method="POST" action="dodavanjeKomentaraServlet">
+   <div class = "container">
       <table>
                  
          
@@ -27,18 +28,19 @@
          </tr>
          
          <tr>
-            <td>Unesite komentar:</td>
-            <td><input type="text" name="komentar" id="komentar" pattern="^([a-zA-ZćĆžŽĐđšŠčČ]+)[1-9]*" required/></td>
+            <td>Komentar:</td>
+            <td><input type="text" placeholder="Unesite komentar.." name="komentar" id="komentar" pattern="^([a-zA-ZćĆžŽĐđšŠčČ]+)[1-9]*" required/></td>
          </tr>
          <tr>
-            <td>Unesite ocenu:</td>
-            <td><input type="text" name="ocena" id="ocena" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+            <td>Ocenu:</td>
+            <td><input type="text" placeholder="Unesite ocenu.." name="ocena" id="ocena" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>
          <tr>
             <td></td>
-            <td><input type="submit" value="Potvrda"></td>
+            <td><input type="submit" class="form-control form-control-sm btn btn-primary" value="Potvrda"></td>
         </tr>
       </table>
+      </div>
    </form>
 
 

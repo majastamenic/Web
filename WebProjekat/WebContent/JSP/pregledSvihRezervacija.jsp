@@ -5,31 +5,22 @@
 <!DOCTYPE html>
 <html>
 <p><br/></p>
-
-	<div class="col-md-4">
-		<h3 style="color: black"><b>Rezervacije</b></h3>
-	</div>
-	<div class="col-md-4 text-right">
-		<form action="/pregledSvihRezervacijaServlet" method="get">	
-		<div class = "container-fluid text-right">	
-		<table>	
-			<td><a href="/SortiraneRezervacijeRastuceServlet">Sortiraj rezervacije po ceni rastuce</a></td>
-			<td><a href="/SortiraneRezervacijeOpadajuceServlet">Sortiraj rezervacije po ceni opadajuce</a></td>
-			<td><a href="/VisestrukaPretragaRezervacijaServlet" class="btn btn-info">Visestruka pretraga</a></td>
-			<td><a href="/DodajRezervacijuServlet" class="btn btn-success">Dodaj rezervaciju</a></td>
-			</table>
-			</div>
-		</form>
-	</div>
-
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Pregled rezervacija</title>
+<title>Rezervacije</title>
 </head>
 <body>
  <form method="POST" action="/pregledSvihRezervacijaServlet">
  <div class="conatiner">
+		<h3 style="color: black"><b>Rezervacije</b></h3>
+		<p><br/></p>
+			<a href="/SortiraneRezervacijeRastuceServlet">Sortiraj rezervacije po ceni rastuce</a>
+			<a href="/SortiraneRezervacijeOpadajuceServlet">Sortiraj rezervacije po ceni opadajuce</a>
+			<div class=" text-right">
+			<a href="/VisestrukaPretragaRezervacijaServlet" class="btn btn-info">Visestruka pretraga</a>
+			<a href="/DodajRezervacijuServlet" class="btn btn-success">Dodaj rezervaciju</a>
+		</div>
       <table class="table table-boardered table-striped table-hover">
       	
       

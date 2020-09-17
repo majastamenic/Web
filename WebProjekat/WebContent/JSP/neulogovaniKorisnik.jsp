@@ -9,9 +9,18 @@
 <title>Pocetna strana</title>
 </head>
 <body>
-	<h3 style="color: black"><b>Pocetna strana</b></h3>
+
+	<h3>  Dobrodosli <br/></h3>
 	<p><br/></p>
-	<p>  <a href= "/PrikaziApartmanGostNeulogovaniServlet"> Prikazi sve aktivne apartmane, pretraga, sortiranje.</a></p><br/>
-	<p>  <a href= "/PregledKomentaraGostijuNaApartmaneServlet"> Pregled komentara gostiju.</a></p><br/>
+	<table class="table table-hover">
+  <tbody>
+  <tr>
+    <td></td>
+    <td><a href= "/PrikaziApartmanGostNeulogovaniServlet" class="btn btn-info"> Apartmani </a></td>
+    <td><a href= "/PregledKomentaraGostijuNaApartmaneServlet" class="btn btn-info"> Pregled komentara gostiju.</a></td>
+  </tr>
+  <tr></tr>
+  </tbody>
+  </table>
 </body>
 </html>

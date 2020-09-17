@@ -7,12 +7,19 @@
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Apartmani</title>
+<title>Sortirani apartmani</title>
 </head>
 <body>
 <p><br/></p>
-<h3 style="color: black"><b>Sortirani apartmani</b></h3>
 <form method="POST" action="SortiraniApartmaniRastuce">
+<div class="container">
+	<div class = "col-md-4">
+    <h3 style="color: black"><b>Sortirani apartmani</b></h3>
+  </div>
+  <p><br/></p>
+   <div class="text-right">
+    <a href="VisestrukaPretragaServlet" class="btn btn-primary">Pretraga</a>
+    </div>
       <table class="table table-boardered table-striped table-hover">
       <thead>
          <tr>
@@ -41,7 +48,7 @@
          </c:forEach>
          </tbody>
       </table>
-      
+    </div>  
 </form>
 </body>
 </html>

@@ -6,11 +6,16 @@
 <html>
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="${contextPath}/JS/bootstrap.min.js"></script>
 </head>
 
 <body>
-	<p>  Dobrodosli, ${ulogovaniKorisnik.korisnickoIme}  <a href="LogOutServlet">Logout</a></p><br/>
-
+	 
+	<div class="text-right">
+		<a href="LogOutServlet" class="btn btn-dark">Logout</a><br/>
+	</div>
+	<h3>  Dobrodosli, ${ulogovaniKorisnik.korisnickoIme} <br/></h3>
+	<p><br/></p>
 	<table class="table table-hover">
 	<tbody>
 	<tr>

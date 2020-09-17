@@ -4,12 +4,16 @@
     
 <!DOCTYPE html>
 <html>
+<p><br/></p>
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<p>  Dobrodosli, ${ulogovaniKorisnik.korisnickoIme} id ${ulogovaniKorisnik.getId()} <a href="LogOutServlet">Logout</a></p><br/>
-	
+	<div class="text-right">
+		<a href="LogOutServlet" class="btn btn-dark">Logout</a><br/>
+	</div>
+	<h3>  Dobrodosli, ${ulogovaniKorisnik.korisnickoIme} <br/></h3>
+	<p><br/></p>
 	<table class="table table-hover">
 	<tbody>
 	<tr>

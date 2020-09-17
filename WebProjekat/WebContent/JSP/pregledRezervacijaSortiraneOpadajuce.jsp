@@ -4,14 +4,17 @@
     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
+<p><br/></p>
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Pregled rezervacija</title>
 </head>
 <body>
-<h3 style="color: black"><b>Rezervacije</b></h3>
 <form method="POST" action="SortiraneRezervacijeOpadajuceServlet">
+<div class = "container">
+	<h3 style="color: black"><b>Rezervacije</b></h3>
+	<p><br/><p>
       <table class="table table-boardered table-striped table-hover">
       <thead>
          
@@ -41,7 +44,7 @@
          </c:forEach>
          </tbody>
       </table>
-      
+  </div>    
 </form>
 
 </body>

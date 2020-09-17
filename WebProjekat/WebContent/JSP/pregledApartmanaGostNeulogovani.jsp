@@ -5,16 +5,6 @@
 <!DOCTYPE html>
 <html>
 <p><br/></p>
-<div class ="row">
-	<div class="col-md-4">
-		<h3 style="color: black"><b>Apartmani</b></h3>
-	</div>
-	<div class="col-md-4 text-right">
-		<form action="PrikazApartmanServlet" method="get">
-			<a href="VisestrukaPretragaServlet" class="btn btn-primary">Pretraga</a>
-		</form>
-	</div>
-</div>
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
@@ -23,9 +13,16 @@
 <body>
 <form method="POST" action="/PrikaziApartmanGostNeulogovaniServlet">
 	<div class= "container">
+	<div class="col-md-4">
+	<h3 style="color: black"><b>Apartmani</b></h3>
+    </div>
+    <p><br/></p>
+    <a href="SortiraniApartmaniRastuceServlet" class = "fore-control">Sortiraj apartmane po ceni rastuce</a>
+    <a href="SortiraniApartmaniOpadajuceServlet" class = "fore-control">Sortiraj apartmane po ceni opadajuce</a>
+    <div class="text-right">
+    <a href="VisestrukaPretragaServlet" class="btn btn-primary">Pretraga</a>
+    </div>
       <table class="table table-boardered table-striped table-hover">
-      <a href="SortiranjeApartmanaRastuceGostNeulogovaniServlet">Sortiraj apartmane po ceni rastuce</a>
-		<a href="SortiranjeApartmanaOpadajuceGostNeulogovaniServlet">Sortiraj apartmane po ceni opadajuce</a>
       <thead>
          <tr>
          

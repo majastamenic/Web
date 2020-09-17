@@ -3,14 +3,18 @@
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<p><br/></p>
 <head>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Pretraga apartmana</title>
 </head>
 <body>
-	<h3 style="color: black"><b>Pretraga apartmana</b></h3>
    <form method="GET" action="/VisestrukaPretragaServlet">
+   
+   <div class="container">
+   	<h3 style="color: black"><b>Pretraga apartmana</b></h3>
+   	<p><br/></p>
       <table>
          <tr>
             <td>Pocetni broj soba:</td>
@@ -99,7 +103,7 @@
          </c:forEach>
          </tbody>
       </table>
-      
+      </div>
 </form>
 </body>
 </html>
