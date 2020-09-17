@@ -41,37 +41,6 @@ public class LogInServlet extends HttpServlet {
 		RequestDispatcher disp = request.getRequestDispatcher("/JSP/logovanje.jsp");
 		disp.forward(request, response);
 		
-		//ApartmanDAO.ucitajApartmane();
-		//ApartmanDAO.sortiranjePoCeniRastuce();
-		//ApartmanDAO.sortiranjePoCeniOpadajuce();
-		//RezervacijaDAO.ucitajRezervacije();
-		//RezervacijaDAO.sortiranjePoCeniOpadajuce();
-		//RezervacijaDAO.sortiranjePoCeniRastuce();
-		//GostDAO.izbrisiGosta(28);
-		//DomacinDAO.izbrisiDomacina(11);
-		//AdministratorDAO.izbrisiAdmina(31);
-		//AmenitiesDAO.izbrisiPogodnost(1);
-		//ApartmanDAO.izbrisiApartman(1);  
-		
-		
-		
-		/*Adresa adresa= AdresaDAO.findAdressById(1);
-		System.out.println(adresa.getId()+" "+adresa.getNaseljenoMesto()+" "+adresa.getPostanskiBroj()+" "+adresa.getUlicaBroj());
-		Amenities pogodnost = AmenitiesDAO.findAmenitiesById(1);
-		System.out.println(pogodnost.getId()+" "+pogodnost.getNaziv());
-		
-		Apartman apartman = ApartmanDAO.findApartmentById(1);
-		System.out.println(apartman.getId()+ " "+apartman.getBrojGostiju()+" "+ apartman.getBrojSoba()+" "+apartman.getCenaPoNoci()+" "+apartman.getVremeZaOdjavu()+" "+ apartman.getDatumZaIzdavanje()+ apartman.getDomacin());
-		KomentarZaApartman komentar = KomentarDAO.findCommentById(1);
-		System.out.println(komentar.getId());
-		Lokacija lokacija = lokacijaDAO.findLocationById(1);
-		System.out.println(lokacija.getId());
-		Rezervacija rezervacija = RezervacijaDAO.findReservationById(1);
-		System.out.println(rezervacija.getId());
-		Domacin domacin= DomacinDAO.findHostById(1);
-		System.out.println(domacin.getId());
-		Administrator admin = AdministratorDAO.findAdminById(1);
-		System.out.println(admin.getId());*/
 	}
 
 	/**
@@ -88,11 +57,8 @@ public class LogInServlet extends HttpServlet {
 		}else {
 			Korisnik korisnik = UserDAO.findUserByCredentials(korisnickoIme, lozinka);
 			ulogovaniKorisnik = korisnik;
-			System.out.println(korisnik);
 			if(korisnik!= null) {
 				if (korisnik instanceof Gost) {
-//					Gost noviGost = (Gost) korisnik;
-					System.out.println("Logovao se korisnik");
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilGostServlet");
 					HttpSession session = request.getSession();
 					request.setAttribute("ulogovaniKorisnik", korisnik);				
@@ -101,7 +67,6 @@ public class LogInServlet extends HttpServlet {
 					requestDispatcher.forward(request, response);
 				}
 				if (korisnik instanceof Domacin) {
-//					Domacin noviDomacin = (Domacin) korisnik;
 					System.out.println("Logovao se domacin");
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilDomacinServlet");
 					HttpSession session = request.getSession();
@@ -111,7 +76,6 @@ public class LogInServlet extends HttpServlet {
 					requestDispatcher.forward(request, response);
 				}
 				if (korisnik instanceof Administrator) {
-//					Administrator noviAdin = (Administrator) korisnik;
 					System.out.println("Logovao se admin");
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilAdminServlet");
 					HttpSession session = request.getSession();
@@ -126,9 +90,6 @@ public class LogInServlet extends HttpServlet {
 				request.setAttribute("err", "Ne postoji korisnik sa datim username/password");
 				doGet(request, response);
 				return;
-				
-				//RequestDispatcher requestDispatcher = request.getRequestDispatcher("/JSP/neuspesnaRegistracija.jsp");
-				//requestDispatcher.forward(request, response);
 				
 			}
 			

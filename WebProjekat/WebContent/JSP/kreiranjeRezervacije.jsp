@@ -24,16 +24,23 @@
          </tr> 
           <tr>
             <td>Datum pocetka rezervacije:</td>
-            <td><input type="date" name="datum"  class="form-control form-control-sm"></td>
+
+
+            <td><input type="date" name="datum"  class="form-control form-control-sm">
+  </td>
+
          </tr> 
          
          <tr>
             <td>Broj nocenja:</td>
             <td><input type="text" name="brojNocenja" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+
          </tr>
          <tr>
             <td>Poruka:</td>
-            <td><input type="text" name="poruka" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+
+            <td><input type="text" class="form-control form-control-sm" placeholder="Unesite poruku.." name="poruka"/></td>
+
          </tr>
          <tr>
             <td></td>

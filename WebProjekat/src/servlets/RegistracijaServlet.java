@@ -10,8 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.Administrator;
+import beans.Domacin;
 import beans.Gost;
+import dao.AdministratorDAO;
+import dao.DomacinDAO;
 import dao.GostDAO;
+import dao.UserDAO;
 
 
 /**
@@ -48,11 +53,12 @@ public class RegistracijaServlet extends HttpServlet {
 		String ime = request.getParameter("ime");
 		String prezime = request.getParameter("prezime");
 		String pol = request.getParameter("pol");
-//		Uloga uloga = Uloga.valueOf(request.getParameter("uloga"));
 		
 		Gost gost= GostDAO.findGuestByUsername(korisnickoIme);
-		LogInServlet.ulogovaniKorisnik = gost;
-		if (gost == null) {
+		Domacin domacin = DomacinDAO.findHostByUsername(korisnickoIme);
+		Administrator admin = AdministratorDAO.findAdminByUsername(korisnickoIme);
+
+		if (gost == null && domacin==null && admin==null) {
 			System.out.println(korisnickoIme  + " " + lozinka);
 			Gost noviGost = new Gost();
 			noviGost.setKorisnickoIme(korisnickoIme);
@@ -66,8 +72,11 @@ public class RegistracijaServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			request.setAttribute("ulogovaniKorisnik", gost);				
 			session.setAttribute("ulogovaniKorisnik", gost);
+			
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ProfilGostServlet");
 			requestDispatcher.forward(request, response);
+			
+			LogInServlet.ulogovaniKorisnik = UserDAO.findUserByCredentials(korisnickoIme, lozinka);
 		}
 		
 		else {

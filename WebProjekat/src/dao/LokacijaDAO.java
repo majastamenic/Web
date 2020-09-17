@@ -45,7 +45,16 @@ private static Map<Integer, Lokacija> lokacija = new HashMap<>();
 	}
 	
 	public static Collection<Lokacija> findAll() {
+		lokacija = ucitajLokaciju();
 		return lokacija.values();
+	}
+	
+	public static List<Lokacija> listaLokacija(){
+		List<Lokacija> lokacije = new ArrayList<Lokacija>();
+		for(Lokacija lokacija:ucitajLokaciju().values()) {
+			lokacije.add(lokacija);
+		}
+		return lokacije;
 	}
 	
 	
@@ -201,6 +210,19 @@ public static Lokacija findLocationById(Integer id) {
 			return true;
 		}else
 			return false;
+	}
+	
+	public static List<Lokacija> lokacijeSaAdresama(List<Lokacija> lokacije){
+		
+		for(Lokacija lokacija:lokacije) {
+			for(Adresa adresa:AdresaDAO.ucitajAdrese().values()) {
+				if(lokacija.getAdresa().getId() == adresa.getId()) {
+					lokacija.setAdresa(adresa);
+				}
+			}
+		}
+		
+		return lokacije;
 	}
 
 }

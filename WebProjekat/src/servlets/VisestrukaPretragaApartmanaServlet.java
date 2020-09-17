@@ -38,6 +38,9 @@ public class VisestrukaPretragaApartmanaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("listaLokacija", LokacijaDAO.findAll());
+		request.setAttribute("listaPogodnosti", AmenitiesDAO.findAll());
+		
 		String pocetniBrojSobaString  = request.getParameter("pocetniBrojSoba");
 		String krajnjiBrojSobaString = request.getParameter("krajnjiBrojSoba");
 		String pocetniBrojGostijuString  = request.getParameter("pocetniBrojGostiju");

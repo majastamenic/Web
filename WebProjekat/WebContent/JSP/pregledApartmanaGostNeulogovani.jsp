@@ -40,6 +40,7 @@ body {
             <th>Lokacija: </th>
             <th>Domacin: </th>
             <th>Cena po noci: </th>
+            <th></th>
          </tr>  
          </thead>
          <tbody>

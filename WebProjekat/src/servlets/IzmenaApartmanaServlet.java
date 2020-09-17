@@ -15,7 +15,9 @@ import beans.Domacin;
 import beans.Lokacija;
 import beans.StatusApartman;
 import beans.TipApartmana;
+import dao.AmenitiesDAO;
 import dao.ApartmanDAO;
+import dao.LokacijaDAO;
 
 /**
  * Servlet implementation class IzmenaApartmanaServlet
@@ -41,6 +43,8 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 		
 		if(idApartmana!=null) {
 			Apartman apartman = ApartmanDAO.findApartmentById(Integer.parseInt(idApartmana));
+			request.setAttribute("listaLokacija", LokacijaDAO.findAll());
+			request.setAttribute("listaPogodnosti", AmenitiesDAO.findAll());
 			request.setAttribute("brojSoba", apartman.getBrojSoba());
 			request.setAttribute("brojGostiju", apartman.getBrojGostiju());
 			request.setAttribute("cenaPoNoci", apartman.getCenaPoNoci());

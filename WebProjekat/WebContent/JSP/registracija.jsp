@@ -64,7 +64,9 @@ body {
       </div>
    </form>
    <% if (request.getAttribute("err") != null) { %>
-		<p style="color: red"><%=request.getAttribute("err")%></p>
+   	<div class="alert alert-danger" role="alert">
+	<p style="color: red"><%=request.getAttribute("err")%></p>
+	</div>
 	<% } %>
 </body>
 </html>
