@@ -5,6 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+body {
+  background-image: url('https://cdn.cnn.com/cnnnext/dam/assets/190423135710-girls-in-car-coupons-travel-widget.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Sortirani apartmani</title>
@@ -20,16 +28,16 @@
    <div class="text-right">
     <a href="VisestrukaPretragaServlet" class="btn btn-primary">Pretraga</a>
     </div>
-      <table class="table table-boardered table-striped table-hover">
-      <thead>
+      <table class="table table-boardered table-striped table-hover table-light">
+      <thead class="thead-dark">
          <tr>
          
-            <td>Tip apartmana: </td>
-            <td>Broj soba: </td>
-            <td>Broj gostiju: </td>
-            <td>Lokacija: </td>
-            <td>Domacin: </td>
-            <td>Cena po noci: </td>
+            <th>Tip apartmana: </th>
+            <th>Broj soba: </th>
+            <th>Broj gostiju: </th>
+            <th>Lokacija: </th>
+            <th>Domacin: </th>
+            <th>Cena po noci: </th>
             
          </tr>  
          </thead>

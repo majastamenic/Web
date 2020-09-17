@@ -5,16 +5,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+body {
+  background-image: url('https://cdn.cnn.com/cnnnext/dam/assets/190423135710-girls-in-car-coupons-travel-widget.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Izmena apartmana</title>
 </head>
 <body>
 	<p><br/></p>
-	<h3 style="color: black"><b>Izmena apartmana</b></h3>
+	
    <form method="POST" action="/IzmenaApartmanaServlet">
    <div class="container">
-      <table>
+   <div class="col-md-6 col-xl-5 mb-4">
+   <h3 style="color: black"><b>Izmena apartmana</b></h3>
+   <p><br/></p>
+      <table class="table table-light">
                   <tr>
             <td>Broj soba:</td>
             <td><input type="text" value=${brojSoba} name="brojSoba" class="form-control form-control-sm" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
@@ -62,6 +73,7 @@
             <td><input type="submit" class="form-control form-control-sm btn btn-primary" value="Izmeni"></td>
         </tr>
       </table>
+      </div>
       </div>
    </form>
 </body>

@@ -1,10 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <p><br/></p>
 <head>
+<style>
+body {
+  background-image: url('https://cdn.cnn.com/cnnnext/dam/assets/190423135710-girls-in-car-coupons-travel-widget.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Registracija</title>
@@ -13,8 +22,10 @@
 	
    <form method="POST" action="/RegistracijaServlet">
    <div class = "container">
+   <div class="col-md-6 col-xl-5 mb-4">
    	<h3 style="color: black"><b>Registracija</b></h3>
-      <table>
+   	<p><br/></p>
+      <table class ="table table-light">
          <tr>
             <td>Korisnicko ime:</td>
             <td><input type="text" name="korisnickoIme" class="form-control form-control-sm" pattern="^([a-zA-ZćĆžŽĐđšŠčČ]+)[1-9]*" title="Prvo slova moraju!" required/></td>
@@ -49,6 +60,7 @@
             <td><input type="submit" class="form-control form-control-sm btn btn-primary" value="Registruj se"></td>
         </tr>
       </table>
+      </div>
       </div>
    </form>
    <% if (request.getAttribute("err") != null) { %>

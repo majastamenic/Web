@@ -5,17 +5,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+body {
+  background-image: url('https://cdn.cnn.com/cnnnext/dam/assets/190423135710-girls-in-car-coupons-travel-widget.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Kreiranje rezervacije</title>
 </head>
 <body>
 <p><br/></p>
-<h3 style="color: black"><b>Kreiranje rezervacije</b></h3>
+
    <form method="POST" action="/kreiranjeRezervacijeServlet">
-   <p><br/><p>
+   
    <div class = "container">
-      <table>
+   <div class="col-md-6 col-xl-5 mb-4">
+   <h3 style="color: black"><b>Kreiranje rezervacije</b></h3>
+   <p><br/><p>
+      <table class="table table-light">
                  
          
          <tr>
@@ -48,6 +59,7 @@
             <td><input type="submit" class="form-control form-control-sm btn btn-primary" value="Kreiraj"></td>
         </tr>
       </table>
+      </div>
       </div>
    </form>
 

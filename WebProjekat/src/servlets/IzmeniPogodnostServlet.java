@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Amenities;
-import beans.Apartman;
 import dao.AmenitiesDAO;
-import dao.ApartmanDAO;
 
 /**
  * Servlet implementation class IzmeniPogodnostServlet
@@ -36,8 +34,7 @@ public class IzmeniPogodnostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		idPogodnosti = request.getParameter("id");
-		AmenitiesDAO ad=new AmenitiesDAO();
-		ad.ucitajPogodnosti();
+		AmenitiesDAO.ucitajPogodnosti();
 		if(idPogodnosti != null) {
 			Amenities pogodnost = AmenitiesDAO.findAmenitiesById(Integer.parseInt(idPogodnosti));
 			request.setAttribute("naziv", pogodnost.getNaziv());
