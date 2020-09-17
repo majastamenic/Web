@@ -5,42 +5,42 @@
 <!DOCTYPE html>
 <html>
 <p><br/></p>
-
-	<div class="col-md-4">
-		<h3 style="color: black"><b>Rezervacije</b></h3>
-	</div>
-	<div class="col-md-4 text-right">
-		<form action="/pregledSvihRezervacijaServlet" method="get">	
-		<div class = "container-fluid text-right">	
-		<table>	
-			<td><a href="/SortiraneRezervacijeRastuceServlet">Sortiraj rezervacije po ceni rastuce</a></td>
-			<td><a href="/SortiraneRezervacijeOpadajuceServlet">Sortiraj rezervacije po ceni opadajuce</a></td>
-			<td><a href="/VisestrukaPretragaRezervacijaServlet" class="btn btn-info">Visestruka pretraga</a></td>
-			<td><a href="/DodajRezervacijuServlet" class="btn btn-success">Dodaj rezervaciju</a></td>
-			</table>
-			</div>
-		</form>
-	</div>
-
 <head>
+<style>
+body {
+  background-image: url('https://cdn.cnn.com/cnnnext/dam/assets/190423135710-girls-in-car-coupons-travel-widget.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Pregled rezervacija</title>
+<title>Rezervacije</title>
 </head>
 <body>
  <form method="POST" action="/pregledSvihRezervacijaServlet">
  <div class="conatiner">
-      <table class="table table-boardered table-striped table-hover">
+		<h3 style="color: black"><b>Rezervacije</b></h3>
+		<p><br/></p>
+			<a href="/SortiraneRezervacijeRastuceServlet" class="btn btn-secondary">Sortiraj rezervacije po ceni rastuce</a>
+			<a href="/SortiraneRezervacijeOpadajuceServlet" class="btn btn-secondary">Sortiraj rezervacije po ceni opadajuce</a>
+			<div class=" text-right">
+			<a href="/VisestrukaPretragaRezervacijaServlet" class="btn btn-info">Visestruka pretraga</a>
+			<a href="/DodajRezervacijuServlet" class="btn btn-success">Dodaj rezervaciju</a>
+		</div>
+      <table class="table table-boardered table-striped table-hover table-light">
       	
-      
+      <thead class="thead-dark">
          <tr>
-         <td>Rezervisan apartman:</td>
-            <td>Broj nocenja:</td>
-            <td>Cena:</td>
-            <td>Status:</td>
-            <td>Gost:</td>
+         <th>Rezervisan apartman:</th>
+            <th>Broj nocenja:</th>
+            <th>Cena:</th>
+            <th>Status:</th>
+            <th>Gost:</th>
             
          </tr>  
+         </thead>
          <c:forEach items="${rezervacije}" var="rezervacija">    
          <tr>
             <td> ${rezervacija.getRezervisanApartman().getId()} </td>

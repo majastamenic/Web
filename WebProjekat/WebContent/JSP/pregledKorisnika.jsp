@@ -4,35 +4,42 @@
      <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-<p></br></p>
-<div class ="row">
-	<div class="col-md-4">
-		<h3>Pregled korisnika</h3>
-	</div>
-	<div class="col-md-4 text-right">
-		<a href="/VisestrukaPretragaKorisnikaServlet" class="btn btn-primary">Pretraga</a>
-	</div>
-</div>
+<p><br/></p>
 <head>
+<style>
+body {
+  background-image: url('https://cdn.cnn.com/cnnnext/dam/assets/190423135710-girls-in-car-coupons-travel-widget.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Pregled korisnika</title>
 </head>
 <body>
 <p><br/></p>
-<h3 style="color: black"><b>Korisnici</b></h3>
  <form method="POST" action="/PregledSvihKorisnikaServlet">
  <div class="container">
-      <table class="table table-boardered table-striped table-hover">
-      
+	<div class="col-md-4">
+		<h3 style="color: black"><b>Korisnici</b></h3>
+	</div>
+	<p><br/></p>
+	<div class="text-right">
+		<a href="/VisestrukaPretragaKorisnikaServlet" class="btn btn-primary">Pretraga</a>
+	</div>
+      <table class="table table-boardered table-striped table-hover table-light">
+      <thead class="thead-dark">
          <tr>
-         	<td>Korisnicko ime:</td>
-            <td>Ime:</td>
-            <td>prezime:</td>
-            <td>Pol:</td>
-            <td>Uloga:</td>
+         	<th>Korisnicko ime:</th>
+            <th>Ime:</th>
+            <th>prezime:</th>
+            <th>Pol:</th>
+            <th>Uloga:</th>
             
          </tr>  
+         </thead>
          <c:forEach items="${listaGostiju}" var="gost">    
          <tr>
          	<td>${gost.getKorisnickoIme()}</td>

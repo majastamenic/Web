@@ -5,46 +5,44 @@
 <!DOCTYPE html>
 <html>
 <p><br/></p>
-<div class ="row">
-	<div class="col-md-4">
-		<h3 style="color: black"><b>Apartmani</b></h3>
-	</div>
-	<div class="col-md-4">
-		<form action="PrikaziApartmanServlet" method="get">
-			<a href="SortiraniApartmaniRastuceServlet" class = "fore-control">Sortiraj apartmane po ceni rastuce</a>
-			<a href="SortiraniApartmaniOpadajuceServlet" class = "fore-control">Sortiraj apartmane po ceni opadajuce</a>
-			<a href="VisestrukaPretragaServlet" class="btn btn-primary">Pretraga</a>
-			<div class="col-md-4 text-right">
-			<a href="DodajApartmanServlet" class="btn btn-success">Dodaj apartman</a>
-			</div>
-		</form>
-	</div>
-</div>
 <head>
+<style>
+body {
+  background-image: url('https://cdn.cnn.com/cnnnext/dam/assets/190423135710-girls-in-car-coupons-travel-widget.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
 
 </head>
 <body>
+
 <form method="POST" action="PrikaziApartmanServlet">
 	<div class = "container">
-      <table class="table table-boardered table-striped table-hover">
-      <thead>
+		<div class="col-md-4">
+		<h3 style="color: black"><b>Apartmani</b></h3>
+		</div>
+		<p><br/></p>
+		<a href="SortiraniApartmaniRastuceServlet" class="btn btn-secondary">Sortiraj apartmane po ceni rastuce</a>
+		<a href="SortiraniApartmaniOpadajuceServlet" class="btn btn-secondary">Sortiraj apartmane po ceni opadajuce</a>
+		<div class="text-right">
+		<a href="VisestrukaPretragaServlet" class="btn btn-primary">Pretraga</a>
+		<a href="DodajApartmanServlet" class="btn btn-success">Dodaj apartman</a>
+		</div>
+      <table class="table table-boardered table-striped table-hover table-light">
+       <thead class="thead-dark">
          <tr>
-         
-            <td>Tip apartmana: </td>
-            <td>Broj soba: </td>
-            <td>Broj gostiju: </td>
-            <td>Lokacija: </td>
-            <td>Domacin: </td>
 
-
-
-            <td>Status: </td>
-
-            <td>Cena po noci: </td>
-
-
+            <th>Tip apartmana: </th>
+            <th>Broj soba: </th>
+            <th>Broj gostiju: </th>
+            <th>Lokacija: </th>
+            <th>Domacin: </th>
+            <th>Status: </th>
+            <th>Cena po noci: </th>
             <th class="text-center">Akcije </th>
          </tr>  
          </thead>
@@ -57,11 +55,8 @@
             <td>${apartman.getBrojGostiju()}</td>
             <td>${apartman.getLokacija().getId()}</td>
             <td>${apartman.getDomacin().getId()}</td>
-
             <td>${apartman.getStatus()}</td>
-
             <td>${apartman.getCenaPoNoci()}</td>
-
             <td class="text-center">
 
             	<a href='/IzmenaApartmanaServlet?id=${apartman.id} ' class="btn btn-warning">Izmeni</a>

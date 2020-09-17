@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import beans.Apartman;
 import beans.Domacin;
 import beans.Gost;
 import beans.Pol;

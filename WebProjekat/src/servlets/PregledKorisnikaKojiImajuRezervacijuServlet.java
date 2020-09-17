@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Domacin;
 import beans.Gost;
-import dao.DomacinDAO;
 import dao.GostDAO;
 
 /**

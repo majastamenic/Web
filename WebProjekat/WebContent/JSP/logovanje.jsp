@@ -6,15 +6,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+body {
+  background-image: url('https://cdn.cnn.com/cnnnext/dam/assets/190423135710-girls-in-car-coupons-travel-widget.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Log in</title>
 </head>
 <body>
 	<p><br/></p>
-	<h3 style="color: black"><b>LogIn</b></h3>
+	<p><br/></p>
+	<p><br/></p>
    <form method="POST" action="/LogInServlet">
+   <div class="container">
             <div class="col-sm-3 my-1">
+            <h3 style="color: black"><b>LogIn</b></h3>
+            <p><br/></p>
       			<label class="sr-only" for="inlineFormInputGroupUsername">KorisnickoIme</label>
       			<div class="input-group">
         			<div class="input-group-prepend">
@@ -25,11 +37,12 @@
       			
       			<label class="sr-only" for="inlineFormInputGroupUsername">KorisnickoIme</label>
       			<div class="input-group">
-        			<input type="text" name="lozinka" class="form-control" id="inlineFormInputGroupUsername" placeholder="Lozinka"/>
+        			<input type="password" name="lozinka" class="form-control" id="inlineFormInputGroupUsername" placeholder="Lozinka"/>
       			</div>
   				<a href="/JSP/registracija.jsp">Registracija</a><br/>
 				<input type="submit" class="btn btn-primary" value="Prijavi se"><br/>
 				<a href="/JSP/neulogovaniKorisnik.jsp">Niste ulogovani?</a><br/>
+        </div>
         </div>
    </form>
    <% if (request.getAttribute("err") != null) { %>

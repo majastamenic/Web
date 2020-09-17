@@ -9,12 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Administrator;
 import beans.Amenities;
-import beans.Apartman;
-import dao.AdministratorDAO;
+
 import dao.AmenitiesDAO;
-import dao.ApartmanDAO;
 
 /**
  * Servlet implementation class IzmeniPogodnostServlet
