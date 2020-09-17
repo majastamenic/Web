@@ -49,7 +49,6 @@ public class RegistracijaServlet extends HttpServlet {
 		String ime = request.getParameter("ime");
 		String prezime = request.getParameter("prezime");
 		String pol = request.getParameter("pol");
-//		Uloga uloga = Uloga.valueOf(request.getParameter("uloga"));
 		
 		Gost gost= GostDAO.findGuestByUsername(korisnickoIme);
 		LogInServlet.ulogovaniKorisnik = gost;

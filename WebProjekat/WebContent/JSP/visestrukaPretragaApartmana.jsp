@@ -67,7 +67,7 @@ body {
             <option value="Pogodnosti">${Pogodnosti.getNaziv()}</option> 
             </c:forEach>  
             </select>
- 			 <td><td><input type="submit" value="Pretrazi" class="btn btn-primary form-control form-control-sm"></td></td>
+ 			 <td><td><input type="submit" value="Pretrazi" class="btn btn-primary form-control form-control-sm"></td>
          </tr> 
       </table>
       <p><br/></p>

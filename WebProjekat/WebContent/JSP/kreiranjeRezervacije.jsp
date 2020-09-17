@@ -40,19 +40,17 @@ body {
          </tr> 
           <tr>
             <td>Datum pocetka rezervacije:</td>
-            <td><select name="datum" id="datum" class="form-control form-control-sm">
-            
-            </select>
+            <td><input type="date" name="datum"  class="form-control form-control-sm">
   </td>
          </tr> 
          
          <tr>
             <td>Broj nocenja:</td>
-            <td><input type="text" class="form-control form-control-sm" placeholder="Unesite broj nocenja.." name="cena" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+            <td><input type="text" class="form-control form-control-sm" placeholder="Unesite broj nocenja.." name="brojNocenja" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
          </tr>
          <tr>
             <td>Poruka:</td>
-            <td><input type="text" class="form-control form-control-sm" placeholder="Unesite poruku.." name="cena" pattern="[0-9]+" title="Samo brojevi mogu!" required/></td>
+            <td><input type="text" class="form-control form-control-sm" placeholder="Unesite poruku.." name="poruka"/></td>
          </tr>
          <tr>
             <td></td>

@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Apartman;
+import beans.Gost;
+import beans.Rezervacija;
+import beans.StatusRezervacija;
 import dao.ApartmanDAO;
+import dao.RezervacijaDAO;
 
 /**
  * Servlet implementation class kreiranjeRezervacijeServlet
@@ -40,8 +47,35 @@ public class kreiranjeRezervacijeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		doGet(request, response);
+		
+		String apartmanIdString = request.getParameter("apartman");
+		Apartman apartman = ApartmanDAO.findApartmentById(Integer.parseInt(apartmanIdString));
+		String datumPocetkaString = request.getParameter("datum");
+		String brojNocenjaString = request.getParameter("brojNocenja");
+		String poruka = request.getParameter("poruka");
+		
+		Rezervacija rezervacija = new Rezervacija();
+		
+		
+			rezervacija.setId(RezervacijaDAO.vratiNajveciID());
+			rezervacija.setRezervisanApartman(apartman);
+			try {
+				rezervacija.setPocetniDatum(new SimpleDateFormat("dd/MM/yyyy").parse(datumPocetkaString));
+			} catch (ParseException e) {}
+			rezervacija.setBrojNocenja(Integer.parseInt(brojNocenjaString));
+			rezervacija.setPoruka(poruka);
+			rezervacija.setGost((Gost) LogInServlet.ulogovaniKorisnik);
+			rezervacija.setStatus(StatusRezervacija.Kreirana);
+			rezervacija.setUkupnaCena(rezervacija.getRezervisanApartman().getCenaPoNoci() * rezervacija.getBrojNocenja());
+			
+			
+			RezervacijaDAO.ucitajRezervacije();
+			RezervacijaDAO.sacuvajSveRezervacijeIzMape();
+			RezervacijaDAO.dodajRezervacijuUMapu(rezervacija);
+			RezervacijaDAO.sacuvajSveRezervacijeIzMape();
+			
+		
 	}
 
 }

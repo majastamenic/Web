@@ -55,6 +55,7 @@ public class ApartmanDAO {
 	}
 	
 	public static Collection<Apartman> findAll() {
+		apartmani = ApartmanDAO.ucitajApartmane();
 		return apartmani.values();
 	}
 	
