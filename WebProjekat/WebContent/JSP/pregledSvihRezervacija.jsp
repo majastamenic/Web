@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <p><br/></p>
@@ -12,20 +13,22 @@
 		<form action="/pregledSvihRezervacijaServlet" method="get">
 			<input type="text" name="pretraga" class = "form-control" placeholder="Pretraga...">
 			<input type="submit" value="Pretraga">
-			<a href="/DodajRezervacijuServlet" class="btn btn-primary">Dodaj rezervaciju</a>
+			<a href="/DodajRezervacijuServlet" class="btn btn-success">Dodaj rezervaciju</a>
 			<a href="/VisestrukaPretragaRezervacijaServlet">Visestruka pretraga</a>
+			<a href="/SortiraneRezervacijeRastuceServlet">Sortiraj rezervacije po ceni rastuce</a>
+			<a href="/SortiraneRezervacijeOpadajuceServlet">Sortiraj rezervacije po ceni opadajuce</a>
 		</form>
 	</div>
 </div>
 <head>
+<link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Pregled rezervacija</title>
 </head>
 <body>
  <form method="POST" action="/pregledSvihRezervacijaServlet">
-      <table>
-      <a href="SortiraneRezervacijeRastuceServlet">Sortiraj rezervacije po ceni rastuce</a>
-		<a href="SortiraneRezervacijeOpadajuceServlet">Sortiraj rezervacije po ceni opadajuce</a>
+      <table class="table table-boardered table-striped table-hover">
+      	
       
          <tr>
          <td>Rezervisan apartman:</td>

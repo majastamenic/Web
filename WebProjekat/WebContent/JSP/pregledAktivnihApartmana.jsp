@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
+<link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Pregled aktivnih apartmana</title>
 </head>
@@ -15,14 +17,14 @@
 		<a href="VisestrukaPretragaServlet">Visestruka pretraga</a>
    </form>
 
-      <table border="1">
+      <table class="table table-striped">
       	<thead>
-            <th>Tip apartmana:</th>
-            <th>Broj soba:</th>
+            <th >Tip apartmana:</th>
+            <th >Broj soba:</th>
             <th>Broj gostiju:</th>
             <th>Lokacija:</th>
-            <th>Domacin:</th>
-            <th>Cena po noci:</th>
+            <th >Domacin:</th>
+            <th >Cena po noci:</th>
              
          </thead>
          <tbody> 

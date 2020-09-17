@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
+<link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Pregled neaktivni apartmani</title>
 </head>
@@ -12,9 +14,9 @@
     <form action="/NeaktivniApartmaniServlet" method="get">
    		<input type="text" name="pretraga">
 		<input type="submit" value="Pretraga">
-		<a href="/DodajApartmanServlet" class="btn btn-primary">Dodaj apartman</a>
+		<a href="/DodajApartmanServlet" class="btn btn-success">Dodaj apartman</a>
    </form>
-      <table border="1">
+      <table class="table table-boardered table-striped table-hover">
       
          <thead>
             <th>Tip apartmana:</th>

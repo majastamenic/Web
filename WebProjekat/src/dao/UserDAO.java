@@ -103,8 +103,9 @@ public class UserDAO {
 
 	public static ArrayList<Korisnik> ucitajKorisnikeSpramUloge(){
 		ArrayList<Korisnik> korisnici = new ArrayList<Korisnik>();
-		Collection<Apartman> apartmaniDomacina = ApartmanDAO.ucitajApartmaneOdDomacina((Domacin) LogInServlet.ulogovaniKorisnik).values();
+		
 		if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Domacin)) {
+			Collection<Apartman> apartmaniDomacina = ApartmanDAO.ucitajApartmaneOdDomacina((Domacin) LogInServlet.ulogovaniKorisnik).values();
 			for(Rezervacija rezervacija:RezervacijaDAO.ucitajRezervacije().values()) {
 				for(Apartman apartman:apartmaniDomacina) {
 					if(rezervacija.getRezervisanApartman().equals(apartman)) {
