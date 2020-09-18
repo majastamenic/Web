@@ -20,7 +20,7 @@ body {
 <body>
 	<p><br/></p>
 	
-   <form method="POST" action="/IzmenaApartmanaServlet">
+   <form method="POST" action="/IzmenaApartmanaServlet?id=${apartman.id}">
    <div class="container">
    <div class="col-md-6 col-xl-5 mb-4">
    <h3 style="color: black"><b>Izmena apartmana</b></h3>
@@ -37,8 +37,8 @@ body {
          <tr>
             <td>Tip apartmana:</td>
             <td><select name="tip" id="tip" class="form-control form-control-sm">
-  <option value="apartman">Apartman</option>
-  <option value="soba">Soba</option>
+  <option>Apartman</option>
+  <option>Soba</option>
   
   
 </select></td>
@@ -48,7 +48,7 @@ body {
          <tr>
             <td>Lokacija:</td>
             <td><select name="lokacija" id="lokacija" class="form-control form-control-sm">
-            <option value=""></option>
+            <option ></option>
             <c:forEach items="${listaLokacija}" var="lokacija"> 
             <option value="lokacija">${lokacija.getId()}</option> 
             </c:forEach>  
@@ -58,9 +58,9 @@ body {
           <tr>
             <td>Pogodnosti:</td>
             <td><select name="Pogodnosti" id="Pogodnosti" class="form-control form-control-sm">
-            <option value=""></option>
+            <option ></option>
             <c:forEach items="${listaPogodnosti}" var="Pogodnosti"> 
-            <option value="Pogodnosti">${Pogodnosti.getNaziv()}</option> 
+            <option>${Pogodnosti.getNaziv()}</option> 
             </c:forEach>  
             </select>
   </td>
