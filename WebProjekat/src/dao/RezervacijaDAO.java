@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -82,7 +83,7 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 					float ukupnaCena= Float.parseFloat(st.nextToken().trim());
 					String poruka = st.nextToken().trim();
 					int idGost = Integer.parseInt(st.nextToken().trim());
-//					Ne cemo ovo jer cemo prvo goste da upisemo, mi cemo zacuvari ID gosta za dalju pretragu
+//					
 //					GostDAO gd= new GostDAO();
 //					Gost gost= gd.find(idGost);
 					
@@ -167,6 +168,52 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 		Rezervacija c;
 		Rezervacija d;
 		List<Rezervacija> nesortiraneRezervacije = rezervacijeGosta(gost);
+		for(int i = 0; i<nesortiraneRezervacije.size() ; i++) {
+			for(int j = 0 ; j < nesortiraneRezervacije.size()-i-1 ; j++) {
+				a=nesortiraneRezervacije.get(j).getUkupnaCena();
+				b=nesortiraneRezervacije.get(j+1).getUkupnaCena();
+				c=nesortiraneRezervacije.get(j);
+				d=nesortiraneRezervacije.get(j+1);
+				
+				if(a.compareTo(b)>0) {
+					Rezervacija temp=d;
+					nesortiraneRezervacije.set(j+1, c);
+					nesortiraneRezervacije.set(j, temp);
+				}
+			}
+		}
+		return nesortiraneRezervacije;
+	}
+	
+	public static List<Rezervacija> sortiranjePoCeniDomacinOpadajuce(Domacin domacin){
+		Float a;
+		Float b;
+		Rezervacija c;
+		Rezervacija d;
+		List<Rezervacija> nesortiraneRezervacije = ucitajRezervacijeZaDomacina(domacin);
+		for(int i = 0; i<nesortiraneRezervacije.size() ; i++) {
+			for(int j = 0 ; j < nesortiraneRezervacije.size()-i-1 ; j++) {
+				a=nesortiraneRezervacije.get(j).getUkupnaCena();
+				b=nesortiraneRezervacije.get(j+1).getUkupnaCena();
+				c=nesortiraneRezervacije.get(j);
+				d=nesortiraneRezervacije.get(j+1);
+				
+				if(a.compareTo(b)<0) {
+					Rezervacija temp=d;
+					nesortiraneRezervacije.set(j+1, c);
+					nesortiraneRezervacije.set(j, temp);
+				}
+			}
+		}
+		return nesortiraneRezervacije;
+	}
+	
+	public static List<Rezervacija> sortiranjePoCeniDomacinRastuce(Domacin domacin){
+		Float a;
+		Float b;
+		Rezervacija c;
+		Rezervacija d;
+		List<Rezervacija> nesortiraneRezervacije = ucitajRezervacijeZaDomacina(domacin);
 		for(int i = 0; i<nesortiraneRezervacije.size() ; i++) {
 			for(int j = 0 ; j < nesortiraneRezervacije.size()-i-1 ; j++) {
 				a=nesortiraneRezervacije.get(j).getUkupnaCena();
@@ -392,6 +439,8 @@ private static Map<Integer, Rezervacija> rezervacija = new HashMap<>();
 				}
 			}
 		}
+		HashSet<Rezervacija> rezervacijeSet = new HashSet<Rezervacija>(rezervacije);
+		rezervacije = new ArrayList<Rezervacija>(rezervacijeSet);
 		return rezervacije;
 	}
 	public static ArrayList<Rezervacija> ucitajRezervacijeZaGosta(Gost gost) {

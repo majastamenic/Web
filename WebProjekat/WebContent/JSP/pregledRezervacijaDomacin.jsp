@@ -13,8 +13,8 @@
 <form method="POST" action="/pregledRezervacijaDomacinServlet">
 	<p><br/></p>
 	<div class="text-right">
-		<a href="SortiraneRezervacijeRastuceServlet">Sortiraj rezervacije po ceni rastuce</a>
-		<a href="SortiraneRezervacijeOpadajuceServlet">Sortiraj rezervacije po ceni opadajuce</a>
+		<a href="SortiraneRezervacijeRastuceDomacinServlet">Sortiraj rezervacije po ceni rastuce</a>
+		<a href="SortiraneRezervacijeOpadajuceDomacinServlet">Sortiraj rezervacije po ceni opadajuce</a>
 		</div>
 		<div class="container">
       <table class="table table-boardered table-striped table-hover">
