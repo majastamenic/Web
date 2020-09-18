@@ -34,27 +34,16 @@ public class PrikaziApartmanServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pretraga = request.getParameter("pretraga");
 		
+		request.setAttribute("id", request.getParameter("id"));
 		if(LogInServlet.ulogovaniKorisnik.getUloga().equals(Uloga.Domacin))
 			request.setAttribute("mapaApartmana", ApartmanDAO.ucitajApartmaneOdDomacina((Domacin) LogInServlet.ulogovaniKorisnik));
 		else
 			request.setAttribute("mapaApartmana", ApartmanDAO.ucitajApartmane());
 				
 		
-		if(pretraga!=null) {
-			if(pretraga =="") {
-				getServletContext().setAttribute("pretraga", null);
-			}else {
-				getServletContext().setAttribute("pretraga", pretraga);
-			}
 			RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
 			disp.forward(request, response);
-
-		}else {
-			RequestDispatcher disp = request.getRequestDispatcher("/JSP/pregledApartmana.jsp");
-			disp.forward(request, response);
-		}
 	}
 
 	

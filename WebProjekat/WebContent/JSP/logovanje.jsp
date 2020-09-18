@@ -28,7 +28,6 @@ body {
             
             <h3 style="color: black"><b>Prijava</b></h3>
             <p><br/></p>
-            <div class="card wow fadeInLeft" data-wow-delay="0.3s">
       			<label class="sr-only" for="inlineFormInputGroupUsername">KorisnickoIme</label>
       			<div class="input-group">
         			<div class="input-group-prepend">
@@ -42,17 +41,16 @@ body {
         			<input type="password" name="lozinka" class="form-control" id="inlineFormInputGroupUsername" placeholder="Lozinka"/>
       			</div>
   				<a href="/JSP/registracija.jsp">Registracija</a><br/>
-  				</div>
+  				
 				<input type="submit" class="form-control btn btn-primary" value="Prijavi se"><br/>
 				<p><br/></p>
 				<p><br/></p>
 			     
-    <a href= "/PrikaziApartmanGostNeulogovaniServlet" class="btn btn-info"> Apartmani </a>
+    <a href= "/PrikaziApartmanGostNeulogovaniServlet" class="form-control btn btn-info"> Apartmani </a>
     <p><br/></p>
-    <a href= "/PregledKomentaraNeulogovaniServlet" class="btn btn-info"> Pregled komentara gostiju.</a>	
+    <a href= "/PregledKomentaraNeulogovaniServlet" class="form-control btn btn-info"> Pregled komentara gostiju.</a>	
       </div> 
- 
-      </div>
+ </div>
    </form>
    <% if (request.getAttribute("err") != null) { %>
    		<div class="alert alert-danger" role="alert">

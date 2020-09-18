@@ -15,12 +15,18 @@ body {
 </style>
 <link href="${contextPath}/CSS/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Pregled gostiju</title>
 </head>
 <body>
 
 <form method="POST" action="/PregledKorisnikaKojiImajuRezervacijuServlet">
  <div class="conatiner">
+ <div class = "col-md-4">
+ <p><br/></p>
+ <h3 style="color: black"><b>Pregled gostiju</b></h3>
+  </div>
+ <p><br/><p>
+
       <table class="table table-boardered table-striped table-hover table-light">
      
       <thead class="thead-dark">

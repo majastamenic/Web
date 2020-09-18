@@ -25,7 +25,7 @@ import dao.LokacijaDAO;
 @WebServlet("/IzmenaApartmanaServlet")
 public class IzmenaApartmanaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public String idApartmana;
+	public static String idApartmana;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,7 +39,7 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		idApartmana = request.getParameter("id");
+		String idApartmana = request.getParameter("idApartmana");
 		
 		if(idApartmana!=null) {
 			Apartman apartman = ApartmanDAO.findApartmentById(Integer.parseInt(idApartmana));
@@ -59,7 +59,6 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-		idApartmana = request.getParameter("id");
 		Integer id = Integer.parseInt(idApartmana);
 		TipApartmana tip = TipApartmana.valueOf(request.getParameter("tip"));
 		int brojSoba = Integer.parseInt(request.getParameter("brojSoba"));
@@ -76,6 +75,7 @@ public class IzmenaApartmanaServlet extends HttpServlet {
 		Apartman a = new Apartman(id, tip, brojSoba, brojGostiju, lokacija, datumZaIzdavanje,
 				  domacin, cenaPoNoci,
 				 vremeZaPrijavu, vremeZaOdjavu, status);
+		
 		ApartmanDAO.izmeniApartman(a);
 		
 		
